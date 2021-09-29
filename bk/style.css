@@ -1,0 +1,29 @@
+
+body {
+	background-color: #E5D2A7;
+}
+
+.capcelera {
+  background-color: #D7A587;
+  border-color: #C96F6A;
+  margin: auto;
+  padding: 1%;
+  margin: 1%;
+  font-family: 'Roboto Slab', serif;
+}
+body a:link, a:visited {
+  background-color: #AD397E;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+body a:hover, a:active {
+  background-color: #BB516D;
+}
+
+footer {
+  display: block;
+}
