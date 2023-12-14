@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RENFE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @font-face {
+            font-family: 'fago';
+            src: url('./fago-regular.otf');
+        }
+
+        @font-face {
+            font-family: 'fago';
+            src: url('./fago-bold.ttf');
+            font-weight: bold;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'fago', Segoe UI, Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: white;
+            color: #00292E;
+            display: -webkit-flex;
+            display: flex;
+            width: 100%;
+        }
+
+        hour {
+            text-align: center;
+            font-size: 2.5vw;
+            //font-size: 50px;
+            background-color: #00292E;
+            color: white;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            //padding: 10px;
+            width: 8%;
+        }
+
+        salidas {
+            letter-spacing: 2px;
+            font-size: 3vw;
+            //font-size: 50px;
+            padding: 10px;
+        }
+
+        logo {
+            padding: 10px;
+            text-align: right;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+
+        td {
+            font-size: 2.5vw;
+            //font-size: 50px;
+            max-width: 100px;
+            white-space: nowrap;
+        }
+
+        th {
+            color: #006338;
+        }
+
+        tr {
+            border-bottom: 1px solid black;
+            background-color: #fdfad1;
+            height: 50px;
+        }
+
+        .line-hour {
+            font-weight: bold;
+            text-align: center;
+            background-color: #006338;
+            color: white;
+        }
+
+        .first-row {
+            height: 50px;
+            text-align: left;
+            border-collapse: collapse;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <hour>
+            <b id="horaActual">13:51</b>
+        </hour>
+        <salidas>
+            Salidas | <b>Sortides</b> | <small>DEPARTURES</small>
+        </salidas>
+        <logo>
+            <img width="180px"
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Adif_wordmark.svg/1200px-Adif_wordmark.svg.png'>
+        </logo>
+    </header>
+    <br>
+
+    <table style="border-collapse: collapse;">
+        <tr class="first-row">
+            <th style="width:8%">
+                Hora<br>
+                <b>Hora</b><br>
+                <small>HOUR</small>
+            </th>
+            <th style="width:40%">
+                Destino<br>
+                <b>Destinació</b><br>
+                <small>DESTINATION</small>
+            </th>
+            <th>
+                Tren<br>
+                <b>Tren</b><br>
+                <small>TRAIN</small>
+            </th>
+            <th style="width:5%">
+                Número<br>
+                <b>Número</b><br>
+                <small>NUMBER</small>
+            </th>
+            <th>
+                Via<br>
+                <b>Via</b><br>
+                <small>PLATFORM</small>
+            </th>
+            <th style="width:25%">
+                Observaciones<br>
+                <b>Observacións</b><br>
+                <small>OBSERVATIONS</small>
+            </th>
+        </tr>
+        <tr>
+            <td class="line-hour">14:18</td>
+            <td>BARCELONA SANTS</td>
+            <td>R11</td>
+            <td>MD</td>
+            <td>2</td>
+            <td>
+                <marquee>Para a Sant Celoni</marquee>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="line-hour">15:39</td>
+            <td>BARCELONA SANTS</td>
+            <td>R11</td>
+            <td>REG</td>
+            <td>2</td>
+            <td>
+                <marquee>Para a totes les estacions</marquee>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="line-hour">16:19</td>
+            <td>BARCELONA SANTS</td>
+            <td>R11</td>
+            <td>MD</td>
+            <td>2</td>
+            <td>
+                <marquee>Para a Sant Celoni pero bueno que et puc aqui explicar tpt</marquee>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="line-hour">17:39</td>
+            <td>BARCELONA SANTS</td>
+            <td>R11</td>
+            <td>REG</td>
+            <td>2</td>
+            <td>
+                <marquee>Para a totes les estacions</marquee>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="line-hour"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <marquee>
+                    </div>
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+<script>
+    // Función para obtener la hora actual en formato hh:mm
+    function obtenerHoraActual() {
+        const ahora = new Date();
+        const horas = ahora.getHours().toString().padStart(2, '0');
+        const minutos = ahora.getMinutes().toString().padStart(2, '0');
+        return `${horas}:${minutos}`;
+    }
+
+    // Función para actualizar el campo de texto con la hora actual
+    function actualizarHoraActual() {
+        const horaActual = obtenerHoraActual();
+        var hora = document.getElementById("horaActual")
+        hora.innerHTML = horaActual;
+    }
+
+    // Llamar a la función para establecer la hora actual al cargar la página
+    actualizarHoraActual();
+
+    // Configurar una actualización periódica (por ejemplo, cada minuto)
+    setInterval(actualizarHoraActual, 500); // 60000 milisegundos = 1 minuto
+
+    //Abrimos archivo ICS
+    fetch("test.ics")
+  .then((res) => res.text())
+  .then((text) => {
+    // do something with "text"
+   })
+  .catch((e) => console.error(e));
+</script>
+
+</html>

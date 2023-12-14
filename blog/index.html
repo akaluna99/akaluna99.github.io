@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The web site of cat-alunya</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+    dialog[open] {
+      width:50%;
+  opacity: 1;
+  transform: scaleY(1);
+}
+      ::backdrop {
+        background-image: linear-gradient(
+          45deg,
+          magenta,
+          rebeccapurple,
+          dodgerblue,
+          green
+        );
+        opacity: 0.75;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="container" ContentEditable='FALSE'>
+      <header>
+          <h1 class="bigger-text"><a href='/index.html'>el meu lloc a l'interxarxa</a></h1>
+      </header>
+      <dialog class="blog_preview">
+        <div id='modal'>
+        </div>
+        <button autofocus>Close</button>
+        <p>This modal dialog has a groovy backdrop!</p>
+      </dialog>
+      <button>Show the dialog</button>
+      <hr/>
+      <h1 class="glow">Posts de blog</h1>
+      <div id="blog_wrapper" class="blog_wrapper">
+      </div> <!-- blog_wrapper -->
+      
+    </div>
+    <script type="text/javascript" src="/js/blog_page.js"></script>
+    <script type='text/javascript'> 
+        const dialog = document.querySelector("dialog");
+        const showButton = document.querySelector("dialog + button");
+        const closeButton = document.querySelector("dialog button");
+        
+        // "Show the dialog" button opens the dialog modally
+        showButton.addEventListener("click", () => {
+          dialog.showModal();
+        });
+        
+        // "Close" button closes the dialog
+        closeButton.addEventListener("click", () => {
+          dialog.close();
+        });
+      </script>
+  </body>
+</html>
