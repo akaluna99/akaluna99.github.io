@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The web site of cat-alunya</title>
-    <!-- The style.css file allows you to change the look of your web pages.
-         If you include the next line in all your web pages, they will all share the same look.
-         This makes it easier to make new pages for your site. -->
+    <meta name="author" content="Luna Moreno">
+    <meta name="description" content="Els meus blogs de post">
+    <meta name="keywords" content="3d, musica, portfolio, girona">
+    <meta http-equiv="refresh" content="15">
+
+    <title>El racó de cataLUNA</title>
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="icon" type="image/png" href="/ico.png">
     <style>
     dialog[open] {
       width:50%;
@@ -30,31 +34,33 @@
   <body>
     <div class="container" ContentEditable='FALSE'>
       <header>
-          <h1 class="bigger-text"><a href='/index.html'>el meu lloc a l'interxarxa</a></h1>
+        <h1 class="bigger-text glow"><a href='/index.html'>el meu lloc a l'interxarxa</a></h1>
+        <p><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a href="/jo" class="button">Jo</a> <a href="/contacte" class="button">Contacta</a></p>
       </header>
-      <dialog class="blog_preview">
+      <dialog class="blog_preview blog_modal">
         <div id='modal'>
         </div>
-        <button autofocus>Close</button>
-        <p>This modal dialog has a groovy backdrop!</p>
+        <button autofocus style="">Tanca</button>
       </dialog>
-      <button>Show the dialog</button>
+    <!--button>Show the dialog</button-->
       <hr/>
+      <br>
       <h1 class="glow">Posts de blog</h1>
       <div id="blog_wrapper" class="blog_wrapper">
       </div> <!-- blog_wrapper -->
-      
+
     </div>
     <script type="text/javascript" src="/js/blog_page.js"></script>
     <script type='text/javascript'> 
         const dialog = document.querySelector("dialog");
-        const showButton = document.querySelector("dialog + button");
+        //const showButton = document.querySelector("dialog + button");
         const closeButton = document.querySelector("dialog button");
         
         // "Show the dialog" button opens the dialog modally
-        showButton.addEventListener("click", () => {
+        /*showButton.addEventListener("click", () => {
+          console.log("close")
           dialog.showModal();
-        });
+        });*/
         
         // "Close" button closes the dialog
         closeButton.addEventListener("click", () => {

@@ -1,16 +1,11 @@
 [
   {
-    "path" : "/blog/2023_04_18.json",
-    "title" : "Tercer test",
-    "order" : 2
-  },
-  {
-    "path" : "/blog/2023_03_20.json",
-    "title" : "Segón test",
+    "path" : "/blog/entrades_de_blog_dinamiques_en_web_estatica",
+    "title" : "Explicar com fer un blog en pagina estatica",
     "order" : 1
   },
   {
-    "path" : "/blog/2023_03_15.json",
+    "path" : "/blog/entrada_primera",
     "title" : "Primer Test",
     "order" : 0
   }

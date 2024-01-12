@@ -1,6 +1,6 @@
 :root {
-  --roundnes: 5px;
-  
+  --roundnes: 16px;
+
 }
 
 canvas {
@@ -11,15 +11,15 @@ canvas {
 
 body {
   font-family: "Barlow Condensed", sans-serif !important;
-  background: url("bks/bk1.jpg");
+  background: url("/bks/bk1.jpg");
   text-align: center;
   background-position: center;
   background-size: 120px;
-  cursor: url("/cursor.png"),crosshair;
+  cursor: url("/cursor.png"), crosshair;
 }
 
 .container {
-  padding:10px;
+  padding: 10px;
   border-radius: var(--roundnes);
   color: #e60073;
   background-color: black;
@@ -38,7 +38,7 @@ body {
 }
 
 .badges a {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .bigger-text {
@@ -51,15 +51,20 @@ body {
   color: #fff;
   text-align: center;
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  text-decoration: none;
 }
 
 
 .blog_preview {
   color: #CEDDE0;
   background-color: #133E4C;
-  padding:25px;
-  text-align:left;
+  padding: 25px;
+  text-align: justify;
   border-radius: var(--roundnes);
+}
+
+.blog_modal {
+  width: 200px;
 }
 
 .wrapper {
@@ -68,39 +73,60 @@ body {
   grid-gap: 5%;
   color: #A38548;
   background-color: #133E4C;
-  padding-top:25px;
-  padding-bottom:25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
+
 .one {
   grid-column: 1;
   grid-row: 1;
-  margin-left:25%;
-  margin-right:25%;
+  margin-left: 25%;
+  margin-right: 25%;
   color: #fff;
 }
-.one img{
-  width:100%;
-  max-width:200px;
+
+.one img {
+  width: 100%;
+  max-width: 200px;
   border-radius: var(--roundnes);
 }
+
 .two {
   grid-column: 2;
   grid-row: 1;
-  margin-right:25%;
-  margin-left:0;
-  margin-bottom:40%;
+  margin-right: 25%;
+  margin-left: 0;
+  margin-bottom: 40%;
 }
+
 ul {
-  list-style-type:none;
+  list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align:left;
+  text-align: left;
   padding: 0;
-  margin:0;
+  margin: 0;
   height: 100%;
 }
 
-details{
-  margin:15px;
+details {
+  margin: 15px;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a.button, button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffffa3;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  border-radius: var(--roundnes);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 3px #fff, 0 0 5px #fff;
 }
