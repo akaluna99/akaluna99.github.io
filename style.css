@@ -16,7 +16,90 @@ body {
   background-position: center;
   background-size: 120px;
   cursor: url("/cursor.png"), crosshair;
+
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+  color: #A38548;
+  background-color: #133E4C;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 50px;
+  padding-right: 50px;
+  position: relative;
+  border-radius: var(--roundnes);
+}
+
+.thumbnail{
+  
+  height: 15vw;
+  border-radius: var(--roundnes);
+  position: relative;
+  z-index: 100;
+  
+}
+
+
+.thumbnai-image{
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--roundnes);
+  z-index: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+
+.thumbnail div{
+  transition: box-shadow 1s;
+  transition: background-color 0.5s;
+  box-shadow: inset 3px 3px 5px 0 #000000;
+  background-color: rgba(0, 0, 0, 0.0);
+  opacity: 90%;
+  position:absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  bottom: 0px;
+  z-index: 8;
+  border-radius: var(--roundnes);
+}
+
+.thumbnail p{
+  transition: opacity 1s;
+  opacity: 10%;
+  position:absolute;
+  margin: 0px;
+  line-height: 3rem;
+  height: 3rem;
+  bottom: 0px;
+  width: 100%;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.75);
+  font-size: 2vw;
+  font-weight: bolder;
+  color: whitesmoke;
+  border-radius: 0 0 var(--roundnes) var(--roundnes);
+  height: 3vw;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.thumbnail:hover > p {
+  transition: opacity 0.3s;
+  opacity: 100%;
+}
+
+.thumbnail:hover > div {
+  box-shadow: inset 13px 13px 40px 0 #000000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 
 .container {
   padding: 10px;
@@ -24,8 +107,8 @@ body {
   color: #e60073;
   background-color: black;
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-repeat: repeat;
+  background-size: auto;
   height: auto;
   width: 80%;
   margin: auto;
@@ -97,6 +180,7 @@ body {
   margin-right: 25%;
   margin-left: 0;
   margin-bottom: 40%;
+  
 }
 
 ul {

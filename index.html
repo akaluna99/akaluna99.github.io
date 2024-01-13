@@ -12,6 +12,9 @@
     <title>🐱</title>
     
     <script type='text/javascript'> 
+    var bk_paths = ['bk1.jpg', 'lilac.gif'];
+    console.log(bk_paths)
+    document.getElementById('body').style.backgroundImage = "url('/bks/bk1.jpg')";// + bk_paths[1] + "')";
     title = "shadow money gang 🐱";
     position = 0;
     function scrolltitle() {
@@ -38,8 +41,7 @@
     scrolltitle();
     </script>
   </head>
-  <body>
-    
+  <body id="body">
       <div class="container" ><!--ContentEditable='true'-->
         <header>
           <h1 class="bigger-text glow">luna a l'interxarxa</h1>
