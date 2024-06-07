@@ -22,20 +22,19 @@ body {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 40px;
+  grid-gap: 2.5%;
   color: #A38548;
   background-color: #133E4C;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  padding-left: 3%;
+  padding-right: 3%;
   position: relative;
   border-radius: var(--roundnes);
 }
 
 .thumbnail{
-  
-  height: 15vw;
+  height: 12vw;
   border-radius: var(--roundnes);
   position: relative;
   z-index: 100;
@@ -75,8 +74,8 @@ body {
   opacity: 10%;
   position:absolute;
   margin: 0px;
-  line-height: 3rem;
-  height: 3rem;
+  line-height: 3vw;
+  height: 3vw;
   bottom: 0px;
   width: 100%;
   z-index: 9;

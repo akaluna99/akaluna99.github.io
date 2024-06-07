@@ -6,7 +6,7 @@
         <meta name="author" content="Luna Moreno">
         <meta name="description" content="Contacta amb mi">
         <meta name="keywords" content="contacta">
-        <title>Contacte</title>
+        <title data-i18n="contact">Contacte</title>
 
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
         <link rel="icon" type="image/png" href="/ico.png">
@@ -14,8 +14,13 @@
     <body>
         <div class="container">
             <header>
-                <h1 class="bigger-text glow"><a href='/index.html'>el meu lloc a l'interxarxa</a></h1> 
-                <p><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a href="/jo" class="button">Jo</a> <a href="/contacte" class="button">Contacta</a></p>
+                <h1  class="bigger-text glow"><a data-i18n="welcome_message" href='/index.html'>el meu lloc a l'interxarxa</a></h1> 
+                <nav>
+                    <a href="index.html" onclick="changeLanguage('en')">English</a>
+                    <a href="index.html" onclick="changeLanguage('ca')">Català</a>
+                  </nav>
+                  <p><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a href="/jo"
+                    class="button" data-i18n="me">Jo</a> <a href="/contacte" class="button" data-i18n="contact">Contacta</a></p>
             </header>
             <hr />
             <!-- modify this form HTML and place wherever you want your form -->
@@ -42,5 +47,6 @@
 
             </main>
         </div>
+        <script src="/js/multilingual.js"></script>
     </body>
 </html>
