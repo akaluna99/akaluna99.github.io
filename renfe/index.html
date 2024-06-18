@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 
 <head>
     <title>RENFE</title>
@@ -37,19 +37,16 @@
         hour {
             text-align: center;
             font-size: 2.5vw;
-            //font-size: 50px;
             background-color: #00292E;
             color: white;
             padding-top: 15px;
             padding-bottom: 15px;
-            //padding: 10px;
             width: 8%;
         }
 
         salidas {
             letter-spacing: 2px;
             font-size: 3vw;
-            //font-size: 50px;
             padding: 10px;
         }
 
@@ -71,9 +68,10 @@
 
         td {
             font-size: 2.5vw;
-            //font-size: 50px;
             max-width: 100px;
-            white-space: nowrap;
+            height: 50px;
+            max-height: 50px;
+            //white-space: nowrap;
         }
 
         th {
@@ -84,6 +82,7 @@
             border-bottom: 1px solid black;
             background-color: #fdfad1;
             height: 50px;
+            max-height: 50px;
         }
 
         .line-hour {
@@ -102,7 +101,51 @@
     </style>
 </head>
 
-<body>
+<script>
+    function setCookie(cname,cvalue,exdays) {
+      const d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    
+    function checkCookie() {
+      let user = getCookie("username");
+      if (user != "") {
+        alert("Welcome again " + user);
+        //Abrimos archivo ICS
+        fetch("https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics")//https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics
+        .then((res) => res.text())
+        .then((text) => {
+            addEvents(text)
+        })
+  .catch((e) => console.error(e));
+      } else {
+         user = prompt("Please enter your name:","");
+         if (user != "" && user != null) {
+           setCookie("username", user, 30);
+         }
+      }
+    }
+    </script>
+
+<body onload="checkCookie()">
     <header>
         <hour>
             <b id="horaActual">13:51</b>
@@ -111,13 +154,12 @@
             Salidas | <b>Sortides</b> | <small>DEPARTURES</small>
         </salidas>
         <logo>
-            <img width="180px"
-                src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Adif_wordmark.svg/1200px-Adif_wordmark.svg.png'>
+            <img width="180px" src='adif.png'>
         </logo>
     </header>
     <br>
 
-    <table style="border-collapse: collapse;">
+    <table id='rows' style="border-collapse: collapse;">
         <tr class="first-row">
             <th style="width:8%">
                 Hora<br>
@@ -157,7 +199,7 @@
             <td>MD</td>
             <td>2</td>
             <td>
-                <marquee>Para a Sant Celoni</marquee>
+                <marquee scrollamount = 5>Para a Sant Celoni</marquee>
             </td>
         </tr>
 
@@ -168,7 +210,7 @@
             <td>REG</td>
             <td>2</td>
             <td>
-                <marquee>Para a totes les estacions</marquee>
+                <marquee scrollamount = 5>Para a totes les estacions</marquee>
             </td>
         </tr>
 
@@ -179,7 +221,7 @@
             <td>MD</td>
             <td>2</td>
             <td>
-                <marquee>Para a Sant Celoni pero bueno que et puc aqui explicar tpt</marquee>
+                <marquee scrollamount = 5>Para a Sant Celoni pero bueno que et puc aqui explicar tpt</marquee>
             </td>
         </tr>
 
@@ -190,99 +232,10 @@
             <td>REG</td>
             <td>2</td>
             <td>
-                <marquee>Para a totes les estacions</marquee>
+                <marquee scrollamount = 5>Para a totes les estacions</marquee>
             </td>
         </tr>
 
-
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="line-hour"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <marquee>
-                    </div>
-            </td>
-        </tr>
     </table>
 
 
@@ -309,13 +262,267 @@
     // Configurar una actualización periódica (por ejemplo, cada minuto)
     setInterval(actualizarHoraActual, 500); // 60000 milisegundos = 1 minuto
 
-    //Abrimos archivo ICS
-    fetch("test.ics")
-  .then((res) => res.text())
-  .then((text) => {
-    // do something with "text"
-   })
-  .catch((e) => console.error(e));
+    
+</script>
+
+<script>
+    var textTmp = `BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:akaluna99@gmail.com
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+DTSTART:20231019T080000Z
+DTEND:20231019T090000Z
+DTSTAMP:20240618T093435Z
+UID:68r66o9k6dgjib9oc8rj4b9k6gsj0b9o71i3abb6cgs6cp3264q30ob3c8@google.com
+CREATED:20230914T074038Z
+LAST-MODIFIED:20230914T074038Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:visita telefónica
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230916T083000Z
+DTEND:20230916T093000Z
+DTSTAMP:20240618T093435Z
+UID:ccpjgc9o6dgjib9i6com4b9kc9h68b9o6cr3ab9n65i32php6ph62d1m6o@google.com
+CREATED:20230916T065312Z
+LAST-MODIFIED:20230916T065312Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:tren
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230923T163000Z
+DTEND:20230923T173000Z
+DTSTAMP:20240618T093435Z
+UID:16b7krn42s16t6io7hfc6v3ni3@google.com
+CREATED:20230923T161653Z
+DESCRIPTION:Pasa myuchas cosas
+LAST-MODIFIED:20230923T161653Z
+LOCATION:Girona
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Reuniopn
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230923T183000Z
+DTEND:20230923T193000Z
+DTSTAMP:20240618T093435Z
+UID:04rq50ja6g5kqsqdrj8q1aeghq@google.com
+CREATED:20230923T161714Z
+DESCRIPTION:NMuchas cosas
+LAST-MODIFIED:20230923T161714Z
+LOCATION:Casa
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Ir a comprar
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231205T075500Z
+DTEND:20231205T085500Z
+DTSTAMP:20240618T093435Z
+UID:68o38cj66lhj8bb56cr66b9k6cqj6bb26oq64bb3ckom8chgc4sjcpb6c4@google.com
+CREATED:20231019T103021Z
+LAST-MODIFIED:20231019T103021Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:fundació Puigverd
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231205T075500Z
+DTEND:20231205T085500Z
+DTSTAMP:20240618T093435Z
+UID:c4q6ce9ncgp3ab9jcoom2b9k6gq32b9o68om8bb26os3ioho75j62e1mc8@google.com
+CREATED:20231020T081533Z
+DESCRIPTION:Professional: LLUIS BASSAS ARNAU
+LAST-MODIFIED:20231020T081533Z
+LOCATION:Fundació Puigvert - IUNA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:V.Inicial Presencial
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231111T184500Z
+DTEND:20231111T221500Z
+DTSTAMP:20240618T093435Z
+UID:60r62p35ckqmab9gc9j66b9kc8p34b9oc4p66bb460sj4cb56cs6cd3670@google.com
+CREATED:20231031T221637Z
+LAST-MODIFIED:20231031T221637Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Reservar para la mar
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231222T070000Z
+DTEND:20231222T080000Z
+DTSTAMP:20240618T093435Z
+UID:c4r68o9kcpgm6b9gckpjab9kc4s38b9oc4o64bb364p66or46thj2d3260@google.com
+CREATED:20231220T091310Z
+DESCRIPTION:Professional:
+LAST-MODIFIED:20231220T091310Z
+LOCATION:Fundació Puigvert - IUNA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Extracc.+ Seminograma
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231228T180000Z
+DTEND:20231228T190000Z
+DTSTAMP:20240618T093435Z
+UID:70p6cdr5chgj4bb6c4om4b9k65hj0b9o6kqjib9p64s64p9m60rm8e36co@google.com
+CREATED:20231228T174114Z
+LAST-MODIFIED:20231228T174114Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:lavabo
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231228T190000Z
+DTEND:20231228T193000Z
+DTSTAMP:20240618T093435Z
+UID:cksj4opickqjcb9p6tj38b9kcoqj4b9o6pij2b9i6dj34d36c5hj0cpn6o@google.com
+CREATED:20231228T174123Z
+LAST-MODIFIED:20231228T174123Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:roba
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231228T193000Z
+DTEND:20231228T200000Z
+DTSTAMP:20240618T093435Z
+UID:6osjcchlchgj0b9oc9ijeb9kchhm8bb268o32bb668rm4dj460o38d9ic8@google.com
+CREATED:20231228T174130Z
+LAST-MODIFIED:20231228T174130Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:plats
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T170000Z
+DTEND:20240114T190000Z
+DTSTAMP:20240618T093435Z
+UID:6opm4dr4ckoj2bb5c4omcb9k65hjeb9o6crmcb9p6dij0dpnccrj4dppcc@google.com
+CREATED:20240113T184530Z
+LAST-MODIFIED:20240113T184530Z
+LOCATION:Passeig José Canalejas\, 3
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Miguel Noguera: Ultrashow
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240226T183000Z
+DTEND:20240226T193000Z
+DTSTAMP:20240618T093435Z
+UID:61ijgphm6kqj8b9i6tj6cb9k65j3eb9ocdhjab9mcco6cpb660qjep9hcc@google.com
+CREATED:20240206T183722Z
+LAST-MODIFIED:20240206T183722Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:cambio de nombre\, identificación comisaría
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240711T063000Z
+DTEND:20240711T070000Z
+DTSTAMP:20240618T093435Z
+UID:74p62o9icgoj4b9hcgo3gb9k60r6cb9occsj6b9m6so3ec1gcph3iphkc8@google.com
+CREATED:20240321T080818Z
+LAST-MODIFIED:20240618T093358Z
+LOCATION:CAP Güell\, 17001 Girona\, Spain
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:trànsit
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
+`
+</script>
+
+<script>
+    function addEvents(text){
+        function getNextLine(nextPos, textArray) {
+            var lineArray = textArray[nextPos].split(":")
+            return {
+                type: lineArray[0],
+                value: lineArray[1]
+            }
+        }
+        //console.log(text)
+        var array = text.split("\n");
+        var len = array.length
+        var pos = 0
+        var eventsArray = []
+        while (pos < len) {
+            var lineArr = getNextLine(pos, array)
+            //console.log(lineArr)
+            if (lineArr.type == 'BEGIN') {
+                var currentEvent = {}
+                while (getNextLine(pos + 1, array).type != 'BEGIN' && getNextLine(pos + 1, array).type != 'END') {
+                    pos += 1
+                    var currentArray = getNextLine(pos, array)
+                    if (lineArr.value == 'VCALENDAR') {
+                        //console.log(currentArray)
+                    }
+                    else if (lineArr.value == 'VEVENT') {
+                        currentEvent[currentArray.type] = currentArray.value
+                        //console.log(currentArray)
+                    }
+                }
+                if (lineArr.value == 'VEVENT' && lineArr.type == 'BEGIN') {
+                    console.log(currentEvent.DTSTART.replace(
+                        /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
+                        '$4:$5:$6 $2/$3/$1'
+                    ))
+                    var date = new Date(currentEvent.DTSTART.replace(
+                        /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
+                        '$4:$5:$6 $2/$3/$1'
+                    ));
+                    currentEvent['date'] = date
+                    if (date > new Date()){
+                        console.log(date)
+                        console.log(currentEvent)
+                        eventsArray.push(currentEvent)
+                    }
+                }
+
+            }
+            pos += 1
+        }
+        console.log(eventsArray)
+        for (eventLine of eventsArray){
+            console.log(eventLine)
+            rows.innerHTML += `
+            <tr>
+                <td class="line-hour">${eventLine.date.toLocaleTimeString('ca', { hour:"2-digit", minute:"2-digit"})}</td>
+                <td><p>${eventLine.LOCATION}</p></td>
+                <td>R11</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <marquee scrollamount = 5>
+                        ${eventLine.SUMMARY}
+                    </marquee>
+                </td>
+            </tr>`
+        }
+    }
 </script>
 
 </html>
