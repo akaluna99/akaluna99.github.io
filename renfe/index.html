@@ -99,8 +99,8 @@
             background-color: white;
         }
     </style>
+    <script src="./ical.js"></script>
 </head>
-
 <script>
     function setCookie(cname, cvalue, exdays) {
         const d = new Date();
@@ -125,13 +125,13 @@
         return "";
     }
 
-    function fetchCalendar(url){
-        fetch(url, {'mode':"no-cors", "headers":{'Access-Control-Allow-Origin': '*'}})//https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics
-                .then((res) => res.text())
-                .then((text) => {
-                    addEvents(text)
-                })
-                .catch((e) => console.error(e));
+    function fetchCalendar(url) {
+        fetch(url, { 'mode': "no-cors", "headers": { 'Access-Control-Allow-Origin': '*' } })//https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics
+            .then((res) => res.text())
+            .then((text) => {
+                addEvents(text)
+            })
+            .catch((e) => console.error(e));
     }
 
     function checkCookie() {
@@ -141,9 +141,18 @@
             addEvents(contenido)
         }
     }
+
+    function checkStorage() {
+        const contenidoGuardado = localStorage.getItem('archivoICS');
+        if (contenidoGuardado) {
+            // Procesar el contenido guardado como desees
+            console.log(contenidoGuardado);
+            addEvents(contenidoGuardado)
+        }
+    }
 </script>
 
-<body onload="checkCookie()">
+<body onload="checkStorage()">
 
     <header>
         <hour>
@@ -191,7 +200,7 @@
                 <small>OBSERVATIONS</small>
             </th>
         </tr>
-        <tr>
+        <!--tr>
             <td class="line-hour">14:18</td>
             <td>BARCELONA SANTS</td>
             <td>R11</td>
@@ -233,34 +242,32 @@
             <td>
                 <marquee scrollamount=5>Para a totes les estacions</marquee>
             </td>
-        </tr>
+        </tr-->
 
     </table>
     <footer>
         <input type="file" id="fileInput">
-<button onclick="leerArchivo()">Cargar Archivo</button>
+        <button onclick="leerArchivo()">Cargar Archivo</button>
 
     </footer>
-
-
 </body>
 <script>
     function leerArchivo() {
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    
-    const reader = new FileReader();
-    
-    reader.onload = function(e) {
-        const contenido = e.target.result;
-        // Aquí puedes procesar el contenido del archivo .ics
-        console.log(contenido);
-        addEvents(contenido)
-        setCookie("calendar", contenido, 30);
-    };
-    
-    reader.readAsText(file);
-}
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const contenido = e.target.result;
+            // Aquí puedes procesar el contenido del archivo .ics
+            console.log(contenido);
+            localStorage.setItem('archivoICS', contenido);
+            addEvents(contenido)
+        };
+
+        reader.readAsText(file);
+    }
 
 </script>
 <script>
@@ -288,208 +295,21 @@
 
 </script>
 
-<script>
-    var textTmp = `BEGIN:VCALENDAR
-PRODID:-//Google Inc//Google Calendar 70.9054//EN
-VERSION:2.0
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-X-WR-CALNAME:akaluna99@gmail.com
-X-WR-TIMEZONE:UTC
-BEGIN:VEVENT
-DTSTART:20231019T080000Z
-DTEND:20231019T090000Z
-DTSTAMP:20240618T093435Z
-UID:68r66o9k6dgjib9oc8rj4b9k6gsj0b9o71i3abb6cgs6cp3264q30ob3c8@google.com
-CREATED:20230914T074038Z
-LAST-MODIFIED:20230914T074038Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:visita telefónica
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20230916T083000Z
-DTEND:20230916T093000Z
-DTSTAMP:20240618T093435Z
-UID:ccpjgc9o6dgjib9i6com4b9kc9h68b9o6cr3ab9n65i32php6ph62d1m6o@google.com
-CREATED:20230916T065312Z
-LAST-MODIFIED:20230916T065312Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:tren
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20230923T163000Z
-DTEND:20230923T173000Z
-DTSTAMP:20240618T093435Z
-UID:16b7krn42s16t6io7hfc6v3ni3@google.com
-CREATED:20230923T161653Z
-DESCRIPTION:Pasa myuchas cosas
-LAST-MODIFIED:20230923T161653Z
-LOCATION:Girona
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Reuniopn
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20230923T183000Z
-DTEND:20230923T193000Z
-DTSTAMP:20240618T093435Z
-UID:04rq50ja6g5kqsqdrj8q1aeghq@google.com
-CREATED:20230923T161714Z
-DESCRIPTION:NMuchas cosas
-LAST-MODIFIED:20230923T161714Z
-LOCATION:Casa
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Ir a comprar
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231205T075500Z
-DTEND:20231205T085500Z
-DTSTAMP:20240618T093435Z
-UID:68o38cj66lhj8bb56cr66b9k6cqj6bb26oq64bb3ckom8chgc4sjcpb6c4@google.com
-CREATED:20231019T103021Z
-LAST-MODIFIED:20231019T103021Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:fundació Puigverd
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231205T075500Z
-DTEND:20231205T085500Z
-DTSTAMP:20240618T093435Z
-UID:c4q6ce9ncgp3ab9jcoom2b9k6gq32b9o68om8bb26os3ioho75j62e1mc8@google.com
-CREATED:20231020T081533Z
-DESCRIPTION:Professional: LLUIS BASSAS ARNAU
-LAST-MODIFIED:20231020T081533Z
-LOCATION:Fundació Puigvert - IUNA
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:V.Inicial Presencial
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231111T184500Z
-DTEND:20231111T221500Z
-DTSTAMP:20240618T093435Z
-UID:60r62p35ckqmab9gc9j66b9kc8p34b9oc4p66bb460sj4cb56cs6cd3670@google.com
-CREATED:20231031T221637Z
-LAST-MODIFIED:20231031T221637Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Reservar para la mar
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231222T070000Z
-DTEND:20231222T080000Z
-DTSTAMP:20240618T093435Z
-UID:c4r68o9kcpgm6b9gckpjab9kc4s38b9oc4o64bb364p66or46thj2d3260@google.com
-CREATED:20231220T091310Z
-DESCRIPTION:Professional:
-LAST-MODIFIED:20231220T091310Z
-LOCATION:Fundació Puigvert - IUNA
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Extracc.+ Seminograma
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231228T180000Z
-DTEND:20231228T190000Z
-DTSTAMP:20240618T093435Z
-UID:70p6cdr5chgj4bb6c4om4b9k65hj0b9o6kqjib9p64s64p9m60rm8e36co@google.com
-CREATED:20231228T174114Z
-LAST-MODIFIED:20231228T174114Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:lavabo
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231228T190000Z
-DTEND:20231228T193000Z
-DTSTAMP:20240618T093435Z
-UID:cksj4opickqjcb9p6tj38b9kcoqj4b9o6pij2b9i6dj34d36c5hj0cpn6o@google.com
-CREATED:20231228T174123Z
-LAST-MODIFIED:20231228T174123Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:roba
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20231228T193000Z
-DTEND:20231228T200000Z
-DTSTAMP:20240618T093435Z
-UID:6osjcchlchgj0b9oc9ijeb9kchhm8bb268o32bb668rm4dj460o38d9ic8@google.com
-CREATED:20231228T174130Z
-LAST-MODIFIED:20231228T174130Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:plats
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20240114T170000Z
-DTEND:20240114T190000Z
-DTSTAMP:20240618T093435Z
-UID:6opm4dr4ckoj2bb5c4omcb9k65hjeb9o6crmcb9p6dij0dpnccrj4dppcc@google.com
-CREATED:20240113T184530Z
-LAST-MODIFIED:20240113T184530Z
-LOCATION:Passeig José Canalejas\, 3
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Miguel Noguera: Ultrashow
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20240226T183000Z
-DTEND:20240226T193000Z
-DTSTAMP:20240618T093435Z
-UID:61ijgphm6kqj8b9i6tj6cb9k65j3eb9ocdhjab9mcco6cpb660qjep9hcc@google.com
-CREATED:20240206T183722Z
-LAST-MODIFIED:20240206T183722Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:cambio de nombre\, identificación comisaría
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART:20240711T063000Z
-DTEND:20240711T070000Z
-DTSTAMP:20240618T093435Z
-UID:74p62o9icgoj4b9hcgo3gb9k60r6cb9occsj6b9m6so3ec1gcph3iphkc8@google.com
-CREATED:20240321T080818Z
-LAST-MODIFIED:20240618T093358Z
-LOCATION:CAP Güell\, 17001 Girona\, Spain
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:trànsit
-TRANSP:OPAQUE
-END:VEVENT
-END:VCALENDAR
-`
-</script>
 
 <script>
+    
     function addEvents(text) {
         function getNextLine(nextPos, textArray) {
             var lineArray = textArray[nextPos].split(":")
             return {
-                type: lineArray[0],
+                type: lineArray[0].split(";")[0],
                 value: lineArray[1]
             }
         }
         //console.log(text)
-        var array = text.split(/\r?\n/);
-        console.log(array)
+        var array = text.split(/\r\n/);
+        //var array = text.split('\n');
+        //console.log(array)
         var len = array.length
         var pos = 0
         var eventsArray = []
@@ -497,7 +317,9 @@ END:VCALENDAR
             var lineArr = getNextLine(pos, array)
             //console.log(lineArr)
             if (lineArr.type == 'BEGIN') {
-                var currentEvent = {}
+                var currentEvent = {
+                    'LOCATION' : ''
+                }
                 while (getNextLine(pos + 1, array).type != 'BEGIN' && getNextLine(pos + 1, array).type != 'END') {
                     pos += 1
                     var currentArray = getNextLine(pos, array)
@@ -510,19 +332,68 @@ END:VCALENDAR
                     }
                 }
                 if (lineArr.value == 'VEVENT' && lineArr.type == 'BEGIN') {
-                    console.log(currentEvent.DTSTART.replace(
-                        /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
-                        '$4:$5:$6 $2/$3/$1'
-                    ))
-                    var date = new Date(currentEvent.DTSTART.replace(
-                        /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
-                        '$4:$5:$6 $2/$3/$1'
-                    ));
-                    currentEvent['date'] = date
-                    if (date > new Date()) {
-                        console.log(date)
-                        console.log(currentEvent)
-                        eventsArray.push(currentEvent)
+                    //console.log(currentEvent)
+                    if (currentEvent.DTSTART){
+                        //console.log('len', currentEvent.DTSTART.length)
+                       if (currentEvent.DTSTART.length == 16){
+                           var date = new Date(currentEvent.DTSTART.replace(
+                               /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
+                               '$4:$5:$6 $2/$3/$1'
+                           ));
+                       }
+                       if (currentEvent.DTSTART.length == 15){
+                           var date = new Date(currentEvent.DTSTART.replace(
+                               /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)$/,
+                               '$4:$5:$6 $2/$3/$1'
+                           ));
+                       }
+                       if (currentEvent.DTSTART.length == 8){
+                           var date = new Date(currentEvent.DTSTART.replace(
+                               /^(\d{4})(\d\d)(\d\d)$/,
+                                '$2/$3/$1'
+                           ));
+                       }
+                        currentEvent['date'] = date
+                        //console.log('DSTART', currentEvent.DTSTART)
+                        //console.log('Date', date)
+                        if (date.toLocaleString('ca',{ day:"2-digit",month:"2-digit",year:"2-digit"}) == new Date().toLocaleString('ca',{ day:"2-digit",month:"2-digit",year:"2-digit"})) {
+                            console.log(date)
+                            console.log(currentEvent)
+                            eventsArray.push(currentEvent)
+                        }
+                    }
+                    else if (currentEvent.DTSTAMP){
+                        /*console.log(currentEvent.DTSTART.replace(
+                            /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
+                            '$4:$5:$6 $3/$2/$1'
+                        ))*/
+                       //console.log('len', currentEvent.DTSTAMP.length)
+                       if (currentEvent.DTSTAMP.length == 16){
+                           var date = new Date(currentEvent.DTSTAMP.replace(
+                               /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,
+                               '$4:$5:$6 $2/$3/$1'
+                           ));
+                       }
+                       if (currentEvent.DTSTAMP.length == 15){
+                           var date = new Date(currentEvent.DTSTAMP.replace(
+                               /^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)$/,
+                               '$4:$5:$6 $2/$3/$1'
+                           ));
+                       }
+                       if (currentEvent.DTSTAMP.length == 8){
+                           var date = new Date(currentEvent.DTSTAMP.replace(
+                               /^(\d{4})(\d\d)(\d\d)$/,
+                                '$2/$3/$1'
+                           ));
+                       }
+                        currentEvent['date'] = date
+                        //console.log('DSTART', currentEvent.DTSTAMP)
+                        //console.log('Date', date)
+                        if (date.da == new Date()) {
+                            //console.log(date)
+                            //console.log(currentEvent)
+                            eventsArray.push(currentEvent)
+                        }
                     }
                 }
 
@@ -531,7 +402,7 @@ END:VCALENDAR
         }
         console.log(eventsArray)
         for (eventLine of eventsArray) {
-            console.log(eventLine)
+            //console.log(eventLine)
             rows.innerHTML += `
             <tr>
                 <td class="line-hour">${eventLine.date.toLocaleTimeString('ca', { hour: "2-digit", minute: "2-digit" })}</td>
