@@ -125,32 +125,26 @@
         return "";
     }
 
-    function checkCookie() {
-        let user = getCookie("username");
-        if (user != "") {
-            alert("Welcome again " + user);
-            //Abrimos archivo ICS
-            fetch(user)//https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics
+    function fetchCalendar(url){
+        fetch(url, {'mode':"no-cors", "headers":{'Access-Control-Allow-Origin': '*'}})//https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics
                 .then((res) => res.text())
                 .then((text) => {
                     addEvents(text)
                 })
                 .catch((e) => console.error(e));
-        } else {
-            user = prompt("Please enter your calendar URL:", "");
-            if (user != "" && user != null) {
-                setCookie("username", user, 30);
-                fetch(user)//https://calendar.google.com/calendar/ical/akaluna99%40gmail.com/public/basic.ics
-                    .then((res) => res.text())
-                    .then((text) => {
-                        addEvents(text)
-                    })
-            }
+    }
+
+    function checkCookie() {
+        let contenido = getCookie("calendar");
+        if (contenido != "") {
+            //Abrimos archivo ICS
+            addEvents(contenido)
         }
     }
 </script>
 
 <body onload="checkCookie()">
+
     <header>
         <hour>
             <b id="horaActual">13:51</b>
@@ -242,9 +236,33 @@
         </tr>
 
     </table>
+    <footer>
+        <input type="file" id="fileInput">
+<button onclick="leerArchivo()">Cargar Archivo</button>
+
+    </footer>
 
 
 </body>
+<script>
+    function leerArchivo() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        const contenido = e.target.result;
+        // Aquí puedes procesar el contenido del archivo .ics
+        console.log(contenido);
+        addEvents(contenido)
+        setCookie("calendar", contenido, 30);
+    };
+    
+    reader.readAsText(file);
+}
+
+</script>
 <script>
     // Función para obtener la hora actual en formato hh:mm
     function obtenerHoraActual() {
@@ -470,7 +488,8 @@ END:VCALENDAR
             }
         }
         //console.log(text)
-        var array = text.split("\n");
+        var array = text.split(/\r?\n/);
+        console.log(array)
         var len = array.length
         var pos = 0
         var eventsArray = []
