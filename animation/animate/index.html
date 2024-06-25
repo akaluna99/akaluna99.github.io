@@ -47,7 +47,7 @@
     </style>
 </head>
 
-<body>
+<body onload="checkStorage()">
     <div class="container my-5">
         <h1 class="text-center mb-4">Drag and Drop Image</h1>
         <div class="row justify-content-center">
@@ -65,11 +65,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="columns">Columnas:</label>
-                        <input type="number" class="form-control" id="columns" min="1" value="1">
+                        <input type="number" class="form-control" id="columns" min="1" value="2">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="rows">Filas:</label>
-                        <input type="number" class="form-control" id="rows" min="1" value="1">
+                        <input type="number" class="form-control" id="rows" min="1" value="2">
                     </div>
                 </div>
                 <div class="form-group">
@@ -105,6 +105,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gifshot/dist/gifshot.min.js"></script>
 
+    <script>
+       function checkStorage() {
+        const editedImageUrl = localStorage.getItem('editedImage');
+        console.log(editedImageUrl)
+        if (editedImageUrl) {
+            image.src = editedImageUrl;
+
+            // Establecer la imagen editada como valor del input de archivo
+            const blob = dataURLtoBlob(editedImageUrl);
+            const file = new File([blob], 'edited-image.png', { type: 'image/png' });
+            handleFile(file)
+        }
+
+        function dataURLtoBlob(dataURL) {
+            const parts = dataURL.split(',');
+            const contentType = parts[0].split(':')[1].split(';')[0];
+            const raw = atob(parts[1]);
+            const rawLength = raw.length;
+            const uInt8Array = new Uint8Array(rawLength);
+
+            for (let i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], { type: contentType });
+        }
+    }
+    </script>
     <script>
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
@@ -179,9 +207,9 @@
                 gifshot.createGIF({
                     gifWidth: canvas.width,
                     gifHeight: canvas.height,
-                    images: [topLeft, topRight, bottomLeft, bottomRight],
+                    images: [topLeft, topRight, bottomLeft, bottomRight, bottomLeft, topRight] ,
                     interval: 0.15,
-                    numFrames: columns.value * rows.value
+                    numFrames: (columns.value * rows.value) * 2 - 2
                 }, function (obj) {
                     if (!obj.error) {
                         const gifImg = document.createElement('img');

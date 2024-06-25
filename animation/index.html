@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar Imagen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        #image-container {
+            position: relative;
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: move;
+        }
+
+        #overlay img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        #overlay:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, #fff, transparent);
+        }
+
+        #overlay .vertical-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-image: linear-gradient(to bottom, transparent, #fff, transparent);
+        }
+    </style>
+    <style>
+        .drop-zone {
+            border: 2px dashed #ccc;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drop-zone.drag-over {
+            border-color: #000;
+        }
+
+        .drop-zone img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            height: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .gif-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Editar Imagen</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="drop-zone" id="drop-zone">
+                <i class="fas fa-upload fa-3x mb-3"></i>
+                <p>Drag and drop an image here or click to upload</p>
+                <input type="file" id="file-input" class="none">
+            </div>
+
+        </div>
+
+        <div id="image-container">
+            <img id="original-image" src="">
+            <div id="overlay">
+                <img id="edited-image" src="">
+                <div class="vertical-line"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <button class="btn btn-primary btn-block" id="save-button">Generar Imagen Editada</button>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const originalImage = document.getElementById('original-image');
+        const editedImage = document.getElementById('edited-image');
+        const overlay = document.getElementById('overlay');
+        const saveButton = document.getElementById('save-button');
+
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const imageUrl = URL.createObjectURL(file);
+            originalImage.src = imageUrl;
+            editedImage.src = imageUrl;
+        });
+
+        overlay.addEventListener('mousedown', dragStart);
+        overlay.addEventListener('mouseup', dragEnd);
+        overlay.addEventListener('mousemove', drag);
+
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+
+            if (e.target === editedImage) {
+                isDragging = true;
+            }
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+
+            isDragging = false;
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+
+                if (e.target === editedImage) {
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+
+                    xOffset = currentX;
+                    yOffset = currentY;
+
+                    setTranslate(currentX, currentY, editedImage);
+                }
+            }
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+        }
+
+        saveButton.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = originalImage.width;
+            canvas.height = originalImage.height;
+            const ctx = canvas.getContext('2d');
+
+            const centerX = canvas.width / 2 + xOffset;
+            const centerY = canvas.height / 2 + yOffset;
+
+            ctx.drawImage(originalImage, centerX - originalImage.width / 2, centerY - originalImage.height / 2);
+
+            const editedImageUrl = canvas.toDataURL();
+            localStorage.setItem('editedImage', editedImageUrl);
+            window.location.href = 'animate'; // Redirigir al usuario a la segunda página
+        });
+    </script>
+</body>
+
+</html>
