@@ -207,7 +207,7 @@
                 gifshot.createGIF({
                     gifWidth: canvas.width,
                     gifHeight: canvas.height,
-                    images: [topLeft, topRight, bottomLeft, bottomRight, bottomLeft, topRight] ,
+                    images: [topLeft, bottomLeft, bottomRight, topRight].reverse() ,
                     interval: 0.15,
                     numFrames: (columns.value * rows.value) * 2 - 2
                 }, function (obj) {
