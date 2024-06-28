@@ -3,19 +3,29 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <link rel="icon" type="image/x-icon" href="scroll.svg">
     <meta name="author" content="Luna Moreno">
-    <title>Moreno Romero, Luna</title>
+    <title>Luna Moreno Romero</title>
 
     <style>
+        :root {
+            --main-bg-color: rgba(255, 255, 241, 0.9);
+            --main-fg-color: #14304f;
+        }
+
         body {
+            background-color: var(--main-bg-color);
+            color: var(--main-fg-color);
             margin: 0;
             padding: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 12px;
         }
 
         contact>span:after {
             content: ' | ';
+            margin: 0px 5px;
         }
 
         contact>span:last-child::after {
@@ -103,25 +113,25 @@
             width: 50%;
         }
 
-        section-title {
+        section-row>*:nth-child(1) {
             font-weight: bold;
         }
 
-        section-insight {
+        section-row>*:nth-child(even) {
             text-align: right;
         }
 
-        section-description {
-            font-style: italic;
+        section-row>*:nth-child(odd) {
+            text-align: left;
         }
 
-        section-detail {
-            text-align: right;
+        section-row>*:nth-child(n+3) {
             font-style: italic;
         }
 
         section-list {
             display: block;
+            padding: 5px 0px;
         }
 
         list-title {
@@ -139,40 +149,70 @@
     <cv-body> <!-- CV Body Begin-->
 
         <header> <!-- CV Header Begin -->
-            <h1>Moreno Romero, <span class="name">L</span>una </h1>
+            <h1><span class="name">L</span>una Moreno Romero</h1>
             <contact>
+                <span>05-11-1999</span>
                 <span>17003, Girona</span>
                 <span><a href="tel:+34637077148">(+34) 637 07 71 48</a></span>
                 <span><a href="mailto:akaluna99@gmail.com">akaluna99@gmail.com</a></span>
                 <span><a href="https://www.linkedin.com/in/lunamore/">linkedin.com/in/lunamore</a></span>
                 <span><a href="https://cataluna.cat/index.html">cataluna.cat</a></span>
             </contact>
-        </header> <!-- CV Header Begin-->
+        </header> <!-- CV Header End-->
 
-        <cv-section>
+        <cv-section> <!-- CV Section Education Begin -->
             <h2>Education</h2>
-            <section-item>
+
+            <section-item> <!-- Section item El Sui Begin-->
+
                 <section-row>
-                    <section-title>Universitat de Girona</section-title>
-                    <section-insight>Girona, Girona</section-insight>
-                    <section-description>Bachellors degree of design and development of videogames</section-description>
-                    <section-detail> Sep 2017 - Jun 2022</section-detail>
+                    <div>IES El Sui</div>
+                    <div>Cardedeu</div>
+                    <div>Baccalaureate, Technological branch</div>
+                    <div>Sep 2015 - Jun 2017</div>
+                </section-row>
+            </section-item> <!-- Section item El Sui End-->
+
+            <section-item> <!-- Section item UDG Begin-->
+
+                <section-row>
+                    <div>Universitat de Girona</div>
+                    <div>Girona, Girona</div>
+                    <div>Degree in Video Game Design and Development</div>
+                    <div>Sep 2017 - Jun 2022</div>
                 </section-row>
 
                 <ul>
                     <li>Computer science degree with mention in videogame design and development</li>
                 </ul>
-            </section-item>
-        </cv-section>
+            </section-item> <!-- Section item UDG End-->
+
+        </cv-section> <!-- CV Section Education End -->
 
         <cv-section>
             <h2>Work experience</h2>
+
             <section-item>
                 <section-row>
-                    <section-title>Deister Software</section-title>
-                    <section-insight>Girona, Girona</section-insight>
-                    <section-description>IT consultant</section-description>
-                    <section-detail>Jun 2022 - Present</section-detail>
+                    <div>Metalmoreno S.L.</div>
+                    <div>Girona, Girona</div>
+                    <div>IT consultant</div>
+                    <div>Jun 2022 - Present</div>
+                </section-row>
+
+                <ul>
+                    <li>Dev</li>
+                    <li>Dev</li>
+                    <li>Dev</li>
+                </ul>
+            </section-item>
+
+            <section-item>
+                <section-row>
+                    <div>Deister Software</div>
+                    <div>Girona, Girona</div>
+                    <div>IT consultant</div>
+                    <div>Jun 2022 - Present</div>
                 </section-row>
 
                 <ul>
@@ -187,10 +227,10 @@
             <h2>Personal projects</h2>
             <section-item>
                 <section-row>
-                    <section-title><a href="https://www.cataglogger.duckdns.org/">CaTAGlogger</a></section-title>
-                    <section-insight>Website</section-insight>
-                    <section-description>HTML, CSS, JS, PHP, MySQL</section-description>
-                    <section-detail>2022-Actual</section-detail>
+                    <div><a href="https://www.cataglogger.duckdns.org/">CaTAGlogger</a></div>
+                    <div>Website</div>
+                    <div>HTML, CSS, JS, PHP, MySQL</div>
+                    <div>2022-Actual</div>
                 </section-row>
                 <p>heheheh</p>
                 <ul>
@@ -204,14 +244,22 @@
         <cv-section>
             <h2>Skills</h2>
             <section-item>
+
                 <section-list>
                     <list-title>Lenguage</list-title>
                     <list-items>English, Spanish, Catalan</list-items>
                 </section-list>
+
                 <section-list>
                     <list-title>Programming</list-title>
-                    <list-items>Java, C++</list-items>
+                    <list-items>C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash</list-items>
                 </section-list>
+                
+                <section-list>
+                    <list-title>Software</list-title>
+                    <list-items>Microsoft Office, Adobe Premiere, Photoshop, DaVinci Resolve, Visual Studio, Blender, 3D Max, Inkscape, Unity 3D, Godot</list-items>
+                </section-list>
+
             </section-item>
         </cv-section>
     </cv-body> <!-- CV Body End-->
