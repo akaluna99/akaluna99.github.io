@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="manifest" href="./manifest.json" />
+        <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+        <meta name="theme-color" content="#db4938" />
+
+        <title>Luna's wigglegram</title>
+        <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #drop-area {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: white;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            min-width: 25%;
+            min-height: 25%;
+        }
+        #image_base {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            transform: translate(0px,0px);
+        }
+
+        .cross{
+            position: fixed;
+            border-style: solid;
+            top: 50vw;
+            left: 50vh;
+            margin: 0;
+            
+        }
+
+        .arrow {
+            position: absolute;
+            padding: 0;
+            text-align: center;
+            padding: 5px;
+            border-style: solid;
+            cursor: pointer;
+        }
+        .arrow.left {
+            left: 25px;
+        }
+        .arrow.right {
+            right: 25px;
+        }
+        .arrow.up {
+            top: 25px;
+            left: 40%;
+            right: 40%;
+        }
+        .arrow.down {
+            bottom: 25px;
+            left: 40%;
+            right: 40%;
+        }
+
+        .point {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+       
+    </style>
+    </head>
+    <body onload="checkImage()">
+        <div id="drop-area">
+            <img id="image_base" src alt="Imagen cargada">
+            <div id="overlay">
+                <div id="cross" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div style="width: 5px; height: 100px; background-color: white; position: absolute; left: 50%; transform: translate(-50%, -50px);"></div>
+                    <div style="height: 5px; width: 100px; background-color: white; position: absolute; top: 50%; transform: translate(-50px,-50%);"></div>
+                </div>
+                
+                <div class="arrow left" id="arrow_left">←</div>
+                <div class="arrow right" id="arrow_right">→</div>
+                <div class="arrow up" id="arrow_up">↑</div>
+                <div class="arrow down" id="arrow_down">↓</div>
+            </div>
+        </div>
+        <div class="button-area">
+            <button id="processButton" type="button">
+                Proces
+            </button>
+        </div>
+
+        <div id="editedImages">
+
+        </div>
+
+        <div class="button-area">
+            <button id="processGifButton" type="button">
+                Proces GIF
+            </button>
+        </div>
+        <div id="test">
+
+        </div>
+        <div id="resultat">
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/gifshot/dist/gifshot.min.js"></script>
+        <script>
+            function checkImage() {
+                var storedImage = localStorage.getItem('image')
+                if (storedImage) {
+                        imageElement.src = storedImage;
+                        imageElement.style.display = 'block';
+                    };
+                }
+        </script>
+        <script>
+    const dropArea = document.getElementById('drop-area');
+    const imageElement = document.getElementById('image_base');
+    const overlay = document.getElementById('overlay');
+
+
+    // Manejar el drag and drop
+    dropArea.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+
+    dropArea.addEventListener('drop', (event) => {
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        if (files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imageElement.src = e.target.result;
+                imageElement.style.display = 'block';
+                localStorage.setItem('image', e.target.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+
+    // Mover overlay con botones
+    let offsetX = 0
+    let offsetY = 0
+    const moveOverlay = (dx, dy) => {
+        console.log(dx, dy)
+        offsetX += dx
+        offsetY += dy
+        console.log("translate("+offsetX+","+offsetY+")")
+        imageElement.style.transform = "translate("+offsetX+"px,"+offsetY+"px)";
+    };
+
+    document.getElementById('arrow_up').addEventListener('click', () => moveOverlay(0, -5));
+    document.getElementById('arrow_down').addEventListener('click', () => moveOverlay(0, 2));
+    document.getElementById('arrow_left').addEventListener('click', () => moveOverlay(-5, 0));
+    document.getElementById('arrow_right').addEventListener('click', () => moveOverlay(2, 0));
+
+    // Procesar imagen
+    var gifFrames = []
+    var adjustCoordinates = {}
+    var columnes = 2
+    var files = 2
+    var resizeMult = 1
+    processButton.addEventListener('click', () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = imageElement.naturalWidth + offsetX;
+        canvas.height = imageElement.naturalHeight + offsetY;
+        const ctx = canvas.getContext('2d');
+
+        var maxHeight = 400
+        if (canvas.height > maxHeight){
+            resizeMult = maxHeight/canvas.height
+            canvas.width *= resizeMult;
+            canvas.height *= resizeMult;
+        }
+
+        var imgN = 0
+        var colSize = (canvas.width/resizeMult)/columnes
+        var filSize = (canvas.height/resizeMult)/files
+        editedImages.innerHTML = ''
+        for (var i = 0; i < files; i++){
+            for (var j = 0; j < columnes; j++){
+                imgN += 1
+                var newX = (i*colSize)-offsetX/resizeMult
+                var newY = j*filSize-offsetY/resizeMult
+                console.log(`Coordenada Equerra Superior : ${newX}x ${newY}y`)
+
+                ctx.drawImage(imageElement, 
+                    newX, // sx
+                    newY, // sy
+                    colSize, // swidth
+                    filSize, // sheight   
+                    0, // x
+                    0, // y
+                    canvas.width, //width
+                    canvas.height // height
+                );
+                const newImg = document.createElement('img');
+                gifFrames.push(newImg)
+                newImg.src = canvas.toDataURL();
+                newImg.style.maxWidth = '40%';
+                newImg.style.margin= '10px';
+                newImg.id = `image${imgN}`
+                editedImages.appendChild(newImg)
+                newImg.onclick = function() {markPoint(event, `image${imgN}`)}
+            }
+            
+        }
+
+        /*ctx.drawImage(imageElement, 
+            0, // sx
+            0, // sy
+            (canvas.width/resizeMult)/2, // swidth
+            (canvas.height/resizeMult)/2, // sheight   
+            0, // x
+            0, // y
+            canvas.width, //width
+            canvas.height // height
+        );
+        //console.log(canvas.toDataURL())
+        const newImg = document.createElement('img');
+                newImg.src = canvas.toDataURL();
+                newImg.style.maxWidth = '40%';
+                editedImages.appendChild(newImg)
+        
+
+        const editedImageUrl = canvas.toDataURL();
+        localStorage.setItem('editedImage', editedImageUrl);*/
+        cross.style.display = 'none'; // Ocultar overlay
+    });
+    function markPoint(event, imageId) {
+            // Obtener la posición del clic relativa a la imagen
+            const img = event.target;
+            const rect = img.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            // Crear un punto y añadirlo a la imagen
+            const point = document.createElement('div');
+            point.className = 'point';
+            point.style.left = `${x}px`;
+            point.style.top = `${y}px`;
+            img.appendChild(point);
+
+            // Guardar las coordenadas
+            adjustCoordinates[img.id] = {
+                'x' : x,
+                'y' : y
+            }
+            console.log(`Imagen: ${img.id}, Coordenadas: X=${x}, Y=${y}`);
+            // Aquí puedes añadir código para enviar las coordenadas al servidor o almacenarlas localmente
+    }
+    // Procesar imagen
+    processGifButton.addEventListener('click', () => {
+        const gifContainer = document.createElement('div');
+        gifContainer.classList.add('gif-container');
+        const canvas = document.createElement('canvas');
+        canvas.width = resizeMult* imageElement.naturalWidth + offsetX;
+        canvas.height = resizeMult * imageElement.naturalHeight + offsetY;
+        var previousCoordinates = {
+            x : 0,
+            y: 0
+        }
+        var framesRender = []
+        for (var frame of gifFrames){
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext("2d");
+            const img = frame;
+            canvas.height = img.naturalHeight
+            canvas.width = img.naturalWidth
+            var coordinateDifferenceX = 0
+            var coordinateDifferenceY = 0
+            if (previousCoordinates.x != 0){
+                coordinateDifferenceX = previousCoordinates.x - adjustCoordinates[frame.id].x
+                coordinateDifferenceY = previousCoordinates.y - adjustCoordinates[frame.id].y 
+                previousCoordinates = adjustCoordinates[frame.id]
+            } else {
+                previousCoordinates = adjustCoordinates[frame.id]
+            }
+            ctx.drawImage(img, adjustCoordinates[frame.id].x, adjustCoordinates[frame.id].y);
+            const newImg = document.createElement('img');
+            newImg.src = canvas.toDataURL()
+            framesRender.push(newImg.src)
+            newImg.style.width='50%'
+            test.appendChild(newImg)
+
+            console.log(frame.id)
+        }
+        const ctx = canvas.getContext('2d');
+        gifshot.createGIF({
+            gifWidth: canvas.width,
+                    gifHeight: canvas.height,
+                    images: framesRender,
+                    interval: 0.15,
+                    numFrames: columnes * files
+                }, function (obj) {
+                    if (!obj.error) {
+                        const gifImg = document.createElement('img');
+                        gifImg.src = obj.image;
+                        gifImg.width = '20%';
+                        gifImg.alt = `Sequence of ${columnes * files} images`;
+                        imageElement.src = obj.image;
+
+                        gifContainer.appendChild(gifImg);
+                        resultat.appendChild(gifContainer);
+                    }
+                });
+    })
+        
+</script>
+
+    </body>
+</html>
