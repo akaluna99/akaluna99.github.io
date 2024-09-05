@@ -1,0 +1,135 @@
+{
+    "header" : {
+        "name" : "Luna Moreno Romero",
+        "contact-info" : [
+            {
+                "type" : "text",
+                "content" : "05/11/1999"
+            },
+            {
+                "type" : "text",
+                "content" : "17003, Girona"
+            },
+            {
+                "type" : "link",
+                "content" : "(+34) 637 07 71 48",
+                "meta" : "tel:+34637077148"
+            },
+            {
+                "type" : "link",
+                "content" : "akaluna99@gmail.com",
+                "meta" : "mailto:akaluna99@gmail.com"
+            },
+            {
+                "type" : "link",
+                "content" : "linkedin.com/in/lunamore",
+                "meta" : "https://www.linkedin.com/in/lunamore/"
+            }
+        ]
+    },
+    "sections" : [
+        {
+            "title" : "Education",
+            "type" : "item",
+            "sections" : [
+                {
+                    "title" : "Universitat de Girona",
+                    "title-link" : null,
+                    "location" : "Girona, Girona",
+                    "description" : "Degree in Video Game Design and Development",
+                    "date" : "Sep 2017 - Jun 2022",
+                    "details" : [
+                        "Computer science degree with mention in video game design and development"
+                    ]
+                },
+                {
+                    "title" : "IES El Sui",
+                    "title-link" : null,
+                    "location" : "Cardedeu",
+                    "description" : "Baccalaureate, Technological branch",
+                    "date" : "Sep 2015 - Jun 2017"
+                }
+            ]
+        },
+
+        {
+            "title" : "Work experience",
+            "type" : "item",
+            "sections" : [
+                {
+                    "title" : "Deister Software",
+                    "title-link" : null,
+                    "location" : "Girona, Girona",
+                    "description" : "IT consultant",
+                    "date" : "Jun 2022 - Present",
+                    "details" : [
+                        "IT Consultant",
+                        "Development of custom ERP tools",
+                        "Database design and maintenance",
+                        "JavaScript, SQL",
+                        "API",
+                        "Project manager"
+                    ]
+                },
+                {
+                    "title" : "IES El Sui",
+                    "title-link" : null,
+                    "location" : "Cardedeu",
+                    "description" : "Baccalaureate, Technological branch",
+                    "date" : "Sep 2015 - Jun 2017"
+                }
+            ]
+        },
+
+        {
+            "title" : "Personal projects",
+            "sections" : [
+                {
+                    "title" : "CaTAGlogger",
+                    "title-link" : "https://www.cataglogger.duckdns.org/",
+                    "location" : "Website",
+                    "description" : "HTML, CSS, JS, PHP, MySQL",
+                    "date" : "2023-Actual",
+                    "detailed-description" : "Open log website where users can explore and catalog location and characteristics of street art.",
+                    "details" : [
+                        "Website design and maintenance",
+                        "Database creation and maintenance"
+                    ]
+                },
+                {
+                    "title" : "Tanoka Studio",
+                    "title-link" : "https://tanoka.studio/",
+                    "location" : "Video game Studio",
+                    "description" : "Godot, Game Design, Game Programming, PR",
+                    "date" : "2021-Actual",
+                    "detailed-description" : "Indie game studio maintained by me and 4 friends making games as a side-project.",
+                    "details" : [
+                        "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Arcade game",
+                        "Sails of Stillwater (WIP) - RPG, Adventure game",
+                        "Departure Delights (WIP) - 2D, Pixel Art"
+                    ]
+                }
+            ]
+        },
+
+        {
+            "title" : "Skills",
+            "type" : "list",
+            "sections" : [
+                {
+                    "title" : "Language",
+                    "list-items": "English, Spanish, Catalan"
+                },
+                {
+                    "title" : "Programming",
+                    "list-items": "C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
+                },
+                {
+                    "title" : "Software",
+                    "list-items": "Microsoft Office, Adobe Premiere, Photoshop, DaVinci Resolve, Visual Studio, Blender, 3D Max, Inkscape, Unity 3D, Godot"
+                }
+            ]
+        }
+
+    ]
+}
