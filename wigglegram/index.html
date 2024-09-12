@@ -11,6 +11,18 @@
 
     <title>Luna's wigglegram</title>
     <style>
+        .img-magnifier-container {
+            position: relative;
+        }
+        .img-magnifier-glass {
+            position: absolute;
+            border: 3px solid #000;
+            border-radius: 50%;
+            cursor: crosshair;
+            /*Set the size of the magnifier glass:*/
+            width: 100px;
+            height: 100px;
+        }
         body {
             font-family: Arial, Helvetica, sans-serif;
             display: flex;
@@ -27,7 +39,7 @@
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            overflow: hidden;
+            overflow: scroll;
             background-color: white;
             border: 2px dashed #ccc;
             padding: 10px;
@@ -139,6 +151,7 @@
     <br>
     <div class="loader" id="loaderIcon" hidden></div>
     <div id="drop-area" class="drop-area">
+        <input type="file" id="drop-area-button" accept="image/*" />
         <img id="image_base" src alt="Imagen cargada">
         <div id="overlay">
             <div id="cross" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);" hidden>
@@ -194,11 +207,30 @@
     </script>
     <script>
         const dropArea = document.getElementById('drop-area');
+        const dropAreaButton = document.getElementById('drop-area-button');
         const imageElement = document.getElementById('image_base');
         const overlay = document.getElementById('overlay');
 
 
         // Manejar el drag and drop
+        dropAreaButton.addEventListener('change', (event) => {
+            event.preventDefault();
+            console.log(dropAreaButton.files[0])
+            const files = dropAreaButton.files
+            if (files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    console.log(e)
+                    imageElement.src = e.target.result;
+                    imageElement.style.display = 'block';
+                    localStorage.setItem('image', e.target.result);
+                    processButton.disabled = false
+                };
+                reader.readAsDataURL(files[0]);
+                localStorage.setItem('wigglegram_filename', files[0].name.split('.')[0])
+            }
+        })
+
         dropArea.addEventListener('dragover', (event) => {
             event.preventDefault();
         });
@@ -282,13 +314,17 @@
                         canvas.width, //width
                         canvas.height // height
                     );
+                    const newDiv = document.createElement('div');
+                    newDiv.classList.add('img-magnifier-container');
                     const newImg = document.createElement('img');
                     gifFrames.push(newImg)
                     newImg.src = canvas.toDataURL();
                     newImg.style.maxWidth = '40%';
                     newImg.style.margin = '10px';
                     newImg.id = `image${imgN}`
-                    editedImages.appendChild(newImg)
+                    newDiv.appendChild(newImg)
+                    editedImages.appendChild(newDiv)
+                    magnify(`image${imgN}`, 3);
                     newImg.onclick = function () { markPoint(event, `image${imgN}`) }
                 }
 
@@ -414,6 +450,69 @@
         })
 
     </script>
+    <script>
+        function magnify(imgID, zoom) {
+  var img, glass, w, h, bw;
+  img = document.getElementById(imgID);
+
+  /* Create magnifier glass: */
+  glass = document.createElement("DIV");
+  glass.setAttribute("class", "img-magnifier-glass");
+
+  /* Insert magnifier glass: */
+  img.parentElement.insertBefore(glass, img);
+
+  /* Set background properties for the magnifier glass: */
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundRepeat = "no-repeat";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  bw = 3;
+  w = glass.offsetWidth / 2;
+  h = glass.offsetHeight / 2;
+
+  /* Execute a function when someone moves the magnifier glass over the image: */
+  glass.addEventListener("mousemove", moveMagnifier);
+  img.addEventListener("mousemove", moveMagnifier);
+
+  /*and also for touch screens:*/
+  glass.addEventListener("touchmove", moveMagnifier);
+  img.addEventListener("touchmove", moveMagnifier);
+  function moveMagnifier(e) {
+    var pos, x, y;
+    /* Prevent any other actions that may occur when moving over the image */
+    //e.preventDefault();
+    /* Get the cursor's x and y positions: */
+    pos = getCursorPos(e);
+    x = pos.x;
+    y = pos.y;
+    /* Prevent the magnifier glass from being positioned outside the image: */
+    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+    if (x < w / zoom) {x = w / zoom;}
+    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+    if (y < h / zoom) {y = h / zoom;}
+    /* Set the position of the magnifier glass: */
+    glass.style.left = (x - w) + "px";
+    glass.style.top = (y - h) + "px";
+    /* Display what the magnifier glass "sees": */
+    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+  }
+
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /* Get the x and y positions of the image: */
+    a = img.getBoundingClientRect();
+    /* Calculate the cursor's x and y coordinates, relative to the image: */
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /* Consider any page scrolling: */
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+    </script>    
+    </body>
 
 </body>
 

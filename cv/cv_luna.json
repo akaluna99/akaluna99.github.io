@@ -58,7 +58,7 @@
             "sections" : [
                 {
                     "title" : "Deister Software",
-                    "title-link" : null,
+                    "title-link" : "https://www.deister.net/",
                     "location" : "Girona, Girona",
                     "description" : "IT consultant",
                     "date" : "Jun 2022 - Present",
@@ -72,11 +72,25 @@
                     ]
                 },
                 {
-                    "title" : "IES El Sui",
-                    "title-link" : null,
-                    "location" : "Cardedeu",
-                    "description" : "Baccalaureate, Technological branch",
-                    "date" : "Sep 2015 - Jun 2017"
+                    "title" : "Càtedra de Cultura Científica i Comunicació Digital",
+                    "title-link" : "https://c4dudg.wordpress.com/",
+                    "location" : "UdG, Girona",
+                    "description" : "Video editor",
+                    "date" : "Mar 2022 - Jun 2022",
+                    "details" : [
+                        "Editing of Covid-19 videos",
+                        "Video production and postproduction",
+                        "Team work"
+                    ]
+                },
+                {
+                    "title" : "Metalmoreno S.L.",
+                    "title-link" : "https://www.metalmoreno.es/",
+                    "location" : "L'Ametlla del Vallés",
+                    "description" : "Metal workshop operator",
+                    "date" : "Jun 2022 - Present",
+                    "details" : [
+                    ]
                 }
             ]
         },

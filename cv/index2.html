@@ -208,15 +208,24 @@
             if (nou_seccio.type) seccio_type = nou_seccio.type;
 
             var nou_seccio_h2 = document.createElement('h2')
-            nou_seccio_h2.append(nou_seccio.title)
+            
+            nou_seccio_h2.append(nou_seccio.title)            
+            
             nou_cv_section.append(nou_seccio_h2)
             for (i_seccio of nou_seccio.sections){
+                console.log(i_seccio)
                 var nou_section_item = document.createElement('section-item');
                 if (seccio_type == "item"){
                     var nou_section_row = document.createElement('section-row');
                     
                     // Afegir esl 4 items
-                    nou_section_row.append(crear_tipus('div', i_seccio.title)) // title
+                    if (i_seccio['title-link'] != undefined){
+                        var nou_link = crear_tipus('a', i_seccio.title)
+                        nou_link.href = i_seccio['title-link'];
+                        console.log(nou_link)
+                        nou_section_row.append(crear_tipus('div', nou_link))      
+                    }
+                    else nou_section_row.append(crear_tipus('div', i_seccio.title)) // title
                     nou_section_row.append(crear_tipus('div', i_seccio.location)) // location
                     nou_section_row.append(crear_tipus('div', i_seccio.description)) // description
                     nou_section_row.append(crear_tipus('div', i_seccio.date)) // date
