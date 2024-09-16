@@ -1,0 +1,149 @@
+{
+    "header" : {
+        "name" : "Luna Moreno Romero",
+        "contact-info" : [
+            {
+                "type" : "text",
+                "content" : "05/11/1999"
+            },
+            {
+                "type" : "text",
+                "content" : "17003, Girona"
+            },
+            {
+                "type" : "link",
+                "content" : "(+34) 637 07 71 48",
+                "meta" : "tel:+34637077148"
+            },
+            {
+                "type" : "link",
+                "content" : "akaluna99@gmail.com",
+                "meta" : "mailto:akaluna99@gmail.com"
+            },
+            {
+                "type" : "link",
+                "content" : "linkedin.com/in/lunamore",
+                "meta" : "https://www.linkedin.com/in/lunamore/"
+            }
+        ]
+    },
+    "sections" : [
+        {
+            "title" : "Educació",
+            "type" : "item",
+            "sections" : [
+                {
+                    "title" : "Universitat de Girona",
+                    "title-link" : null,
+                    "location" : "Girona, Girona",
+                    "description" : "Grau en disseny i desenvolupament de videojocs",
+                    "date" : "Set 2017 - Jun 2022",
+                    "details" : [
+                        "Grau en ingenieria informatica amb especialització en videojocs"
+                    ]
+                },
+                {
+                    "title" : "IES El Sui",
+                    "title-link" : null,
+                    "location" : "Cardedeu",
+                    "description" : "Bachillerat tecnologic",
+                    "date" : "Set 2015 - Jun 2017"
+                }
+            ]
+        },
+
+        {
+            "title" : "Experiencia laboral",
+            "type" : "item",
+            "sections" : [
+                {
+                    "title" : "Deister Software",
+                    "title-link" : "https://www.deister.net/",
+                    "location" : "Girona, Girona",
+                    "description" : "Desenvolupament de software i consultoria IT",
+                    "date" : "Jun 2022 - Actual",
+                    "details" : [
+                        "Consultoria IT",
+                        "Desenvolumpament de personalització ERP",
+                        "Disseny i manteniment de BBDD",
+                        "JavaScript, SQL",
+                        "API",
+                        "Project manager"
+                    ]
+                },
+                {
+                    "title" : "Càtedra de Cultura Científica i Comunicació Digital",
+                    "title-link" : "https://c4dudg.wordpress.com/",
+                    "location" : "UdG, Girona",
+                    "description" : "Editora de video",
+                    "date" : "Mar 2022 - Jun 2022",
+                    "details" : [
+                        "Edicio de videos de Covid-19",
+                        "Produccio i post-produccio de videos",
+                        "Treball en equip"
+                    ]
+                },
+                {
+                    "title" : "Metalmoreno S.L.",
+                    "title-link" : "https://www.metalmoreno.es/",
+                    "location" : "L'Ametlla del Vallés",
+                    "description" : "Operaria taller metalic",
+                    "date" : "Jun 2018 - Set 2021",
+                    "details" : [
+                    ]
+                }
+            ]
+        },
+
+        {
+            "title" : "Projectes personals",
+            "sections" : [
+                {
+                    "title" : "CaTAGlogger",
+                    "title-link" : "https://www.cataglogger.duckdns.org/",
+                    "location" : "Pagina Web",
+                    "description" : "HTML, CSS, JS, PHP, MySQL",
+                    "date" : "2023 - Actual",
+                    "detailed-description" : "Lloc web de registre obert on els usuaris poden explorar i catalogar la ubicació i les característiques de l'art urbà.",
+                    "details" : [
+                        "Disseny i manteniment del lloc web",
+                        "Creació i manteniment de bases de dades"
+                    ]
+                },
+                {
+                    "title" : "Tanoka Studio",
+                    "title-link" : "https://tanoka.studio/",
+                    "location" : "Estudi de videojocs",
+                    "description" : "Godot, Game Design, Game Programming, PR",
+                    "date" : "2021-Actual",
+                    "detailed-description" : "Un estudi de jocs independent mantingut per mi i 4 amics fent jocs com a projecte secundari.",
+                    "details" : [
+                        "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Joc Arcade",
+                        "Sails of Stillwater (WIP) - RPG",
+                        "Departure Delights (WIP) - 2D, Pixel Art"
+                    ]
+                }
+            ]
+        },
+
+        {
+            "title" : "Habilitats",
+            "type" : "list",
+            "sections" : [
+                {
+                    "title" : "Idiomes",
+                    "list-items": "English, Spanish, Catalan"
+                },
+                {
+                    "title" : "Programació",
+                    "list-items": "C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
+                },
+                {
+                    "title" : "Software",
+                    "list-items": "Microsoft Office, Adobe Premiere, Photoshop, DaVinci Resolve, Visual Studio, Blender, 3D Max, Inkscape, Unity 3D, Godot"
+                }
+            ]
+        }
+
+    ]
+}

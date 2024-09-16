@@ -9,13 +9,19 @@
         <meta name="keywords" content="3d, musica, portfolio, girona">
 
         <title>cataluna</title>
-        <link rel="icon" type="image/png" href="ico.png">
+        <link rel="icon" type="image/png" href="../ico.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
 
     <style>
        body {
-            margin: 3px;
-            padding: 3px;
+            margin: 2px;
+            padding: 2px;
             background-color: antiquewhite;
             max-width: 800px;
             margin-left: auto;
@@ -25,32 +31,37 @@
             align-content: space-between;
             justify-content: space-between;
             align-items: stretch;
+            font-family: "Inria Sans", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h1 {
+            font-family: "Bungee Tint", "Rubik", "Inria Sans", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h2 {
+            font-family: "Rubik", "Inria Sans", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
         * {
-            margin: 0;
-            margin-top: -2px;
-            padding: 6px;
+            padding: 3px;
             border-radius: 15px;
-            border: 1px;
+            border: 3px;
+            overflow: auto;
         }
         header {
             width: 100%;
             top: 20px;
             position: sticky;
-            border-style: dashed;
         }
         main {
             display: flex;
             justify-content: space-around;
             align-content: space-around;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             align-items: stretch;
         }
         body>*{
             border-style: dashed;
             border-color: rgba(0, 0, 0, 0.5);
             background-color:blanchedalmond;
-            margin: 20px 0px;
+            margin: 10px 5px;
             box-shadow: inset 0px 0px 9px 0px rgba(0, 0, 0, 0.2);
             max-height: 50vh;
             padding: 15px;
@@ -58,13 +69,35 @@
         }
         main>*{
             overflow: auto;
+            max-width: 528px;
         }
         sidebar {
-            background-color: rgb(67, 39, 6);
-            background-clip: content-box;
+            background-color: darksalmon;
             color: antiquewhite;
+            padding: 10px 10px;
+            max-width: 200px;
         }
+
+        sidebar-sector {
+            margin: 0;
+            padding: 0;
+        }
+
+        sidebar-element {
+            margin: 0;
+            padding: 0;
+        }
+
         footer {
+            width: 100%;
+            display: flex;
+            overflow: auto;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+        footer>*{
             width: 100%;
         }
     </style>
@@ -159,7 +192,30 @@
             </div>
         </main>
         <footer>
-            <p>Jo soc un footer, sempre abaix</p>
+                <a href="https://directa.cat/app/uploads/2019/10/la-s%C3%ADndrome-de-sherwood-1.pdf" target="_blank">
+                  <img src="../badges/acab.gif" alt="acab">
+                </a>
+                <a href="." target="_blank">
+                  <img src="../badges/amd.gif" alt="amd">
+                </a>
+                <a href="https://yesterweb.org/no-to-web3/" target="_blank">
+                  <img src="../badges/web3.gif" alt="last fm">
+                </a>
+                <a href="." target="_blank">
+                  <img src="../badges/powered.gif" alt="last fm">
+                </a>
+                <a href="." target="_blank">
+                  <img src="../badges/ps2.gif" alt="last fm">
+                </a>
+                <a href="." target="_blank">
+                  <img src="../badges/catala.png" width=88 alt="last fm">
+                </a>
+                <a href="." target="_blank">
+                  <img src="../badges/korg.gif" alt="last fm">
+                </a>
+                <a href="." target="_blank">
+                  <img src="../badges/chrome.gif" alt="use mozilla">
+                </a>
         </footer>
 
     </body>
