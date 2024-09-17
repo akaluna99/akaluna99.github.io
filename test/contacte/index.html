@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Luna Moreno">
+    <meta name="description" content="Contacta amb mi">
+    <meta name="keywords" content="contacta">
+    <title data-i18n="contact">contacte</title>
+
+    <link href="../style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="icon" type="image/png" href="../icon.png">
+</head>
+
+<body>
+        <header>
+            <a href='../index.html'>
+            <h1 data-i18n="welcome_message">
+                    el meu lloc a l'interxarxa
+                </h1>
+            </a>
+            <div class="marquee openmoji">
+                <ul class="marquee__content">
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Twitter</a></li>
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Linkedin</a></li>
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Github</a></li>
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">YouTube</a></li>
+                </ul>
+                <!-- Mirrors the content above -->
+                <ul class="marquee__content" aria-hidden="true">
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Twitter</a></li>
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Linkedin</a></li>
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Github</a></li>
+                    <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+            <nav hidden>
+                <a href="index.html" onclick="changeLanguage('en')">English</a>
+                <a href="index.html" onclick="changeLanguage('ca')">Català</a>
+            </nav>
+            <p hidden><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a
+                    href="/jo" class="button" data-i18n="me">Jo</a> <a href="/contacte" class="button"
+                    data-i18n="contact">Contacta</a></p>
+        </header>
+
+        <main class="full">
+            <div>
+                <h2>Deixa aqui el teu missatge</h2>
+                <p>Intento respondre el més rapid posible</p>
+            </div>
+            <form action="https://formspree.io/f/xbjnjvzz" method="POST">
+                <fieldset>
+                    <label>
+                        E-mail:
+                        <input type="email" name="email">
+                    </label>
+                    <br>
+                    <label>
+                        Text:
+                        <textarea name="message"></textarea>
+                    </label>
+                    <!-- your other form fields go here -->
+                    <br>
+                    <button type="submit">Envia</button>
+                </fieldset>
+            </form>
+        </main>
+        <main class="full center-horizontal openmoji">
+            <a class="fancy-button" href="../blog" target="_blank">📑Blog📑</a>
+            <a class="fancy-button" href="../portfolio/" target="_blank">🗄Portfolio🗄</a>
+            <a class="fancy-button" href="../jo/" target="_blank">👧Jo👧</a>
+            <a class="fancy-button disabled" href="../contacte/" target="_blank" disabled>☎Contacte☎</a>
+        </main>
+        <a class="fancy-button openmoji" href="../" target="_blank">Inici</a>
+
+    <script src="/js/multilingual.js"></script>
+</body>
+
+</html>

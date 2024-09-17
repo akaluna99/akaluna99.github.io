@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Luna Moreno">
+    <meta name="description" content="Coses que he fet">
+    <meta name="keywords" content="3d, musica, portfolio, girona, programació">
+
+    <title>Coses que he fet</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="icon" type="image/png" href="/ico.png">
+    <style>
+        dialog[open] {
+            width: 50%;
+            opacity: 1;
+            transform: scaleY(1);
+        }
+
+        ::backdrop {
+            background-image: linear-gradient(45deg,
+                    magenta,
+                    rebeccapurple,
+                    dodgerblue,
+                    green);
+            opacity: 0.75;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" ContentEditable='FALSE'>
+        <header>
+            <h1  class="bigger-text glow"><a data-i18n="welcome_message" href='/index.html'>el meu lloc a l'interxarxa</a></h1> 
+            <nav>
+              <a href="index.html" onclick="changeLanguage('en')">English</a>
+              <a href="index.html" onclick="changeLanguage('ca')">Català</a>
+            </nav>
+            <p><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a href="/jo"
+                class="button" data-i18n="me">Jo</a> <a href="/contacte" class="button" data-i18n="contact">Contacta</a></p>
+          </header> 
+        <dialog class="blog_preview blog_modal">
+            <div id='modal'>
+                <h1>Modal</h1>
+                <p>Yeyeyeye</p>
+            </div>
+            <button autofocus style>Tanca</button>
+        </dialog>
+        <hr />
+        <div id="blog_wrapper" class="blog_wrapper">
+        </div> <!-- blog_wrapper -->
+        <h1 class="glow" data-i18n="things_i_made" >Coses que he fet</h1>
+        <div class="grid">
+            <a href="https://roughskin.itch.io/paralel" class="thumbnail" target="_blank" id="videojoc">
+                <img class="thumbnai-image"
+                    src="https://img.itch.zone/aW1nLzE0MDcwNzIxLnBuZw==/315x250%23c/HJf2GI.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>PARA & LEL</p>
+            </a>
+            <a href="https://lunamoreno.itch.io/serious-beesness" class="thumbnail" target="_blank" id="videojoc">
+                <img class="thumbnai-image" src="https://img.itch.zone/aW1nLzUzMTY5NzcucG5n/315x250%23c/HkUdNA.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>Serious Beesness</p>
+            </a>
+            <a href="https://www.cataglogger.duckdns.org/" class="thumbnail" target="_blank" id="videojoc">
+                <img class="thumbnai-image" src="/imgs/cataglogger.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>caTAGlogger</p>
+            </a>
+            <a href="https://twitter.com/girocletabot" class="thumbnail" target="_blank">
+                <img class="thumbnai-image" src="/imgs/girocletabot.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>Girocleta BOT</p>
+            </a>
+            <a href="https://sketchfab.com/strelka" class="thumbnail" target="_blank">
+                <img class="thumbnai-image" src="/imgs/sketchfab.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>Models 3D</p>
+            </a>
+            <a href="https://tanoka.studio/" class="thumbnail" target="_blank">
+                <img class="thumbnai-image" src="/imgs/tanokaStudio.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>Tanoka Studio</p>
+            </a>
+            <a href="https://kitprocyon.itch.io/procyon" class="thumbnail" target="_blank">
+                <img class="thumbnai-image" src="https://img.itch.zone/aW1nLzI5Mzg2NjIuZ2lm/315x250%23cm/FeYnJ4.gif" />
+                <div class="thumbnail-shadow"></div>
+                <p>Procyon</p>
+
+            </a>
+            <a href="https://lunamoreno.itch.io/" class="thumbnail" target="_blank">
+                <img class="thumbnai-image" src="/imgs/itch.png" />
+                <div class="thumbnail-shadow"></div>
+                <p>Itch.Io</p>
+            </a>
+        </div>
+    </div>
+
+    <script type='text/javascript'>
+        const dialog = document.querySelector("dialog");
+        //const showButton = document.querySelector("dialog + button");
+        const closeButton = document.querySelector("dialog button");
+        // "Show the dialog" button opens the dialog modally
+        /*showButton.addEventListener("click", () => {
+            console.log("close")
+            dialog.showModal();
+        });*/
+
+        // "Close" button closes the dialog
+        closeButton.addEventListener("click", () => {
+            dialog.close();
+        });
+    </script>
+    <script src="/js/multilingual.js"></script>
+</body>
+
+</html>

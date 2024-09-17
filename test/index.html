@@ -1,113 +1,28 @@
 <!DOCTYPE html>
 
 <html lang="ca">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Luna Moreno">
-        <meta name="description" content="Luna a l'interxarxa">
-        <meta name="keywords" content="3d, musica, portfolio, girona">
 
-        <title>cataluna</title>
-        <link rel="icon" type="image/png" href="../ico.png">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Luna Moreno">
+    <meta name="description" content="Luna a l'interxarxa">
+    <meta name="keywords" content="3d, musica, portfolio, girona">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    </head>
+    <title>cataluna</title>
+    <link rel="icon" type="image/png" href="./icon.png">
 
-    <style>
-       body {
-            margin: 2px;
-            padding: 2px;
-            background-color: antiquewhite;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: space-between;
-            justify-content: space-between;
-            align-items: stretch;
-            font-family: "Inria Sans", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-        h1 {
-            font-family: "Bungee Tint", "Rubik", "Inria Sans", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-        h2 {
-            font-family: "Rubik", "Inria Sans", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-        * {
-            padding: 3px;
-            border-radius: 15px;
-            border: 3px;
-            overflow: auto;
-        }
-        header {
-            width: 100%;
-            top: 20px;
-            position: sticky;
-        }
-        main {
-            display: flex;
-            justify-content: space-around;
-            align-content: space-around;
-            flex-wrap: wrap;
-            align-items: stretch;
-        }
-        body>*{
-            border-style: dashed;
-            border-color: rgba(0, 0, 0, 0.5);
-            background-color:blanchedalmond;
-            margin: 10px 5px;
-            box-shadow: inset 0px 0px 9px 0px rgba(0, 0, 0, 0.2);
-            max-height: 50vh;
-            padding: 15px;
+    <link href="./style.css" rel="stylesheet" type="text/css" media="all">
 
-        }
-        main>*{
-            overflow: auto;
-            max-width: 528px;
-        }
-        sidebar {
-            background-color: darksalmon;
-            color: antiquewhite;
-            padding: 10px 10px;
-            max-width: 200px;
-        }
+</head>
 
-        sidebar-sector {
-            margin: 0;
-            padding: 0;
-        }
 
-        sidebar-element {
-            margin: 0;
-            padding: 0;
-        }
-
-        footer {
-            width: 100%;
-            display: flex;
-            overflow: auto;
-            align-items: center;
-            justify-content: space-evenly;
-            flex-wrap: nowrap;
-            flex-direction: row;
-        }
-        footer>*{
-            width: 100%;
-        }
-    </style>
-
-    <script>
-        function addGetNokDown(pId) {
+<script>
+    function addGetNokDown(pId) {
         console.log(pId)
         if (document.getElementById(pId).getAttribute("open") != "true") {
             document.getElementById(pId).innerHTML +=
-            `<details id=${pId + 1} onClick="addGetNokDown(${pId + 1})">
+                `<details id=${pId + 1} onClick="addGetNokDown(${pId + 1})">
                     <summary>I get knocked down...</summary>
                 
                     <p>But I get up again</p>
@@ -117,107 +32,161 @@
             `;
             document.getElementById(pId).setAttribute("open", "true");
         }
-        }
-    </script>
+    }
+</script>
 
-    <body>
-        <header>
-            <h1>La web de la luna, jo soc la luna</h1>
-            <marquee>
-                <a href="https://twitter.com/chica_botella" target="_blank">Twitter</a>
-                <a href="https://twitter.com/chica_botella" target="_blank">Twitter</a>
-            </marquee>
-        </header>
-        <main>
+<body>
+    <header>
+        <h1>La web de la luna, jo soc la luna</h1>
+        <div class="marquee openmoji">
+            <ul class="marquee__content">
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Twitter</a></li>
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Linkedin</a></li>
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Github</a></li>
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">YouTube</a></li>
+            </ul>
+            <!-- Mirrors the content above -->
+            <ul class="marquee__content" aria-hidden="true">
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Twitter</a></li>
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Linkedin</a></li>
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Github</a></li>
+                <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">YouTube</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <main>
+        <div class="full center-vertical">
+            <h2>Aixó es la meu web!</h2>
+            <p>Aqui va el contingut general de la web</p>
             <div>
-                <p>Aqui va el contingut general de la web</p>
-                <strong>ES POT CRIDAR</strong>
-                <p>Es poden fer textos llargs. Vaig neixer un dia que venia despres de un dia, pero abans d'un any y durant un mileni, tenia la pell roja i moltes mentides a dir, podia escriure textos</p>
-                <table></table>
+                <strong>AAAA</strong>
+                <p>Aixo es junt</p>
             </div>
-            <sidebar>
-                <sidebar-sector>
-                    <h2>Ultims Projectes</h2>
-                    <sidebar-element>
-                        <h3>Luna's Wigglegram</h3>
-                    </sidebar-element>
-                    <sidebar-element>
-                        <h3>CV Builder</h3>
-                    </sidebar-element>
-                    <sidebar-element>
-                        <h3>Més...</h3>
-                    </sidebar-element>
-                </sidebar-sector>
-                <sidebar-sector>
-                    <h2>Blog</h2>
-                    <sidebar-element>
-                        <h3>Constructor de Cv's</h3>
-                        <p>Doncs aixo es un constructor de cv que tal que pinga...</p>
-                    </sidebar-element>
-                    <sidebar-element>
-                        <h3>Constructor de Cv's</h3>
-                        <p>Doncs aixo es un constructor de cv que tal que pinga...</p>
-                    </sidebar-element>
-                </sidebar-sector>
-            </sidebar>
-        </main>
-        <main>
-            <details id=1 onClick="addGetNokDown(this.id)">
-                <summary>I get knocked down...</summary>
-        
-                <p>But I get up again</p>
-                <p>You're never going to keep me down</p>
-              </details>
-        </main>
-        <main>
+            <strong>ES POT CRIDAR</strong>
+            <p>Es poden fer textos llargs. Vaig neixer un dia que venia despres de un dia, pero abans d'un any y durant
+                un mileni, tenia la pell roja i moltes mentides a dir, podia escriure textos</p>
             <div>
-                <p>Hola que tal, aqui podriem fer un altre sector per exemple</p>
-                <table>
-                    <tr>
-                      <th>Company</th>
-                      <th>Contact</th>
-                      <th>Country</th>
-                    </tr>
-                    <tr>
-                      <td>Alfreds Futterkiste</td>
-                      <td>Maria Anders</td>
-                      <td>Germany</td>
-                    </tr>
-                    <tr>
-                      <td>Centro comercial Moctezuma</td>
-                      <td>Francisco Chang</td>
-                      <td>Mexico</td>
-                    </tr>
-                  </table>
+                <div class="openmoji">🏴󠁥󠁳󠁣󠁴󠁿 ABC 👨‍💻 &#x1F976; XYZ &#x1F4BB; &#x1F468; &#x1F9DF; Lorem &#xE380;
+                    ipsum &#x1F4AF;🏴󠁥󠁳󠁣󠁴󠁿
+                </div>
             </div>
-        </main>
-        <footer>
-                <a href="https://directa.cat/app/uploads/2019/10/la-s%C3%ADndrome-de-sherwood-1.pdf" target="_blank">
-                  <img src="../badges/acab.gif" alt="acab">
-                </a>
-                <a href="." target="_blank">
-                  <img src="../badges/amd.gif" alt="amd">
-                </a>
-                <a href="https://yesterweb.org/no-to-web3/" target="_blank">
-                  <img src="../badges/web3.gif" alt="last fm">
-                </a>
-                <a href="." target="_blank">
-                  <img src="../badges/powered.gif" alt="last fm">
-                </a>
-                <a href="." target="_blank">
-                  <img src="../badges/ps2.gif" alt="last fm">
-                </a>
-                <a href="." target="_blank">
-                  <img src="../badges/catala.png" width=88 alt="last fm">
-                </a>
-                <a href="." target="_blank">
-                  <img src="../badges/korg.gif" alt="last fm">
-                </a>
-                <a href="." target="_blank">
-                  <img src="../badges/chrome.gif" alt="use mozilla">
-                </a>
-        </footer>
+        </div>
+        <sidebar id="sidebar">
+            <sidebar-sector>
+                <h2>Ultims Projectes</h2>
+                <sidebar-element>
+                    <h3>
+                        <a href="./portfolio/wigglegram" target="_blank">
+                            Luna's Wigglegram
+                        </a>
+                    </h3>
+                </sidebar-element>
+                <sidebar-element>
+                    <h3>
+                        <a href="./portfolio/cv-builder" target="_blank"></ahref>
+                            CV Builder
+                        </a>
+                    </h3>
+                </sidebar-element>
+                <sidebar-element>
+                    <h3>
+                        <a href="./portfolio/" target="_blank">
+                            Més...
+                        </a>
+                    </h3>
+                </sidebar-element>
+            </sidebar-sector>
+            <sidebar-sector>
+                <h2>Blog</h2>
+                <sidebar-element>
+                    <h3>Constructor de Cv's</h3>
+                    <p>Doncs aixo es un constructor de cv que tal que pinga...</p>
+                </sidebar-element>
+                <sidebar-element>
+                    <h3>
+                        <a href="./blog/" target="_blank">
+                            Constructor de Cv's
+                        </a>
+                    </h3>
+                    <p>Doncs aixo es un constructor de cv que tal que pinga...</p>
+                </sidebar-element>
+                <sidebar-element>
+                    <h3>
+                        <a href="./blog/" target="_blank">
+                            Més...
+                        </a>
+                    </h3>
+                </sidebar-element>
+            </sidebar-sector>
+        </sidebar>
+    </main>
+    <main class="full center-horizontal openmoji">
+        <a class="fancy-button" href="./blog" target="_blank">📑Blog📑</a>
+        <a class="fancy-button" href="./portfolio/" target="_blank">🗄Portfolio🗄</a>
+        <a class="fancy-button" href="./jo/" target="_blank">👧Jo👧</a>
+        <a class="fancy-button" href="./contacte/" target="_blank">☎Contacte☎</a>
+    </main>
+    <main>
+        <details id=1 onClick="addGetNokDown(this.id)">
+            <summary>I get knocked down...</summary>
 
-    </body>
+            <p>But I get up again</p>
+            <p>You're never going to keep me down</p>
+        </details>
+    </main>
+    <main>
+        <div>
+            <p>Hola que tal, aqui podriem fer un altre sector per exemple</p>
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <a href="." target="_blank"></a>
+        <img src="./badges/catalunya.gif" alt="use mozilla">
+        </a>
+        <a href="https://directa.cat/app/uploads/2019/10/la-s%C3%ADndrome-de-sherwood-1.pdf" target="_blank">
+            <img src="./badges/acab.gif" alt="acab">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/amd.gif" alt="amd">
+        </a>
+        <a href="https://yesterweb.org/no-to-web3/" target="_blank">
+            <img src="./badges/web3.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/powered.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/ps2.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/catala.png" width=88 alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/korg.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/chrome.gif" alt="use mozilla">
+        </a>
+    </footer>
+
+</body>
 
 </html>
