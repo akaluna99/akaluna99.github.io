@@ -33,12 +33,14 @@ body {
   border-radius: var(--roundnes);
 }
 
-.thumbnail{
-  height: 12vw;
-  border-radius: var(--roundnes);
+.thumbnail {
+  /* height: 12vw; */
   position: relative;
   z-index: 100;
-  
+  overflow: hidden;
+  width: auto;
+  height: 150px;
+}
 }
 
 
