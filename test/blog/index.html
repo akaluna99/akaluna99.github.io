@@ -18,8 +18,8 @@
 <body>
     <header>
         <h1 data-i18n="welcome_message">
-                el meu blog
-            </h1>
+            el meu blog
+        </h1>
         <div class="marquee openmoji">
             <ul class="marquee__content">
                 <li><a class="fancy-button" href="https://twitter.com/chica_botella" target="_blank">Twitter</a></li>
@@ -37,13 +37,17 @@
         </div>
     </header>
     <main class="full">
-        <ul>
+        <blog>
             {% for post in site.posts %}
-              <li>
-                <a href="{{ post.url }}">{{ post.title }}</a>
-              </li>
+            <entrada>
+                <h2>
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h2>
+                <p>{{ post.excerpt }}</p>
+                <em>post.date - post.author</em>
+            </entrada>
             {% endfor %}
-          </ul>
+        </blog>
     </main>
     <main class="full max-height">
         <blog>
@@ -79,4 +83,5 @@
     </main>
     <a class="fancy-button openmoji" href="../">Inici</a>
 </body>
+
 </html>
