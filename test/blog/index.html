@@ -34,6 +34,15 @@
             </ul>
         </div>
     </header>
+    <main class="full">
+        <ul>
+            {% for post in site.posts %}
+              <li>
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+    </main>
     <main class="full max-height">
         <blog>
             <entrada>
