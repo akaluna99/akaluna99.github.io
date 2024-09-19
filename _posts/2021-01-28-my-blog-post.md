@@ -1,10 +1,10 @@
-## This is my first blog post
-asdasdas asfa
-fasf
-asfsa
- sf
- sf
+---
+layout: post
+title:  "Welcome to Jekyll!"
+---
 
+# Welcome
 
+**Hello world**, this is my first Jekyll blog post.
 
- asfasfa
+I hope you like it!
