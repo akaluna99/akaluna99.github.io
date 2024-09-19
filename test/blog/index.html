@@ -43,8 +43,8 @@
                 <h2>
                     <a href="{{ post.url }}">{{ post.title }}</a>
                 </h2>
-                <p>{{ post.excerpt }}</p>
-                <em>post.date - post.author</em>
+                <div>{{ post.excerpt }}</div>
+                <em>{{post.date}} - {{post.author}}</em>
             </entrada>
             {% endfor %}
         </blog>
