@@ -152,7 +152,7 @@ header {
 
 main {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: space-around;
   flex-wrap: nowrap;
   align-items: stretch;
@@ -189,6 +189,10 @@ sidebar-sector {
 
 sidebar-sector>h2 {
   text-decoration: antiquewhite wavy underline 2px;
+}
+sidebar-sector>h2>a {
+  text-decoration: none;
+  color: antiquewhite;
 }
 
 sidebar-element {

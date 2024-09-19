@@ -1,2 +1,4 @@
 include:
 - .well-known
+
+timezone: Europe/Madrid
