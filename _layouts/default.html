@@ -1,22 +1,15 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/blog/">Blog</a>
-    </nav>
-    <h1>{{ page.title }}</h1>
-    <p>Hola es una pagina normal</p>
-    <section>
-      {{ content }}
-    </section>
-    <footer>
-      &copy; to me
-    </footer>
-  </body>
+
+<html lang="ca">
+
+<head>
+  {% include head.html %}
+</head>
+
+<body>
+  {% include header.html %}
+  {{ content }}
+  {% include footer.html %}
+</body>
+
 </html>

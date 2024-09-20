@@ -1,137 +1,168 @@
+--- 
+title: "Luna a l'interxarxa"
+---
 <!DOCTYPE html>
+
 <html lang="ca">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Luna Moreno">
-  <meta name="description" content="Artista, la millor">
-  <meta name="keywords" content="3d, musica, portfolio, girona">
-  <!--base href="https://cataluna.cat/" target=""-->
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="icon" type="image/png" href="/ico.png">
-  <title>🐱</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Luna Moreno">
+    <meta name="description" content="Luna a l'interxarxa">
+    <meta name="keywords" content="3d, musica, portfolio, girona">
 
-  <script type='text/javascript'>
-    var bk_paths = ['bk1.jpg', 'lilac.gif'];
-    console.log(bk_paths)
-    document.getElementById('body').style.backgroundImage = "url('/bks/bk1.jpg')";// + bk_paths[1] + "')";
-    title = "shadow money gang 🐱";
-    position = 0;
-    function scrolltitle() {
-      document.title = title.substring(position, title.length) + title.substring(0, position);
-      position++;
-      if (position > title.length) position = 0;
-      titleScroll = window.setTimeout(scrolltitle, 120);
-    }
-    function addGetNokDown(pId) {
-      console.log(pId)
-      if (document.getElementById(pId).getAttribute("open") != "true") {
-        document.getElementById(pId).innerHTML +=
-          `<details id=${pId + 1} onClick="addGetNokDown(${pId + 1})">
-                <summary>I get knocked down...</summary>
-            
-                <p>But I get up again</p>
-                <p>You're never going to keep me down</p>
-                
-            </details>
-        `;
-        document.getElementById(pId).setAttribute("open", "true");
-      }
-    }
-    scrolltitle();
-  </script>
+    {% include head.html %}
+
 </head>
 
-<body id="body">
 
-  <div class="container"><!--ContentEditable='true'-->
-    <header>
-      <h1 data-i18n="welcome_message" class="bigger-text glow">luna a l'interxarxa</h1>
-      <nav>
-        <a href="index.html" onclick="changeLanguage('en')">English</a>
-        <a href="index.html" onclick="changeLanguage('ca')">Català</a>
-      </nav>
-      <p><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a href="/jo"
-          class="button" data-i18n="me">Jo</a> <a href="/contacte" class="button" data-i18n="contact">Contacta</a></p>
-    </header>
-    <hr />
+<script>
+    function addGetNokDown(pId) {
+        console.log(pId)
+        if (document.getElementById(pId).getAttribute("open") != "true") {
+            document.getElementById(pId).innerHTML +=
+                `<details id=${pId + 1} onClick="addGetNokDown(${pId + 1})">
+                    <summary>I get knocked down...</summary>
+                
+                    <p>But I get up again</p>
+                    <p>You're never going to keep me down</p>
+                    
+                </details>
+            `;
+            document.getElementById(pId).setAttribute("open", "true");
+        }
+    }
+</script>
+
+<body>
+    {% include header.html %}
+    
     <main>
-      <marquee direction="left" class="glow">she/her · d'entre el baix montseny i l'alt empordá · artista
-        multidisciplinaria · loca, lista i comunista </marquee>
-      <div class="wrapper">
-        <div class="one">
-          <ul>
-            <li>
-              <a
-                href="https://commons.wikimedia.org/wiki/File:Wikipedia_editor_hat_w_dog.JPG#/media/File:Wikipedia_editor_hat_w_dog.JPG"><img
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Wikipedia_editor_hat_w_dog.JPG"
-                  alt="Wikipedia editor hat w dog.JPG"></a>
-              <p>Soc jo</p>
-            </li>
-          </ul>
+        <div class="full center-vertical">
+            <h2>Aixó es la meu web!</h2>
+            <p>Aqui va el contingut general de la web</p>
+            <div>
+                <strong>AAAA</strong>
+                <p>Aixo es junt</p>
+            </div>
+            <strong>ES POT CRIDAR</strong>
+            <p>Es poden fer textos llargs. Vaig neixer un dia que venia despres de un dia, pero abans d'un any y durant
+                un mileni, tenia la pell roja i moltes mentides a dir, podia escriure textos</p>
+            <div>
+                <div class="openmoji">🏴󠁥󠁳󠁣󠁴󠁿 ABC 👨‍💻 &#x1F976; XYZ &#x1F4BB; &#x1F468; &#x1F9DF; Lorem &#xE380;
+                    ipsum &#x1F4AF;🏴󠁥󠁳󠁣󠁴󠁿
+                </div>
+            </div>
         </div>
-        <div class="two">
-          <h3><a href="/portfolio/">Coses meves</a></h3>
-          <ul>
-            <li>encara nose que posare aqui</li>
-            <li>posare links interesants de coses que faig suposo</li>
-            <li>vull fer alguna especie de blog per ficar coses interesants</li>
-            <li>i un algo mes nose haig de pensar no me poseu nerviosa</li>
-          </ul>
-        </div>
-      </div> <!-- WRAPPER -->
-
-      <div class="blog">
-        <h2 id='title'>
-          TITOL
-        </h2>
-        <p id='content'>
-          TEST
-        </p>
-        <h3> <a href='/blog'>Més entrades</a> </h3>
-      </div> <!-- BLOG -->
-
-      <details id=1 onClick="addGetNokDown(this.id)">
-        <summary>I get knocked down...</summary>
-
-        <p>But I get up again</p>
-        <p>You're never going to keep me down</p>
-      </details>
-      <footer>
-        <div class="badges">
-          <a href="https://directa.cat/app/uploads/2019/10/la-s%C3%ADndrome-de-sherwood-1.pdf" target="_blank">
-            <img src="/badges/acab.gif" alt="acab">
-          </a>
-          <a href="." target="_blank">
-            <img src="/badges/amd.gif" alt="amd">
-          </a>
-          <a href="https://yesterweb.org/no-to-web3/" target="_blank">
-            <img src="/badges/web3.gif" alt="last fm">
-          </a>
-          <a href="." target="_blank">
-            <img src="/badges/powered.gif" alt="last fm">
-          </a>
-          <a href="." target="_blank">
-            <img src="/badges/ps2.gif" alt="last fm">
-          </a>
-          <a href="." target="_blank">
-            <img src="/badges/catala.png" width=88 alt="last fm">
-          </a>
-          <a href="." target="_blank">
-            <img src="/badges/korg.gif" alt="last fm">
-          </a>
-          <a href="." target="_blank">
-            <img src="/badges/chrome.gif" alt="use mozilla">
-          </a>
-        </div> <!-- badges -->
-      </footer>
+        <sidebar id="sidebar">
+            <sidebar-sector>
+                <h2>Ultims Projectes</h2>
+                {% for post in site.projects %}
+                    <sidebar-element>
+                        <h3>
+                            <a href="{{ post.url }}">
+                                {{ post.title }}
+                            </a>
+                        </h3>
+                    </sidebar-element>
+                {% endfor %}
+                <sidebar-element>
+                    <h3>
+                        <a href="./portfolio/">
+                            Més...
+                        </a>
+                    </h3>
+                </sidebar-element>
+            </sidebar-sector>
+            <sidebar-sector>
+                <h2>Blog</h2>
+                {% for post in site.posts %}
+                    <sidebar-element>
+                        <h3>
+                            <a href="{{ post.url }}">
+                                {{ post.title }}
+                            </a>
+                        </h3>
+                        <p>{{ post.excerpt }}</p>
+                    </sidebar-element>
+                {% endfor %}
+                <sidebar-element>
+                    <h3>
+                        <a href="./blog/">
+                            Més...
+                        </a>
+                    </h3>
+                </sidebar-element>
+            </sidebar-sector>
+        </sidebar>
     </main>
-  </div> <!-- CONTAINER -->
-  <!--script type="text/javascript" src="/js/cursor.js"></script-->
-  <script type="text/javascript" src="/js/blog.js"></script>
-  <!--script type="text/javascript" src="/js/jsfireworks.js"></script-->
-  <script src="/js/multilingual.js"></script>
+    <main class="full center-horizontal openmoji">
+        <a class="fancy-button" href="./blog">📑Blog📑</a>
+        <a class="fancy-button" href="./portfolio/">🗄Portfolio🗄</a>
+        <a class="fancy-button" href="./jo/">👧Jo👧</a>
+        <a class="fancy-button" href="./contacte/">☎Contacte☎</a>
+    </main>
+    <main>
+        <details id=1 onClick="addGetNokDown(this.id)">
+            <summary>I get knocked down...</summary>
+
+            <p>But I get up again</p>
+            <p>You're never going to keep me down</p>
+        </details>
+    </main>
+    <main>
+        <div>
+            <p>Hola que tal, aqui podriem fer un altre sector per exemple</p>
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <a href="." target="_blank"></a>
+        <img src="./badges/catalunya.gif" alt="use mozilla">
+        </a>
+        <a href="https://directa.cat/app/uploads/2019/10/la-s%C3%ADndrome-de-sherwood-1.pdf" target="_blank">
+            <img src="./badges/acab.gif" alt="acab">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/amd.gif" alt="amd">
+        </a>
+        <a href="https://yesterweb.org/no-to-web3/" target="_blank">
+            <img src="./badges/web3.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/powered.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/ps2.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/catala.png" width=88 alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/korg.gif" alt="last fm">
+        </a>
+        <a href="." target="_blank">
+            <img src="./badges/chrome.gif" alt="use mozilla">
+        </a>
+    </footer>
+
 </body>
 
 </html>

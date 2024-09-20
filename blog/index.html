@@ -1,71 +1,28 @@
+---
+---
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="ca">
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Luna Moreno">
-    <meta name="description" content="Els meus blogs de post">
-    <meta name="keywords" content="3d, musica, portfolio, girona">
+<head>
+    {% include head.html %}
+</head>
 
-    <title>El racó de cataLUNA</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
-    <link rel="icon" type="image/png" href="/ico.png">
-    <style>
-    dialog[open] {
-      width:50%;
-  opacity: 1;
-  transform: scaleY(1);
-}
-      ::backdrop {
-        background-image: linear-gradient(
-          45deg,
-          magenta,
-          rebeccapurple,
-          dodgerblue,
-          green
-        );
-        opacity: 0.75;
-      }
-    </style>
+<body>
+    {% include header.html %}
+    <main class="full max-height">
+        <blog>
+            {% for post in site.posts %}
+            <entrada>
+                <h2>
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h2>
+                <p>{{ post.excerpt }}</p>
+                <em>{{post.date | date_to_string}} - {{post.author}}</em>
+            </entrada>
+            {% endfor %}
+        </blog>
+    </main>
+    {% include footer.html %}
+</body>
 
-  </head>
-  <body>
-    <div class="container" ContentEditable='FALSE'>
-      <header>
-        <h1 class="bigger-text glow"><a href='/index.html'>el meu lloc a l'interxarxa</a></h1>
-        <p><a href="/portfolio" class="button">Portfolio</a> <a href="/blog" class="button">Blog</a> <a href="/jo" class="button">Jo</a> <a href="/contacte" class="button">Contacta</a></p>
-      </header>
-      <dialog class="blog_preview blog_modal">
-        <div id='modal'>
-        </div>
-        <button autofocus style="">Tanca</button>
-      </dialog>
-    <!--button>Show the dialog</button-->
-      <hr/>
-      <br>
-      <h1 class="glow">Posts de blog</h1>
-      <div id="blog_wrapper" class="blog_wrapper">
-      </div> <!-- blog_wrapper -->
-
-    </div>
-    <script type="text/javascript" src="/js/blog_page.js"></script>
-    <script type='text/javascript'> 
-        const dialog = document.querySelector("dialog");
-        //const showButton = document.querySelector("dialog + button");
-        const closeButton = document.querySelector("dialog button");
-        
-        // "Show the dialog" button opens the dialog modally
-        /*showButton.addEventListener("click", () => {
-          console.log("close")
-          dialog.showModal();
-        });*/
-        
-        // "Close" button closes the dialog
-        closeButton.addEventListener("click", () => {
-          dialog.close();
-        });
-      </script>
-  </body>
-  <script src="/js/multilingual.js"></script>
 </html>
