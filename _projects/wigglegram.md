@@ -4,7 +4,6 @@ title: "Luna's Wigglegram"
 image: ""
 category: "software"
 link: "/wigglegram"
+date: "01-01-2024"
 ---
-
-#Aixo es un exeplce
-Funciona?
+En construcció

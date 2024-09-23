@@ -5,6 +5,4 @@ image: "/imgs/itch.png"
 category: "videojoc"
 link: "https://lunamoreno.itch.io/"
 ---
-
-#Aixo es un exeplce
-Funciona?
+Tots els meus jocs/prototips publicats a itch.io.
