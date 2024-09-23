@@ -1,8 +1,7 @@
 ---
-type: post
+layout: post
 title: Creant un bot de Twitter (X) amb GitHub Actions
-
-
+categories: paraules
 ---
 ## Creant un bot de Twitter (X) amb GitHub Actions
 Un dels meus projectes actius es el compte [girocletaBOT](https://twitter.com/girocletaBOT) a la xarxa social Twitter (X). Aquest compte es dedica a tuitar en intervals de 30 minuts l'estat de la xarxa de bicicletes compartides de la ciutat de Girona, a.k.a [Girocleta](https://www.girocleta.cat/). 
