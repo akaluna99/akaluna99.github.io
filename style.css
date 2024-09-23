@@ -395,15 +395,12 @@ entrada>h2>* {
   main {
     flex-wrap: wrap;
     overflow: auto;
+    margin: 10px 0;
   }
 
   sidebar {
     width: 100%;
     max-width: 700px;
-  }
-
-  body {
-    max-width: 80vw;
   }
 
   .thumbnail p {
