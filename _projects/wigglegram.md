@@ -2,7 +2,7 @@
 layout: project
 title: "Luna's Wigglegram"
 image: ""
-category: "Videogame"
+category: "software"
 link: "/wigglegram"
 ---
 

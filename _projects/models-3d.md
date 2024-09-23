@@ -2,7 +2,7 @@
 layout: project
 title: "Models 3D"
 image: "/imgs/sketchfab.png"
-category: "Altres"
+category: "altres"
 link: "https://sketchfab.com/strelka"
 ---
 

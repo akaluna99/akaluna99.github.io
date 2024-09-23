@@ -14,13 +14,26 @@ title: "Coses que he fet"
 
     <main class="full portfolio-wraper max-height">
         {% for project in site.projects %}
-            <a href="{{ project.url }}" class="thumbnail" id="videojoc">
+            <a href="{{ project.url }}" class="thumbnail" name="{{project.category}}">
                 <img class="thumbnai-image" src="{{ project.image }}" />
                 <div class="thumbnail-shadow"></div>
                 <p>{{ project.title }}</p>
             </a>
         {% endfor %}
     </main>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var currentCategory = urlParams.get('category')
+        if (currentCategory){
+            console.log(currentCategory)
+            for (var i of document.getElementsByClassName('thumbnail') ){
+                if (i.name != currentCategory) i.style.display='none'
+                console.log(i.name, currentCategory)
+            }        
+        }
+    </script>
     
     {% include footer.html %}
 

@@ -2,7 +2,7 @@
 layout: project
 title: "Tanoka Studio"
 image: "/imgs/tanokaStudio.png"
-category: "Altres"
+category: "videojoc"
 link: "https://tanoka.studio/"
 ---
 

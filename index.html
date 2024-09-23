@@ -37,28 +37,15 @@ title: "Luna a l'interxarxa"
 
 <body>
     {% include header.html %}
-    
     <main>
-        <div class="full center-vertical">
-            <h2>Aixó es la meu web!</h2>
-            <p>Aqui va el contingut general de la web</p>
-            <div>
-                <strong>AAAA</strong>
-                <p>Aixo es junt</p>
-            </div>
-            <strong>ES POT CRIDAR</strong>
-            <p>Es poden fer textos llargs. Vaig neixer un dia que venia despres de un dia, pero abans d'un any y durant
-                un mileni, tenia la pell roja i moltes mentides a dir, podia escriure textos</p>
-            <div>
-                <div class="openmoji">🏴󠁥󠁳󠁣󠁴󠁿 ABC 👨‍💻 &#x1F976; XYZ &#x1F4BB; &#x1F468; &#x1F9DF; Lorem &#xE380;
-                    ipsum &#x1F4AF;🏴󠁥󠁳󠁣󠁴󠁿
-                </div>
-            </div>
+        <div style="text-align: left;padding: 0px 25px; text-wrap: balance;" class="full center-vertical">
+            {% capture my_include %}{% include introduccio.md %}{% endcapture %}
+            {{ my_include | markdownify }}
         </div>
         <sidebar id="sidebar">
             <sidebar-sector>
                 <h2>Ultims Projectes</h2>
-                {% for post in site.projects %}
+                {% for post in site.projects limit:2 %}
                     <sidebar-element>
                         <h3>
                             <a href="{{ post.url }}">
@@ -77,7 +64,7 @@ title: "Luna a l'interxarxa"
             </sidebar-sector>
             <sidebar-sector>
                 <h2>Blog</h2>
-                {% for post in site.posts %}
+                {% for post in site.posts limit:1 %}
                     <sidebar-element>
                         <h3>
                             <a href="{{ post.url }}">

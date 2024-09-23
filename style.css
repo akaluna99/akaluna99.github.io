@@ -124,7 +124,7 @@ body {
   text-align: center;
   background-position: center;
   background-size: 120px;
-  cursor: url(./cursor.png), crosshair;
+  cursor: crosshair;
 }
 
 h1 {

@@ -2,7 +2,7 @@
 layout: project
 title: "Itch Io"
 image: "/imgs/itch.png"
-category: "Videogame"
+category: "videojoc"
 link: "https://lunamoreno.itch.io/"
 ---
 

@@ -2,7 +2,7 @@
 layout: project
 title: "Cataglogger"
 image: "/imgs/cataglogger.png"
-category: "Website"
+category: "altres"
 link: "http://cataglogger.duckdns.org"
 ---
 

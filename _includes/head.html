@@ -3,5 +3,16 @@
 <title>{{ page.title }}</title>
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" type="image/png" href="/icon.png">
+
+<!-- Cronitor RUM -->
+<script async src="https://rum.cronitor.io/script.js"></script>
+<script>
+    window.cronitor = window.cronitor || function() { (window.cronitor.q = window.cronitor.q || []).push(arguments); };
+    cronitor('config', { clientKey: '707a79eddba2e2d30911f18f966fc56a' });
+</script>
+
+<!-- UMAMI -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
+
 {% feed_meta %}
 {% seo %}

@@ -2,7 +2,7 @@
 layout: project
 title: "Para&Lel"
 image: "/imgs/cataglogger.png"
-category: "Videogame"
+category: "videojoc"
 link: "https://roughskin.itch.io/paralel"
 ---
 
