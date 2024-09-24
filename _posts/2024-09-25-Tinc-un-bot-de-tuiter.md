@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Creant un bot de Twitter (X) amb GitHub Actions
+title: "Creant un bot de Twitter (X) amb GitHub Actions"
 categories: paraules
 ---
 ## Creant un bot de Twitter (X) amb GitHub Actions
