@@ -316,6 +316,9 @@ blog>entrada {
   justify-content: space-between;
 }
 
+entrada>*>img {
+  width: 100%;
+}
 
 entrada>h2>* {
   text-decoration: none;
