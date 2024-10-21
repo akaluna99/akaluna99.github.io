@@ -4,6 +4,6 @@ Soc una creadora multidisciplinària de [software](/portfolio?category=software)
 
 També soc de classe treballadora, catalana, dona i trans, en aquest ordre, i tot el que faig, ho faig amb això en ment.
 
-Intento mantenir la web actualitzada amb tots els meus projectes, però on soc més activa és a [Twitter](https://twitter.com/chica_botella), em pots seguir allà també.
+Intento mantenir la web actualitzada amb tots els meus projectes, però on soc més activa és a ~~[Twitter](https://twitter.com/chica_botella)~~ [Bluesky](https://bsky.app/profile/cataluna.cat), em pots seguir allà també.
 
 Feel free d'explorar la web, benvinguts!

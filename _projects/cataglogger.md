@@ -3,7 +3,7 @@ layout: project
 title: "Cataglogger"
 image: "/imgs/cataglogger.png"
 category: "altres"
-link: "http://cataglogger.duckdns.org"
+link: "http://cataglogger.org"
 date: "01-01-2022"
 ---
 Un web que serveix perquè els usuaris donats d'alta comparteixin imatges de grafitis, tags, adhesius o d'altres expressions artístiques presents a l'espai públic.
