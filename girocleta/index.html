@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ca">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2024 Girocleta Wrapped</title>
+    </head>
+    <body>
+        <script>
+            function indexOfMax(arr) {
+                let maxIndex = 0;
+                for (let i = 1; i < arr.length; i++) {
+                    if (arr[maxIndex] == undefined){
+                        maxIndex = i;
+                    }
+                    if (parseInt(arr[i]) > parseInt(arr[maxIndex])) {
+                        maxIndex = i;
+                    }
+                }
+                return maxIndex;
+            }
+
+        </script>
+        <h1>2024 Girocleta Wrapped</h1>
+        <h2>Resum del teu any amb girocleta</h2>
+        <label for="username">Introdueix el teu nom:</label>
+        <input type="text" id="username" name="username" required minlength="1" maxlength="120" />
+        <p>Introdueix el fitxer, si no saps com aconseguir-lo mira aqui</p>
+        <input type="file" id="fileInput" accept=".html">
+        <button id="loadButton">Carregar Taula</button>
+        <script>
+            document.getElementById('loadButton').addEventListener('click', function() {
+                const fileInput = document.getElementById('fileInput');
+                const file = fileInput.files[0];
+    
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const content = event.target.result;
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(content, 'text/html');
+    
+                        // Trobar la taula
+                        const table = doc.querySelector('table.ib_grid');
+                        if (table) {
+                        // Trobar el tbody i tots els tr dins d'ell
+                        const tbody = table.querySelector('tbody');
+                        const rows = tbody ? tbody.querySelectorAll('tr') : [];
+
+                        // Crear una estructura per emmagatzemar els continguts dels tr
+                        const rowsData = Array.from(rows).map(row => {
+
+                            return Array.from(row.children).map(cell => cell.innerHTML);
+                        });
+                        
+                        // 0 DATA I HORA, 1 ESTACIO ORIGEN, 2 DATA I HORA, 3 ESTACIO DESTI, 4 BICICLETA
+                        rowsData.shift() // Per eliminar la basura
+                        var fullDictionary = [];
+                        var diccionariEstacions = {}
+                        var histogrames = {
+                            'bicicletes' : [],
+                            'estacions' : [],
+                            'estacionsOrigen' : [],
+                            'estacionsDesti' : [],
+                            'mesos' : []
+                        }
+                        var viatgeMesLlarg = {
+                            'duracio' : 0
+                        }
+                        var viatgeMesCurt = {
+                            'duracio' : 999999999
+                        }
+                        var totalHores = 0
+                        var totalBicicletes = 0
+                        var primerViatge = null;
+                        var ultimViatge = null;
+                        for (var dataRow of rowsData){
+                            // Formategem la maldita data
+                            var dataRecollida = dataRow[0]
+                            var parts = dataRecollida.split("/");
+                            var hourMinSec = parts[2].split(' ')[1].split(':');
+                            var dataRecollida = new Date(parseInt(parts[2], 10),
+                            parseInt(parts[1], 10) - 1,
+                            parseInt(parts[0], 10),
+                                            parseInt(hourMinSec[0]),
+                                            parseInt(hourMinSec[1]),
+                                            parseInt(hourMinSec[2]));
+
+                                            // Same pero amb la data de deixada
+                                            var dataDesti = dataRow[2]
+                            var parts = dataDesti.split("/");
+                            var hourMinSec = parts[2].split(' ')[1].split(':');
+                            var dataDesti = new Date(parseInt(parts[2], 10),
+                            parseInt(parts[1], 10) - 1,
+                            parseInt(parts[0], 10),
+                            parseInt(hourMinSec[0]),
+                            parseInt(hourMinSec[1]),
+                            parseInt(hourMinSec[2]));
+                            
+                            var sessionTime = (dataDesti - dataRecollida)/1000 // Conversio a segons
+                            totalHores += sessionTime
+                            var jsonData = {
+                                'inici' : dataRecollida,
+                                'fi'    : dataDesti,
+                                'duracio' : sessionTime,
+                                'origen' : dataRow[1],
+                                'desti'    : dataRow[3],
+                                'bicicleta'     : dataRow[4]
+                            }
+                            
+                            // Sumem als histogrames
+                            var estIni = parseInt(jsonData.origen.substring(0, 2))
+                            var estFin = parseInt(jsonData.desti.substring(0, 2))
+                            if (isNaN(estIni) || isNaN(estFin)){
+                                continue;
+                            }
+                            // Amb aixo la bici
+                            var nBici = parseInt(jsonData.bicicleta.slice(1));
+                            if (histogrames.bicicletes[nBici]){
+                                histogrames.bicicletes[nBici] += 1
+                            } else {
+                                histogrames.bicicletes[nBici] = 1
+                                totalBicicletes += 1;
+                            }
+                            
+                            
+                            diccionariEstacions[estIni] = jsonData.origen;
+                            diccionariEstacions[estFin] = jsonData.desti;
+
+                            if (histogrames.estacions[estIni]){
+                                histogrames.estacions[estIni] += 1
+                            } else {
+                                histogrames.estacions[estIni] = 1
+                            }
+                            if (histogrames.estacionsOrigen[estIni]){
+                                histogrames.estacionsOrigen[estIni] += 1
+                            } else {
+                                histogrames.estacionsOrigen[estIni] = 1
+                            }
+
+                            
+                            if (histogrames.estacions[estFin]){
+                                histogrames.estacions[estFin] += 1
+                            } else {
+                                histogrames.estacions[estFin] = 1
+                            }
+                            if (histogrames.estacionsDesti[estFin]){
+                                histogrames.estacionsDesti[estFin] += 1
+                            } else {
+                                histogrames.estacionsDesti[estFin] = 1
+                            }
+                            
+                            if (sessionTime > viatgeMesLlarg.duracio){
+                                viatgeMesLlarg = jsonData;
+                            }
+                            if (sessionTime < viatgeMesCurt.duracio && sessionTime > 30){
+                                viatgeMesCurt = jsonData;
+                            }
+
+                            fullDictionary.push(jsonData)
+                            if (!primerViatge){
+                                primerViatge = jsonData
+                            }
+                            ultimViatge = jsonData
+                            //return;
+                        }
+                        nom_usuari.innerHTML = username.value
+                        nom_usuari_2.innerHTML = username.value
+                        viatges_totals.innerHTML = fullDictionary.length
+
+                        // Hores totals
+                        var hrs = parseInt(Number(totalHores/60/60));
+                        var min = Math.round((Number(totalHores/60/60)-hrs) * 60);
+                        hores_totals.innerHTML = hrs
+                        minuts_totals.innerHTML = min
+
+                        // Més usada
+                        var biciMaxIndex = indexOfMax(histogrames.bicicletes)
+                        bicicleta_max.innerHTML = 'B'+String(biciMaxIndex)
+                        bicicleta_max_usos.innerHTML = histogrames.bicicletes[biciMaxIndex];
+                        bicicletes_usades.innerHTML = totalBicicletes
+
+                        //Parada mes usada
+                        var estMaxIndex = indexOfMax(histogrames.estacions)
+                        parada_max.innerHTML = diccionariEstacions[estMaxIndex].slice(4)
+                        parada_max_num.innerHTML = histogrames.estacions[estMaxIndex]
+
+                        // Viatges min max
+                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric',})}, i vas viatjar desde 
+                        ${viatgeMesLlarg.origen.slice(4)} fins a ${viatgeMesLlarg.desti.slice(4)} en ${(viatgeMesLlarg.duracio/60).toFixed(2)} minuts`
+                        viatge_mes_curt.innerHTML = `el ${viatgeMesCurt.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric',})}, i vas viatjar desde 
+                        ${viatgeMesCurt.origen.slice(4)} fins a ${viatgeMesCurt.desti.slice(4)} en ${(viatgeMesCurt.duracio/60).toFixed(2)} minuts`;
+
+                        // Primera y ultima
+                        primer_viatge.innerHTML = `${primerViatge.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric',})}`
+                        ultim_viatge.innerHTML = `${ultimViatge.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric',})}`
+                        console.log(primerViatge)
+                        console.log(ultimViatge)
+
+
+                    } else {
+                        console.log('No s\'ha trobat cap taula amb la classe "ib_grid" en el fitxer HTML.');
+                    }
+                    };
+                    reader.readAsText(file);
+                } else {
+                    console.log('Si us plau, selecciona un fitxer HTML.');
+                }
+            });
+        </script>
+        <resultats>
+            <section id="1">
+                <h2>Començem amb els numeros grans</h2>
+                <h2><span id='nom_usuari'></span>, has fet un total de <span id="viatges_totals"></span> viatges aquest 2024 </h2>
+                <h3>Aixó son un total de <span id="hores_totals"></span> hores <span id="minuts_totals"></span> minuts pedalats. Enorabona!</h3>
+            </section>
+            <section id="2">
+                <h2>Vas complir els teus proposits d'any nou?</h2>
+                <h2>En tot cas, la primera girocleta que vas agafar va ser el <span id="primer_viatge"></span>. Quins records.</h2>
+                <h3>I la ultima, de moment ha sigut el <span id="ultim_viatge"></span>. Abans que acabi l'any jo crec que et dona temps a fer algun viatge més!</h3>
+            </section>
+            <section id="3">
+                <h2>Nem a observar amb deteniment els viatges</h2>
+                <h2>El teu viatge més llarg el vas fer <span id="viatge_mes_llarg"></span></h2>
+                <h3>I el més curt va ser <span id="viatge_mes_curt"></span>. Tenies pressa aquell dia?</h3>
+            </section>
+            <section id="4">
+                <h2>Deixem els viatges. A la xarxa de girocleta hi ha unes 790 bicicletes</h2>
+                <h2>De les cuals tu n'has fet servir <span id="bicicletes_usades"></span> models diferents</h2>
+                <h3>Pero clarament, tu en tenies una preferida, la <span id="bicicleta_max"></span>, que vas fer servir un total de <span id="bicicleta_max_usos"></span>. Casualitat?</h3>
+            </section>
+            <section id="5">
+                <h2>Per ultim, deixem adivinar una cosa, crec que se on vius, <span id='nom_usuari_2'></span>.</h2>
+                <h2>No t'espantis, es broma, pero segur que vius a prop de <span id="parada_max"></span> perque has fet servir aquesta estacio <span id='parada_max_num'></span> vegades al 2024.</h2>
+                <h3>T'havies espantat?</h3>
+            </section>
+        </resultats>
+        <footer>
+            <p>Fet amb ❤️ per Luna al 2024</p>
+        </footer>
+    </body>
+</html>

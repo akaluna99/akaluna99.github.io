@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distàncies entre Punts</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // Funció per calcular la distància entre punts
+        async function calcularDistancies(punts) {
+            const distancies = [];
+
+            for (let i = 0; i < punts.length; i++) {
+                const fila = [];
+                for (let j = 0; j < punts.length; j++) {
+                    if (i === j) {
+                        fila.push(0); // Distància a si mateix és 0
+                    } else {
+                        const distancia = await obtenirDistancia(punts[i], punts[j]);
+                        fila.push(distancia);
+                    }
+                }
+                distancies.push(fila);
+            }
+
+            return distancies;
+        }
+
+        // Funció per obtenir la distància entre dos punts
+        async function obtenirDistancia(puntA, puntB) {
+            const url = `http://router.project-osrm.org/route/v1/bike/${puntA.longitude},${puntA.latitude};${puntB.longitude},${puntB.latitude}?overview=false`;
+
+            try {
+                const resposta = await axios.get(url);
+                const distancia = resposta.data.routes[0].distance; // Distància en metres
+                return distancia;
+            } catch (error) {
+                console.error('Error al obtenir la distància:', error);
+                return null;
+            }
+        }
+
+        // Exemple d'ús
+        var punts = [
+            { 
+                "id": "01d72441002ca37e422ce295187f400b", 
+                "name": "15-Plaça Europa", 
+                "latitude": 41.9759045, 
+                "longitude": 2.8144167, 
+                "timestamp": "2024-12-08T22:39:28.494831Z", 
+                "free_bikes": 12, 
+                "empty_slots": 11,
+                 "extra": { "uid": "15" } 
+            }, 
+            { "id": "076ee2cb31794c55b70f65aa860cd7c6", "name": "31- Xavier Cugat 43", "latitude": 41.9920637, "longitude": 2.8130152, "timestamp": "2024-12-08T22:39:28.503668Z", "free_bikes": 17, "empty_slots": 7, "extra": { "uid": "31" } }, { "id": "08f226b1ec9ad093b55050d1993eb7bf", "name": "30- Plaça de Salt", "latitude": 41.9658293, "longitude": 2.8080007, "timestamp": "2024-12-08T22:39:28.503537Z", "free_bikes": 7, "empty_slots": 17, "extra": { "uid": "30" } }, { "id": "0f245d4c57f5033c878d521a1ed50023", "name": "18-Riu Freser/St. Isidre", "latitude": 41.969431, "longitude": 2.815501, "timestamp": "2024-12-08T22:39:28.495496Z", "free_bikes": 2, "empty_slots": 17, "extra": { "uid": "18" } }, { "id": "188457b0ee35177a6f0fef9f8b572a64", "name": "21- Pont Major", "latitude": 42.007301, "longitude": 2.82485, "timestamp": "2024-12-08T22:39:28.495946Z", "free_bikes": 10, "empty_slots": 15, "extra": { "uid": "21" } }, { "id": "1bada68957078d85c098c9be6f77c5b7", "name": "11-Marquès de Camps", "latitude": 41.982365, "longitude": 2.819317, "timestamp": "2024-12-08T22:39:28.451891Z", "free_bikes": 17, "empty_slots": 1, "extra": { "uid": "11" } }, { "id": "27e040ee18329f2cc1770e616466f945", "name": "10- Avda. Pericot 21", "latitude": 41.972119, "longitude": 2.824372, "timestamp": "2024-12-08T22:39:28.449644Z", "free_bikes": 8, "empty_slots": 16, "extra": { "uid": "10" } }, { "id": "2e35782405ba418594d614eeda2e38c2", "name": "24- Ctra. Taialà", "latitude": 41.994292, "longitude": 2.805241, "timestamp": "2024-12-08T22:39:28.496433Z", "free_bikes": 1, "empty_slots": 16, "extra": { "uid": "24" } }, { "id": "2f9d3f7cdae50942c1f04da6563d97a8", "name": "22- Santa Eugenia", "latitude": 41.978958, "longitude": 2.810895, "timestamp": "2024-12-08T22:39:28.496118Z", "free_bikes": 6, "empty_slots": 13, "extra": { "uid": "22" } }, { "id": "34892772a7c58f3be128f4fc29631548", "name": "09- Miquel de Palol", "latitude": 41.982607, "longitude": 2.814683, "timestamp": "2024-12-08T22:39:28.419148Z", "free_bikes": 14, "empty_slots": 14, "extra": { "uid": "09" } }, { "id": "39fcce8c137e4f8341dfd38b3de25c21", "name": "17-Vista Alegre", "latitude": 41.977541, "longitude": 2.825713, "timestamp": "2024-12-08T22:39:28.495357Z", "free_bikes": 2, "empty_slots": 23, "extra": { "uid": "17" } }, { "id": "480a9de086114b7b806ebadb4022641f", "name": "34- Carrer Creu, 1", "latitude": 41.9748491, "longitude": 2.8241112, "timestamp": "2024-12-08T22:39:28.503932Z", "free_bikes": 13, "empty_slots": 10, "extra": { "uid": "34" } }, { "id": "578748824d71a73614c4a85b280c119e", "name": "25- C/ Antoni Gaudí", "latitude": 41.972509, "longitude": 2.812459, "timestamp": "2024-12-08T22:39:28.502828Z", "free_bikes": 3, "empty_slots": 17, "extra": { "uid": "25" } }, { "id": "5b3bae1bc61c6e78f6298c3db90855c4", "name": "26- C/Riu Terri - Migdia", "latitude": 41.966561, "longitude": 2.815949, "timestamp": "2024-12-08T22:39:28.502971Z", "free_bikes": 3, "empty_slots": 20, "extra": { "uid": "26" } }, { "id": "5d16bbebcb7e7f7dc01c19695b2864ed", "name": "29- Mercat del Lleó", "latitude": 41.9792103, "longitude": 2.8224649, "timestamp": "2024-12-08T22:39:28.503366Z", "free_bikes": 5, "empty_slots": 16, "extra": { "uid": "29" } }, { "id": "627d6bf11231c6f677c3a4581ea5eb27", "name": "12-Fontajau", "latitude": 41.992214, "longitude": 2.817798, "timestamp": "2024-12-08T22:39:28.452064Z", "free_bikes": 21, "empty_slots": 2, "extra": { "uid": "12" } }, { "id": "6c2ed00388bfcb84d7db92a0d47ad5d9", "name": "01- Biblioteca Antònia Adroher", "latitude": 41.993628, "longitude": 2.809083, "timestamp": "2024-12-08T22:39:28.087126Z", "free_bikes": 4, "empty_slots": 13, "extra": { "uid": "01" } }, { "id": "7525a45a9844b12eed15d2c2bb2a3ca9", "name": "05- Pont del Dimoni ", "latitude": 41.976338, "longitude": 2.80981, "timestamp": "2024-12-08T22:39:28.087690Z", "free_bikes": 10, "empty_slots": 8, "extra": { "uid": "05" } }, { "id": "7a76d4a9d9002de8ffa488a4d416218c", "name": "08- Biblioteca Ernest Lluch ", "latitude": 41.970731, "longitude": 2.819105, "timestamp": "2024-12-08T22:39:28.110649Z", "free_bikes": 6, "empty_slots": 17, "extra": { "uid": "08" } }, { "id": "7bf135fc00bc276f08d69a63ee26854e", "name": "35- Rotonda Tren d\\'Olot", "latitude": 41.9740669, "longitude": 2.8018899, "timestamp": "2024-12-08T22:39:28.504069Z", "free_bikes": 12, "empty_slots": 12, "extra": { "uid": "35" } }, { "id": "7d5446e6aa41ebb85c28e9f6ff62a1ad", "name": "14-Plaça del Barco", "latitude": 41.976641, "longitude": 2.802587, "timestamp": "2024-12-08T22:39:28.494658Z", "free_bikes": 5, "empty_slots": 17, "extra": { "uid": "14" } }, { "id": "86fee60a621db1eea29aa9d523a86653", "name": "04- RENFE - Estació d\\'Autobusos", "latitude": 41.979406, "longitude": 2.817418, "timestamp": "2024-12-08T22:39:28.087561Z", "free_bikes": 15, "empty_slots": 28, "extra": { "uid": "04" } }, { "id": "9171f43246dfa221cf0589c10a9c57b3", "name": "07- Plaça Pere Calders", "latitude": 41.973303, "longitude": 2.807035, "timestamp": "2024-12-08T22:39:28.088442Z", "free_bikes": 7, "empty_slots": 11, "extra": { "uid": "07" } }, { "id": "923b0cb7dd1fc9559f54ddd57ac40995", "name": "02- Ramon Folch ", "latitude": 41.986726, "longitude": 2.821839, "timestamp": "2024-12-08T22:39:28.087285Z", "free_bikes": 16, "empty_slots": 10, "extra": { "uid": "02" } }, { "id": "9f4775dc7ad9de27e98dc9d085cf2f09", "name": "20- Sant Ponç", "latitude": 41.994742, "longitude": 2.819304, "timestamp": "2024-12-08T22:39:28.495811Z", "free_bikes": 13, "empty_slots": 13, "extra": { "uid": "20" } }, { "id": "a9030fb3b3fc3b4328e39fecbdd57d8e", "name": "13-Can Ninetes", "latitude": 41.977852, "longitude": 2.807704, "timestamp": "2024-12-08T22:39:28.452564Z", "free_bikes": 5, "empty_slots": 20, "extra": { "uid": "13" } }, { "id": "ae8c7a31ead9122a58bc3b3757f68e43", "name": "33- Domeny", "latitude": 41.9900623, "longitude": 2.8066232, "timestamp": "2024-12-08T22:39:28.503803Z", "free_bikes": 12, "empty_slots": 14, "extra": { "uid": "33" } }, { "id": "b7b33d2216e50a785a191ce17ebb606d", "name": "19- Eixample", "latitude": 41.977716, "longitude": 2.820039, "timestamp": "2024-12-08T22:39:28.495656Z", "free_bikes": 5, "empty_slots": 16, "extra": { "uid": "19" } }, { "id": "bdec07d5be3cddb2ccbf68b0b7ad73b8", "name": "28- Passeig Olot 53", "latitude": 41.9751246, "longitude": 2.8063823, "timestamp": "2024-12-08T22:39:28.503215Z", "free_bikes": 12, "empty_slots": 10, "extra": { "uid": "28" } }, { "id": "c58bc59b0c185da1e796d2bbad17e9aa", "name": "06- Emili Grahit ", "latitude": 41.97476, "longitude": 2.820136, "timestamp": "2024-12-08T22:39:28.088233Z", "free_bikes": 3, "empty_slots": 19, "extra": { "uid": "06" } }, { "id": "e09dd73f51ea833700e0da8ce6c1b26b", "name": "03- Plaça de Catalunya", "latitude": 41.982116, "longitude": 2.823101, "timestamp": "2024-12-08T22:39:28.087425Z", "free_bikes": 28, "empty_slots": 21, "extra": { "uid": "03" } }, { "id": "e1d7c8f0fe7bffc6a02ddf7c65efdba8", "name": "16-Ramon Berenguer", "latitude": 41.970754, "longitude": 2.810216, "timestamp": "2024-12-08T22:39:28.495199Z", "free_bikes": 5, "empty_slots": 19, "extra": { "uid": "16" } }, { "id": "eff5f8318522919f750ae2223251c297", "name": "27- Avda. Pericot 48", "latitude": 41.968722, "longitude": 2.8237429, "timestamp": "2024-12-08T22:39:28.503095Z", "free_bikes": 3, "empty_slots": 21, "extra": { "uid": "27" } }, { "id": "f9c155cd4c12075a89fb62a31b35785b", "name": "23- Pedret", "latitude": 41.99107, "longitude": 2.82458, "timestamp": "2024-12-08T22:39:28.496279Z", "free_bikes": 19, "empty_slots": 6, "extra": { "uid": "23" } }];
+
+            punts = [
+            { id: 1, latitude: 41.3851, longitude: 2.1734 }, // Barcelona
+            { id: 2, latitude: 40.4168, longitude: -3.7038 }, // Madrid
+            { id: 3, latitude: 37.7749, longitude: -122.4194 } // San Francisco
+        ];
+
+        calcularDistancies(punts).then(distancies => {
+            console.log(JSON.stringify(distancies, null, 2));
+        });
+    </script>
+</body>
+
+</html>
