@@ -102,7 +102,7 @@
                     "title" : "CaTAGlogger",
                     "title-link" : "https://www.cataglogger.org/",
                     "location" : "Pagina Web",
-                    "description" : "HTML, CSS, JS, PHP, MySQL",
+                    "description" : "HTML, CSS, NodeJS, Bootstrap, Express, SQLite",
                     "date" : "2023 - Actual",
                     "detailed-description" : "Lloc web de registre obert on els usuaris poden explorar i catalogar la ubicació i les característiques de l'art urbà.",
                     "details" : [
@@ -136,7 +136,7 @@
                 },
                 {
                     "title" : "Programació",
-                    "list-items": "C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
+                    "list-items": "NodeJS, C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
                 },
                 {
                     "title" : "Software",

@@ -102,7 +102,7 @@
                     "title" : "CaTAGlogger",
                     "title-link" : "https://www.cataglogger.org/",
                     "location" : "Website",
-                    "description" : "HTML, CSS, JS, PHP, MySQL",
+                    "description" : "HTML, CSS, NodeJS, Bootstrap, Express, SQLite",
                     "date" : "2023-Actual",
                     "detailed-description" : "Open log website where users can explore and catalog location and characteristics of street art.",
                     "details" : [
@@ -122,6 +122,14 @@
                         "Sails of Stillwater (WIP) - RPG, Adventure game",
                         "Departure Delights (WIP) - 2D, Pixel Art"
                     ]
+                },
+                {
+                    "title" : "Itch.Io",
+                    "title-link" : "https://lunamoreno.itch.io/",
+                    "location" : "Videogames",
+                    "description" : "",
+                    "date" : "",
+                    "detailed-description" : "Short videogame projects, solo games, team game jams."
                 }
             ]
         },
@@ -136,7 +144,7 @@
                 },
                 {
                     "title" : "Programming",
-                    "list-items": "C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
+                    "list-items": "NodeJS, C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
                 },
                 {
                     "title" : "Software",

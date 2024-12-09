@@ -28,4 +28,4 @@ Veient que no hi havia cap solució vaig pensar en fer un scraping del web, pero
 Com a curiositat, CityBikes funciona mitjançant scraping, i a la part del [codi](https://github.com/eskerda/pybikes/blob/master/pybikes/emovity.py) que fa scrpaping del mapa de girocletes hi ha aquest comentari:
 ![Comentari al codi scraping](/imgs/posts/girocleta-comment.jpg)
 
-A la següent part explicaré com funciona el bot
+En construcció
