@@ -16,17 +16,99 @@
         rel="stylesheet">
         
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <title>2024 Girocleta Wrapped</title>
+
+    <meta name="description" content="Descobreix les teves estadístiques amb girocleta d'aquest any">
+        
+    <!-- Facebook Meta Tags -->
+    <meta property="og:title" content="2024 Girocleta Wrapped">
+    <meta property="og:description" content="Descobreix les teves estadístiques amb girocleta d'aquest any">
+    <meta property="og:image" content="./imgs/og-card.png">
+    <meta property="og:url" content="https://cataluna.cat/girocleta-wrapped/">
+    <meta property="og:site_name" content="2024 Girocleta Wrapped">
+    <meta property="og:type" content="article">
+            
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2024 Girocleta Wrapped">
+    <meta name="twitter:description" content="Descobreix les teves estadístiques amb girocleta d'aquest any">
+    <meta name="twitter:image" content="./imgs/og-card.png">
+    <!-- Meta Tags Generated via https://toolsaday.com -->
+    <meta name="keywords" content="girona, girocleta wrapped 2024, girocleta luna, girocleta estadistiques, girocleta resum">
+    <meta name="author" content="Luna Moreno">
     
     <!-- UMAMI -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
 
 
 </head>
+<div style="display:none;">
+    <img id="girocleta-dibuix" src="girocleta-icona.png">
+    </div>
+<script>
+    function drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0){
+        const canvas = document.getElementById(pId);
+        const ctx = canvas.getContext('2d');
+        const image = document.getElementById("girocleta-dibuix");
 
-<body > <!--</body>style="overflow: hidden;"-->
+        // Establecer el fondo
+        ctx.fillStyle = '#4da558'; // Color de fondo
+        ctx.fillRect(0, 0, canvas.width, canvas.height); // Dibujar el rectángulo de fondo
+
+        // Create linear gradient
+        const grad=ctx.createLinearGradient(0,0, canvas.width,2000);
+        grad.addColorStop(0, "#030201");
+        grad.addColorStop(0.8, "#4da558");
+        grad.addColorStop(1, "#f1d600");
+
+        // Fill rectangle with gradient
+        ctx.fillStyle = grad;
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+        
+
+        // Dibujar el título
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#FFFFFF'; // Color del texto (blanco)
+        ctx.font = '90px Inria Sans';
+        ctx.fillText(pNom, canvas.width/2, 160 * 2);
+        ctx.font = 'bold 100px Rubik';
+        //ctx.font = 'bold 300px Rubik';
+        ctx.fillText('2024', canvas.width/2, 160);
+        //ctx.fillText('2024', canvas.width/2, 300);
+        ctx.font = 'bold 80px Rubik';
+        //ctx.font = 'bold 150px Rubik';
+        ctx.fillText('Girocleta Wrapped', canvas.width/2, 160 + 80);
+        //ctx.fillText('Girocleta Wrapped', canvas.width/2, canvas.height/2);
+        
+        var hGrid = canvas.height/10;
+        var hMargin = 100;
+        ctx.textAlign = 'left';
+        ctx.font = '90px Inria Sans';
+        ctx.fillText(`${pHores.toFixed(0)}h d\'us`, hMargin, hGrid * 3)
+        ctx.textAlign = 'right';
+        ctx.font = '70px Inria Sans';
+        ctx.fillText(`${pKm.toFixed(2)}km recorreguts`, canvas.width - hMargin, hGrid * 4)
+        ctx.textAlign = 'left';
+        ctx.font = '60px Inria Sans';
+        ctx.fillText(`${pKms.toFixed(0)}km/h velocitat mitjana`, hMargin, hGrid * 5)
+        ctx.textAlign = 'center';
+        ctx.font = 'bold 120px Inria Sans';
+        ctx.fillText(`${pViatges} viatges`, canvas.width/2, hGrid * 6 + 50)
+        ctx.drawImage(image, canvas.width/2 - image.width * 1.5 / 2, hGrid*7 - image.height * 1.5 / 5, image.width * 1.5, image.height * 1.5);
+        // Dibujar el #
+        ctx.font = '43px "Rubik"';
+        ctx.textAlign = 'left';
+        ctx.fillText('cataluna.cat/girocleta', hMargin - 50, canvas.height - 100); // Posición en la parte inferior derecha
+        // Dibujar el @
+        ctx.textAlign = 'right';
+        ctx.fillText('#girocletaWrapped2024', canvas.width - hMargin + 50, canvas.height - 100); // Posición en la parte inferior izquierda
+
+        
+    }
+</script>
+
+<body onload="drawCanvas();drawCanvas('myCanvasH')"> <!--</body>style="overflow: hidden;"-->
     <script>
         function indexOfMax(arr) {
             let maxIndex = 0;
@@ -326,7 +408,10 @@
 
                         ScrollReveal().reveal('section', { duration: 2000, reset: true });
                         ScrollReveal().reveal('span', { duration: 1000, delay: 500, interval: 500, scale: 0.85, reset: true });
-
+                        
+                        //drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0)
+                        drawCanvas('myCanvasV', username.value, totalHores / 60 / 60, distanciaTotal / 1000, velocitatMitjana * 3.6, fullDictionary.length);
+                        drawCanvas('myCanvasH', username.value, totalHores / 60 / 60, distanciaTotal / 1000, velocitatMitjana * 3.6, fullDictionary.length);
 
                     } else {
                         console.log('No s\'ha trobat cap taula amb la classe "ib_grid" en el fitxer HTML.');
@@ -378,48 +463,51 @@
                 servir aquesta estacio <span id='parada_max_num'></span> vegades al 2024.</h2>
             <h3>T'havies espantat?</h3>
         </section>
-        <section id="7" style="overflow-y: scroll;">
-            <canvas id="myCanvas" width="600px" height="900px" style="border:1px solid #000000;">
+        <section id="7" style="overflow-x: scroll; width: 100%;">
+            <canvas id="myCanvasV" width="1080px" height="1920px" style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
             </canvas>
+            <canvas id="myCanvasH" width="1800px" height="1080px" style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
+            </canvas>
+            <a class="twitter-share-button"
+                href="https://twitter.com/intent/tweet"
+                target="_blank"
+                data-size="large"
+                data-via="girocletaBOT"
+                data-hashtags="girocletaWrapped2024"
+                data-lang="ca"
+                data-text="custom share text"
+                data-dnt="true"
+            >
+                Tweet
+            </a>
         </section>
     </resultats>
     <footer>
         <p>Fet amb ❤️ per <a target="_blank" href="http://cataluna.cat">Luna</a> | <a href="http://twitter.com/girocletaBOT" target="_blank">@girocletaBOT</a></p> 
     </footer>
     <script>
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Establecer el fondo
-        ctx.fillStyle = '#4da558'; // Color de fondo
-        ctx.fillRect(0, 0, canvas.width, canvas.height); // Dibujar el rectángulo de fondo
-
-        // Dibujar el título
-        ctx.textAlign = 'center';
-        ctx.font = '50px Helvetica';
-        ctx.fillStyle = '#FFFFFF'; // Color del texto (blanco)
-        ctx.fillText('2024 Girocleta Wrapped', canvas.width/2, 100);
-
-        ctx.textAlign = 'left';
-        // Dibujar la lista de 5 ítems
-        ctx.font = '20px Roboto';
-        const items = ['Ítem 1', 'Ítem 2', 'Ítem 3', 'Ítem 4', 'Ítem 5'];
-        items.forEach((item, index) => {
-            ctx.fillText(item, 50, canvas.width/4 + index * 30); // Espaciado de 30px entre ítems
-        });
-
-        // Dibujar el #
-        ctx.font = '28px "Roboto"';
-        ctx.fillText('#girocletaWrapped2024', 20, 880); // Posición en la parte inferior izquierda
-
-        // Dibujar el @
-        ctx.textAlign = 'right';
-        ctx.fillText('@girocletaBot', 580, 880); // Posición en la parte inferior derecha
+        
 
     </script>
     <script>
         //document.getElementById('0').scrollIntoView()
     </script>
+    <script>window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+      
+        return t;
+      }(document, "script", "twitter-wjs"));</script>
 </body>
 
 </html>
