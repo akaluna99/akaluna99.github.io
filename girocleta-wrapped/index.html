@@ -1,130 +1,33 @@
+--- 
+title: "2024 Girocleta Wrapped"
+---
 <!DOCTYPE html>
 <html lang="ca">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./distancies.js"></script>
+    <link rel="icon" type="image/png" href="icon.png">
+
+    <script src="distancies.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
-    <script src="https://unpkg.com/scrollreveal"></script>
+        
+    <link rel="stylesheet" href="style.css">
 
     <title>2024 Girocleta Wrapped</title>
-    <style>
-        #drop-area {
-            width: 75vw;
-            height: 250px;
-            border: 2px dashed #ebebeb;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin: auto;
-            padding: auto;
-        }
+    
+    <!-- UMAMI -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
+    {% feed_meta %}
+    {% seo %}
 
-        #drop-area.hover {
-            border-color: #0056b3;
-        }
 
-        input, button {
-            border: 1px solid #ccc;
-            display: inline-block;
-            padding: 6px 12px;
-            width: auto;
-            border-radius: 10px;
-            padding: auto;
-            margin: auto;
-            width: 50%;
-            min-height: 50px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-family: "Inria Sans", serif;
-            //overflow: hidden;
-        }
-
-        body {
-            background: linear-gradient(to bottom, #4da558, #295a30);
-            scroll-snap-type: y mandatory !important;
-            overflow: hidden;
-        }
-
-        header {
-            color: #ebebeb;
-            height: 100vh;
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            align-content: center;
-            justify-content: space-evenly;
-            align-items: stretch;
-            font-family: "Inria Sans", serif;
-        }
-
-        resultats {
-            visibility: collapse;
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            align-content: center;
-        }
-
-        section {
-            font-family: "Rubik", serif;
-            background-color: #ebebebeb;
-            border-radius: 10px;
-            padding: 1vh 5vw;
-            margin: 10vh 0vw;
-            min-height: 75vh;
-            
-            max-height: 80vh;
-            max-width: 750px;
-            max-height: 500px;
-
-            display: flex;
-
-            flex-wrap: wrap;
-            align-content: stretch;
-            justify-content: flex-start;
-            ;
-            align-items: center;
-
-            scroll-snap-align: center !important;
-            scroll-margin-top: 75px;
-
-            box-shadow: 15px 15px 0px 0px #00000080;
-        }
-
-        span {
-            font-weight: 700;
-            font-size: xxx-large;
-            font-weight: 900;
-            letter-spacing: 3px;
-        }
-
-        [data-scroll] {
-            transition: opacity 1s;
-        }
-
-        [data-scroll="in"] {
-            opacity: 1;
-        }
-
-        [data-scroll="out"] {
-            opacity: 0;
-        }
-
-        .headline>h1 {
-            font-size: xxx-large;
-
-        }
-    </style>
 </head>
 
 <body>
@@ -149,7 +52,7 @@
         <label for="username">Introdueix el teu nom:</label>
         <input type="text" id="username" name="your_name" required minlength="1" maxlength="120" placeholder="El teu nom" />
         <p>
-            Si no saps com aconseguir el fitxer, revisa <a href="./tutorial" target="_blank">aquí</a>
+            Si no saps com aconseguir el fitxer, revisa <a href="./tutorial.html" target="_blank">aquí</a>
         </p>
         <div id="drop-area">
             <input type="file" id="fileInput" accept=".html, .htm" style="display:none;">
@@ -396,32 +299,27 @@
                         parada_max_num.innerHTML = histogrames.estacions[estMaxIndex]
 
                         // Viatges min max
-                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}, i vas viatjar desde 
-                        ${viatgeMesLlarg.origen.slice(4)} fins a ${viatgeMesLlarg.desti.slice(4)}, ${(viatgeMesLlarg.distancia / 1000).toFixed(2)}km en ${(viatgeMesLlarg.duracio / 60).toFixed(2)} minuts`
+                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', {month: 'long', day: 'numeric', })}, i vas viatjar desde 
+                        <span>${viatgeMesLlarg.origen.slice(4)}</span> fins a <span>${viatgeMesLlarg.desti.slice(4)}</span>, <span>${(viatgeMesLlarg.distancia / 1000).toFixed(2)}</span>km en ${(viatgeMesLlarg.duracio / 60).toFixed(2)} minuts`
                         velocitat_max.innerHTML = ((viatgeMesLlarg.distancia / viatgeMesLlarg.duracio) * 3.6).toFixed(2)
-                        console.log('distancia', viatgeMesLlarg.distancia)
-                        console.log('temps', viatgeMesLlarg.duracio)
-                        viatge_mes_curt.innerHTML = `el ${viatgeMesCurt.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}, i vas viatjar desde 
-                        ${viatgeMesCurt.origen.slice(4)} fins a ${viatgeMesCurt.desti.slice(4)} en ${(viatgeMesCurt.duracio / 60).toFixed(2)} minuts`;
+                        viatge_mes_curt.innerHTML = `el ${viatgeMesCurt.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar desde 
+                        <span>${viatgeMesCurt.origen.slice(4)}</span> fins a <span>${viatgeMesCurt.desti.slice(4)}</span> en ${(viatgeMesCurt.duracio / 60).toFixed(2)} minuts`;
 
                         // Primera y ultima
-                        primer_viatge.innerHTML = `${primerViatge.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}`
-                        ultim_viatge.innerHTML = `${ultimViatge.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}`
+                        primer_viatge.innerHTML = `${primerViatge.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric', })}`
+                        ultim_viatge.innerHTML = `${ultimViatge.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric', })}`
                         // Distancia total
                         distancia_total.innerHTML = (distanciaTotal / 1000).toFixed(2)
-                        console.log(distanciaTotal)
 
                         // Velocitat
                         velocitat_mitjana.innerHTML = (velocitatMitjana * 3.6).toFixed(2)
 
                         // Money
-                        console.log(Object.keys(contadorDies).length)
-                        console.log(contadorDies)
                         var diesUs = Object.keys(contadorDies).length
                         dies_us.innerHTML = diesUs
                         valor_total.innerHTML = diesUs * 2;
                         if (diesUs == 15) { // Larguero
-                            text_amortitzat.innerHTML = 'Increible. Has fet us 15 dies, cosa que fa que haguesis gastat el mateix si cada dia compresis un abono diari. '
+                            text_amortitzat.innerHTML = 'Increible. Has fet us <span>15</span> dies, cosa que fa que haguesis gastat el mateix si cada dia compresis un abonament diari. '
                         } else if (diesUs * 2 < 30) { // No Amortitzat
                             text_amortitzat.innerHTML = `Per desgracia t'han faltat <span>${15 - diesUs}</span> dies per amortitzar l'abonament. Has perdut <span>${(15 - diesUs) * 2}</span> euros, pero encara els pots recuperar abans de que acabi l'any, anims!`
                         } else if (diesUs * 2 > 30) { // Amortitzat
