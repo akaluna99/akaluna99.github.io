@@ -16,6 +16,12 @@
     border-color: #0056b3;
 }
 
+.img-tutorial {
+    width: 100%;
+    border-radius: 10px;
+    border: 5px solid #ffffff;
+}
+
 input, button {
     border: 1px solid #ccc;
     display: inline-block;
@@ -29,6 +35,9 @@ input, button {
     font-weight: lighter;
     font-size: larger;
 }
+button {
+    cursor: pointer;
+}
 
 html {
     scroll-behavior: smooth;
@@ -36,9 +45,9 @@ html {
 }
 
 body {
+    margin: 0;
     background: linear-gradient(to bottom, #4da558, #295a30);
     scroll-snap-type: y mandatory !important;
-    //overflow: hidden;
 }
 
 header {
@@ -106,7 +115,7 @@ span {
 
 .headline>h1 {
     font-size: xxx-large;
-
+    font-weight: 900;
 }
 
 @media only screen and (max-width: 900px) {
@@ -143,4 +152,14 @@ span {
     #drop-area{
         height: 50px;
     }
+}
+
+footer {
+    position: sticky;
+    display: block;
+    bottom: 0;
+    text-align: center;
+    background-color: #ebebeb;
+    margin: 0;
+    padding: 0;
 }

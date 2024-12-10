@@ -1,13 +1,10 @@
---- 
-title: "2024 Girocleta Wrapped"
----
 <!DOCTYPE html>
 <html lang="ca">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" href="./favicon.png">
 
     <script src="distancies.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -19,18 +16,17 @@ title: "2024 Girocleta Wrapped"
         rel="stylesheet">
         
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <title>2024 Girocleta Wrapped</title>
     
     <!-- UMAMI -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
-    {% feed_meta %}
-    {% seo %}
 
 
 </head>
 
-<body>
+<body > <!--</body>style="overflow: hidden;"-->
     <script>
         function indexOfMax(arr) {
             let maxIndex = 0;
@@ -51,13 +47,13 @@ title: "2024 Girocleta Wrapped"
         <h2>Resum del teu any amb girocleta</h2>
         <label for="username">Introdueix el teu nom:</label>
         <input type="text" id="username" name="your_name" required minlength="1" maxlength="120" placeholder="El teu nom" />
-        <p>
-            Si no saps com aconseguir el fitxer, revisa <a href="./tutorial.html" target="_blank">aquí</a>
-        </p>
         <div id="drop-area">
             <input type="file" id="fileInput" accept=".html, .htm" style="display:none;">
             <label id='drop-label' for="fileInput">Arrossega aquí o clica per seleccionar el teu fitxer</label>
         </div>
+        <p>
+            Si no saps com aconseguir el fitxer, revisa <a href="./tutorial.html" target="_blank">aquí</a>
+        </p>
         <script>
             let dropArea = document.getElementById('drop-area');
             let dropLabel = document.getElementById('drop-label');
@@ -338,7 +334,7 @@ title: "2024 Girocleta Wrapped"
                 };
                 reader.readAsText(file);
             } else {
-                console.log('Si us plau, selecciona un fitxer HTML.');
+                alert('Si us plau, selecciona un fitxer HTML i introdueix el teu nom.');
             }
         });
     </script>
@@ -383,32 +379,46 @@ title: "2024 Girocleta Wrapped"
             <h3>T'havies espantat?</h3>
         </section>
         <section id="7" style="overflow-y: scroll;">
-            <canvas id="myCanvas" width="100vw" height="100vh" style="border:1px solid #000000;">
+            <canvas id="myCanvas" width="600px" height="900px" style="border:1px solid #000000;">
             </canvas>
         </section>
     </resultats>
     <footer>
-        <p>Fet amb ❤️ per Luna al 2024</p>
+        <p>Fet amb ❤️ per <a target="_blank" href="http://cataluna.cat">Luna</a> | <a href="http://twitter.com/girocletaBOT" target="_blank">@girocletaBOT</a></p> 
     </footer>
     <script>
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
 
-        // Create gradient
-        var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100);
-        grd.addColorStop(0, "#4da558");
-        grd.addColorStop(1, "white");
+        // Establecer el fondo
+        ctx.fillStyle = '#4da558'; // Color de fondo
+        ctx.fillRect(0, 0, canvas.width, canvas.height); // Dibujar el rectángulo de fondo
 
-        // Fill with gradient
-        ctx.fillStyle = grd;
-        ctx.fillRect(0, 0, 540, 80);
+        // Dibujar el título
+        ctx.textAlign = 'center';
+        ctx.font = '50px Helvetica';
+        ctx.fillStyle = '#FFFFFF'; // Color del texto (blanco)
+        ctx.fillText('2024 Girocleta Wrapped', canvas.width/2, 100);
 
+        ctx.textAlign = 'left';
+        // Dibujar la lista de 5 ítems
+        ctx.font = '20px Roboto';
+        const items = ['Ítem 1', 'Ítem 2', 'Ítem 3', 'Ítem 4', 'Ítem 5'];
+        items.forEach((item, index) => {
+            ctx.fillText(item, 50, canvas.width/4 + index * 30); // Espaciado de 30px entre ítems
+        });
 
-        ctx.font = "30px Arial";
-        ctx.fillText("Hello World", 10, 50);
+        // Dibujar el #
+        ctx.font = '28px "Roboto"';
+        ctx.fillText('#girocletaWrapped2024', 20, 880); // Posición en la parte inferior izquierda
+
+        // Dibujar el @
+        ctx.textAlign = 'right';
+        ctx.fillText('@girocletaBot', 580, 880); // Posición en la parte inferior derecha
+
     </script>
     <script>
-        document.getElementById('0').scrollIntoView()
+        //document.getElementById('0').scrollIntoView()
     </script>
 </body>
 
