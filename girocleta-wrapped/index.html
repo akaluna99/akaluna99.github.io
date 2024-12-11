@@ -68,7 +68,7 @@
             return t;
         }(document, "script", "twitter-wjs"));
     }
-    </script>
+</script>
 <script>
     function drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0) {
         const canvas = document.getElementById(pId);
@@ -110,7 +110,7 @@
         var hMargin = 100;
         ctx.textAlign = 'left';
         ctx.font = '90px Inria Sans';
-        ctx.fillText(`${pHores.toFixed(0)}h d\'us`, hMargin, hGrid * 3)
+        ctx.fillText(`${pHores.toFixed(0)}h d\'ús`, hMargin, hGrid * 3)
         ctx.textAlign = 'right';
         ctx.font = '70px Inria Sans';
         ctx.fillText(`${pKm.toFixed(2)}km recorreguts`, canvas.width - hMargin, hGrid * 4)
@@ -134,7 +134,7 @@
     }   
 </script>
 
-<body onload="drawCanvas();drawCanvas('myCanvasH')" style="overflow: hidden;">
+<body onload="document.getElementById('0').scrollIntoView();drawCanvas();drawCanvas('myCanvasH')" style="overflow: hidden;">
     <script>
         function indexOfMax(arr) {
             let maxIndex = 0;
@@ -152,7 +152,7 @@
     </script>
     <header class="headline" id="0">
         <h1>2024 Girocleta Wrapped</h1>
-        <h2>Resum del teu any amb girocleta</h2>
+        <h2>Resum del teu any amb Girocleta</h2>
         <label for="username">Introdueix el teu nom:</label>
         <input type="text" id="username" name="your_name" required minlength="1" maxlength="120"
             placeholder="El teu nom" />
@@ -204,7 +204,6 @@
                     fileInput.files = files;
                     dropLabel.textContent = "Fitxer carregat: " + files[0].name;
                 }
-                console.log(files);
             }
 
             // Permetre seleccionar fitxers amb clic
@@ -267,7 +266,8 @@
                             'distancia': 0
                         }
                         var viatgeMesCurt = {
-                            'duracio': 999999999
+                            'duracio': 0,
+                            'distancia': 0
                         }
                         var totalHores = 0
                         var totalBicicletes = 0
@@ -366,12 +366,10 @@
                             } else {
                                 histogrames.estacionsDesti[estFin] = 1
                             }
-                            console.log()
                             if (viatgeMesLlarg.duracio == 0 || (sessionTime > 30 && distanciaRecorreguda / sessionTime < 7 && distanciaRecorreguda / sessionTime > viatgeMesLlarg.distancia / viatgeMesLlarg.duracio)) {
                                 viatgeMesLlarg = jsonData;
-                                console.log('new best', distanciaRecorreguda / sessionTime)
                             }
-                            if (sessionTime < viatgeMesCurt.duracio && sessionTime > 30) {
+                            if (viatgeMesCurt.duracio == 0 || (sessionTime > 30 && distanciaRecorreguda / sessionTime < 7 && distanciaRecorreguda / sessionTime < viatgeMesCurt.distancia / viatgeMesCurt.duracio)) {
                                 viatgeMesCurt = jsonData;
                             }
 
@@ -404,11 +402,11 @@
                         parada_max_num.innerHTML = histogrames.estacions[estMaxIndex]
 
                         // Viatges min max
-                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar desde 
+                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar des de 
                         <span>${viatgeMesLlarg.origen.slice(4)}</span> fins a <span>${viatgeMesLlarg.desti.slice(4)}</span>, <span>${(viatgeMesLlarg.distancia / 1000).toFixed(2)}</span>km en ${(viatgeMesLlarg.duracio / 60).toFixed(2)} minuts`
                         velocitat_max.innerHTML = ((viatgeMesLlarg.distancia / viatgeMesLlarg.duracio) * 3.6).toFixed(2)
-                        viatge_mes_curt.innerHTML = `el ${viatgeMesCurt.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar desde 
-                        <span>${viatgeMesCurt.origen.slice(4)}</span> fins a <span>${viatgeMesCurt.desti.slice(4)}</span> en ${(viatgeMesCurt.duracio / 60).toFixed(2)} minuts`;
+                        viatge_mes_curt.innerHTML = `el ${viatgeMesCurt.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar des de 
+                        <span>${viatgeMesCurt.origen.slice(4)}</span> fins a <span>${viatgeMesCurt.desti.slice(4)}</span> a una velocitat de <span>${((viatgeMesCurt.distancia / viatgeMesCurt.duracio) * 3.6).toFixed(2)}km/h</span>`;
 
                         // Primera y ultima
                         primer_viatge.innerHTML = `${primerViatge.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}`
@@ -424,7 +422,7 @@
                         dies_us.innerHTML = diesUs
                         valor_total.innerHTML = diesUs * 2;
                         if (diesUs == 15) { // Larguero
-                            text_amortitzat.innerHTML = 'Increible. Has fet us <span>15</span> dies, cosa que fa que haguesis gastat el mateix si cada dia compresis un abonament diari. '
+                            text_amortitzat.innerHTML = 'Increïble! Has fet us <span>15</span> dies, cosa que fa que haguessis gastat el mateix si cada dia compressis un abonament diari. '
                         } else if (diesUs * 2 < 30) { // No Amortitzat
                             text_amortitzat.innerHTML = `Per desgracia t'han faltat <span>${15 - diesUs}</span> dies per amortitzar l'abonament. Has perdut <span>${(15 - diesUs) * 2}</span> euros, pero encara els pots recuperar abans de que acabi l'any, anims!`
                         } else if (diesUs * 2 > 30) { // Amortitzat
@@ -446,7 +444,7 @@
                         drawCanvas('myCanvasH', username.value, totalHores / 60 / 60, distanciaTotal / 1000, velocitatMitjana * 3.6, fullDictionary.length);
                         
                     } else {
-                        console.log('No s\'ha trobat cap taula amb la classe "ib_grid" en el fitxer HTML.');
+                        alert('El fitxer no es correcte.\nProva a tornar a descarregar');
                     }
                 };
                 reader.readAsText(file);
@@ -457,43 +455,43 @@
     </script>
     <resultats>
         <section id="1">
-            <h2>Començem amb els numeros grans</h2>
+            <h2>Comencem amb els números grans</h2>
             <h2><span id='nom_usuari'></span>, has fet un total de <span id="viatges_totals"></span> viatges aquest 2024
             </h2>
-            <h3>Aixó son un total de <span id="hores_totals"></span> hores i <span id="minuts_totals"></span> minuts
+            <h3>Això són un total de <span id="hores_totals"></span> hores i <span id="minuts_totals"></span> minuts
                 pedalats, o <span id="distancia_total"></span> km. Enhorabona!</h3>
             <h3>La teva velocitat mitjana va ser de <span id="velocitat_mitjana"></span> km/h. Prou bé!</h3>
         </section>
         <section id="2">
-            <h2>Vas complir els teus proposits d'any nou?</h2>
-            <h2>En tot cas, la primera girocleta que vas agafar va ser el <span id="primer_viatge"></span>. Quins
+            <h2>Vas complir els teus propòsits d'any nou?</h2>
+            <h2>En tot cas, la primera Girocleta que vas agafar va ser el <span id="primer_viatge"></span>. Quins
                 records.</h2>
-            <h3>I la ultima, de moment ha sigut el <span id="ultim_viatge"></span>. Abans que acabi l'any jo crec que et
-                dona temps a fer algun viatge més!</h3>
+            <h3>I l'última, de moment ha sigut el <span id="ultim_viatge"></span>. Abans que acabi l'any jo crec que et
+                hi ha temps a fer algun viatge més!</h3>
         </section>
         <section id="3">
-            <h2>Nem a observar amb deteniment els viatges</h2>
-            <h2>El teu viatge més rapid el vas fer <spain id="viatge_mes_llarg"></spain>. Aixó es una velocitat de <span
-                    id="velocitat_max"></span> km/h, impresionant!</h2>
+            <h2>Observem amb deteniment els viatges</h2>
+            <h2>El teu viatge més ràpid el vas fer <spain id="viatge_mes_llarg"></spain>. Això és una velocitat de <span
+                    id="velocitat_max"></span> km/h, impressionant!</h2>
             <h3>I el més lent va ser <spain id="viatge_mes_curt"></spain>. Amb la calma, no?</h3>
         </section>
         <section id="4">
             <h2>Deixem els viatges. A la xarxa de girocleta hi ha unes 790 bicicletes</h2>
-            <h2>De les cuals tu n'has fet servir <span id="bicicletes_usades"></span> models diferents</h2>
-            <h3>Pero clarament, tu en tenies una preferida, la <span id="bicicleta_max"></span>, que vas fer servir un
-                total de <span id="bicicleta_max_usos"></span>. Casualitat?</h3>
+            <h2>De les quals tu n'has fet servir <span id="bicicletes_usades"></span> models diferents</h2>
+            <h3>Però clarament, tu en tenies una preferida, la <span id="bicicleta_max"></span>, que vas fer servir un
+                total de <span id="bicicleta_max_usos"></span> vegades. Casualitat?</h3>
         </section>
         <section id="5">
             <h2>Si tens l'abonament anual pagues <span>30</span>€ a l'any</h2>
-            <h2>Cada dia de viatge esta valorat en <span>2</span>€, i contant que has viatjat <span id='dies_us'></span>
+            <h2>Cada dia de viatge està valorat en <span>2</span>€, i contant que has viatjat <span id='dies_us'></span>
                 dies diferents, has viatjat un valor de <span id='valor_total'></span>€</h2>
             <h3 id='text_amortitzat'></h3>
         </section>
         <section id="6">
-            <h2>Per ultim, deixem adivinar una cosa, crec que se on vius, <span id='nom_usuari_2'></span>.</h2>
-            <h2>No t'espantis, es broma, pero segur que vius a prop de <span id="parada_max"></span> perque has fet
-                servir aquesta estacio <span id='parada_max_num'></span> vegades al 2024.</h2>
-            <h3>T'havies espantat?</h3>
+            <h2>Per últim, deixem endevinar una cosa, crec que sé on vius, <span id='nom_usuari_2'></span>.</h2>
+            <h2>No t'espantis, és broma, però segur que vius a prop de <span id="parada_max"></span> perquè has fet
+                servir aquesta estació <span id='parada_max_num'></span> vegades el 2024</h2>
+            <h3>He encertat?</h3>
         </section>
         <script>
             function downloadImage(mId) {
@@ -551,19 +549,10 @@
         </section>
     </resultats>
     <footer>
-        <p>
             Fet amb ❤️ i sense IA per <a target="_blank" href="http://cataluna.cat">Luna</a> | <a href="http://twitter.com/girocletaBOT" target="_blank">@girocletaBOT</a>
-            <br>Sense vinculació amb Transports Municipals del Gironès SAU
-        </p>
-        
+            <br>
+            Sense vinculació amb Transports Municipals del Gironès SAU        
     </footer>
-    <script>
-
-
-    </script>
-    <script>
-        document.getElementById('0').scrollIntoView()
-    </script>
 </body>
 
 </html>
