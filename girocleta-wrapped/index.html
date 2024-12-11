@@ -14,40 +14,42 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
-        
+
     <link rel="stylesheet" href="style.css">
 
     <title>2024 Girocleta Wrapped</title>
 
     <meta name="description" content="Descobreix les teves estadístiques amb girocleta d'aquest any">
-        
+
     <!-- Facebook Meta Tags -->
     <meta property="og:title" content="2024 Girocleta Wrapped">
     <meta property="og:description" content="Descobreix les teves estadístiques amb girocleta d'aquest any">
-    <meta property="og:image" content="/girocleta-wrapped/imgs/og-card.png">
+    <meta property="og:image" content="https://cataluna.cat/girocleta-wrapped/girocleta-wrapped/imgs/og-card.png">
     <meta property="og:url" content="https://cataluna.cat/girocleta-wrapped/">
     <meta property="og:site_name" content="2024 Girocleta Wrapped">
     <meta property="og:type" content="article">
-            
+
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="2024 Girocleta Wrapped">
     <meta name="twitter:description" content="Descobreix les teves estadístiques amb girocleta d'aquest any">
-    <meta name="twitter:image" content="/girocleta-wrapped/imgs/og-card.png">
+    <meta name="twitter:image" content="https://cataluna.cat/girocleta-wrapped/girocleta-wrapped/imgs/og-card.png">
     <!-- Meta Tags Generated via https://toolsaday.com -->
-    <meta name="keywords" content="girona, girocleta wrapped 2024, girocleta luna, girocleta estadistiques, girocleta resum">
+    <meta name="keywords"
+        content="girona, girocleta wrapped 2024, girocleta luna, girocleta estadistiques, girocleta resum">
     <meta name="author" content="Luna Moreno">
-    
+
     <!-- UMAMI -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
+    <script defer src="https://cloud.umami.is/script.js"
+        data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
 
 
 </head>
 <div style="display:none;">
     <img id="girocleta-dibuix" src="girocleta-icona.png">
-    </div>
+</div>
 <script>
-    function drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0){
+    function drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0) {
         const canvas = document.getElementById(pId);
         const ctx = canvas.getContext('2d');
         const image = document.getElementById("girocleta-dibuix");
@@ -57,31 +59,31 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height); // Dibujar el rectángulo de fondo
 
         // Create linear gradient
-        const grad=ctx.createLinearGradient(0,0, canvas.width,2000);
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, 2000);
         grad.addColorStop(0, "#030201");
         grad.addColorStop(0.8, "#4da558");
         grad.addColorStop(1, "#f1d600");
 
         // Fill rectangle with gradient
         ctx.fillStyle = grad;
-        ctx.fillRect(0,0, canvas.width, canvas.height);
-        
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 
         // Dibujar el título
         ctx.textAlign = 'center';
         ctx.fillStyle = '#FFFFFF'; // Color del texto (blanco)
         ctx.font = '90px Inria Sans';
-        ctx.fillText(pNom, canvas.width/2, 160 * 2);
+        ctx.fillText(pNom, canvas.width / 2, 160 * 2);
         ctx.font = 'bold 100px Rubik';
         //ctx.font = 'bold 300px Rubik';
-        ctx.fillText('2024', canvas.width/2, 160);
+        ctx.fillText('2024', canvas.width / 2, 160);
         //ctx.fillText('2024', canvas.width/2, 300);
         ctx.font = 'bold 80px Rubik';
         //ctx.font = 'bold 150px Rubik';
-        ctx.fillText('Girocleta Wrapped', canvas.width/2, 160 + 80);
+        ctx.fillText('Girocleta Wrapped', canvas.width / 2, 160 + 80);
         //ctx.fillText('Girocleta Wrapped', canvas.width/2, canvas.height/2);
-        
-        var hGrid = canvas.height/10;
+
+        var hGrid = canvas.height / 10;
         var hMargin = 100;
         ctx.textAlign = 'left';
         ctx.font = '90px Inria Sans';
@@ -94,8 +96,8 @@
         ctx.fillText(`${pKms.toFixed(0)}km/h velocitat mitjana`, hMargin, hGrid * 5)
         ctx.textAlign = 'center';
         ctx.font = 'bold 120px Inria Sans';
-        ctx.fillText(`${pViatges} viatges`, canvas.width/2, hGrid * 6 + 50)
-        ctx.drawImage(image, canvas.width/2 - image.width * 1.5 / 2, hGrid*7 - image.height * 1.5 / 5, image.width * 1.5, image.height * 1.5);
+        ctx.fillText(`${pViatges} viatges`, canvas.width / 2, hGrid * 6 + 50)
+        ctx.drawImage(image, canvas.width / 2 - image.width * 1.5 / 2, hGrid * 7 - image.height * 1.5 / 5, image.width * 1.5, image.height * 1.5);
         // Dibujar el #
         ctx.font = '43px "Rubik"';
         ctx.textAlign = 'left';
@@ -104,11 +106,11 @@
         ctx.textAlign = 'right';
         ctx.fillText('#girocletaWrapped2024', canvas.width - hMargin + 50, canvas.height - 100); // Posición en la parte inferior izquierda
 
-        
+
     }
 </script>
 
-<body onload="drawCanvas();drawCanvas('myCanvasH')" style="overflow: hidden;> <!--</body>style="overflow: hidden;"-->
+<body onload="drawCanvas();drawCanvas('myCanvasH')" style="overflow: visible;">
     <script>
         function indexOfMax(arr) {
             let maxIndex = 0;
@@ -128,7 +130,8 @@
         <h1>2024 Girocleta Wrapped</h1>
         <h2>Resum del teu any amb girocleta</h2>
         <label for="username">Introdueix el teu nom:</label>
-        <input type="text" id="username" name="your_name" required minlength="1" maxlength="120" placeholder="El teu nom" />
+        <input type="text" id="username" name="your_name" required minlength="1" maxlength="120"
+            placeholder="El teu nom" />
         <div id="drop-area">
             <input type="file" id="fileInput" accept=".html, .htm" style="display:none;">
             <label id='drop-label' for="fileInput">Arrossega aquí o clica per seleccionar el teu fitxer</label>
@@ -377,15 +380,15 @@
                         parada_max_num.innerHTML = histogrames.estacions[estMaxIndex]
 
                         // Viatges min max
-                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', {month: 'long', day: 'numeric', })}, i vas viatjar desde 
+                        viatge_mes_llarg.innerHTML = ` el ${viatgeMesLlarg.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar desde 
                         <span>${viatgeMesLlarg.origen.slice(4)}</span> fins a <span>${viatgeMesLlarg.desti.slice(4)}</span>, <span>${(viatgeMesLlarg.distancia / 1000).toFixed(2)}</span>km en ${(viatgeMesLlarg.duracio / 60).toFixed(2)} minuts`
                         velocitat_max.innerHTML = ((viatgeMesLlarg.distancia / viatgeMesLlarg.duracio) * 3.6).toFixed(2)
                         viatge_mes_curt.innerHTML = `el ${viatgeMesCurt.inici.toLocaleDateString('ca', { month: 'long', day: 'numeric', })}, i vas viatjar desde 
                         <span>${viatgeMesCurt.origen.slice(4)}</span> fins a <span>${viatgeMesCurt.desti.slice(4)}</span> en ${(viatgeMesCurt.duracio / 60).toFixed(2)} minuts`;
 
                         // Primera y ultima
-                        primer_viatge.innerHTML = `${primerViatge.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric', })}`
-                        ultim_viatge.innerHTML = `${ultimViatge.inici.toLocaleDateString('ca', {weekday: 'long', month: 'long', day: 'numeric', })}`
+                        primer_viatge.innerHTML = `${primerViatge.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}`
+                        ultim_viatge.innerHTML = `${ultimViatge.inici.toLocaleDateString('ca', { weekday: 'long', month: 'long', day: 'numeric', })}`
                         // Distancia total
                         distancia_total.innerHTML = (distanciaTotal / 1000).toFixed(2)
 
@@ -408,7 +411,7 @@
 
                         ScrollReveal().reveal('section', { duration: 2000, reset: true });
                         ScrollReveal().reveal('span', { duration: 1000, delay: 500, interval: 500, scale: 0.85, reset: true });
-                        
+
                         //drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0)
                         drawCanvas('myCanvasV', username.value, totalHores / 60 / 60, distanciaTotal / 1000, velocitatMitjana * 3.6, fullDictionary.length);
                         drawCanvas('myCanvasH', username.value, totalHores / 60 / 60, distanciaTotal / 1000, velocitatMitjana * 3.6, fullDictionary.length);
@@ -463,51 +466,85 @@
                 servir aquesta estacio <span id='parada_max_num'></span> vegades al 2024.</h2>
             <h3>T'havies espantat?</h3>
         </section>
-        <section id="7" style="overflow-x: scroll; width: 100%;">
-            <canvas id="myCanvasV" width="1080px" height="1920px" style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
+        <script>
+            function downloadImage(mId) {
+
+                // Grab the canvas element
+                let canvas = document.getElementById(mId);
+
+                /* Create a PNG image of the pixels drawn on the canvas using the toDataURL method. PNG is the preferred format since it is supported by all browsers
+                */
+                var dataURL = canvas.toDataURL("image/png");
+
+                // Create a dummy link text
+                var a = document.createElement('a');
+                // Set the link to the image so that when clicked, the image begins downloading
+                a.href = dataURL
+                // Specify the image filename
+                a.download = 'girocleta-wrapped-2024.jpeg';
+                // Click on the link to set off download
+                a.click();
+            }
+        </script>
+        <section id="7" style="overflow-x: scroll; width: 100%;flex-direction: column;">
+            <canvas id="myCanvasV" width="1080px" height="1920px"
+                style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
             </canvas>
-            <canvas id="myCanvasH" width="1800px" height="1080px" style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
+            <div style="display: flex;flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            margin: 12px;
+            text-align: center;
+            width: auto;">
+                <button type="button" style="width: 100%;" onclick="downloadImage('myCanvasH')">Descarrega</button>
+            </div>
+            <canvas id="myCanvasH" width="1800px" height="1080px"
+                style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
             </canvas>
-            <a class="twitter-share-button"
-                href="https://twitter.com/intent/tweet"
-                target="_blank"
-                data-size="large"
-                data-via="girocletaBOT"
-                data-hashtags="girocletaWrapped2024"
-                data-lang="ca"
-                data-text="custom share text"
-                data-dnt="true"
-            >
+            <div style="display: flex;flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            margin: 12px;
+            text-align: center;">
+
+                <button type="button" style="width: 100%;" onclick="downloadImage('myCanvasH')">Descarrega</button>
+            </div>
+            <a class="twitter-share-button" href="https://twitter.com/intent/tweet" target="_blank" data-size="large"
+                data-via="girocletaBOT" data-hashtags="girocletaWrapped2024" data-lang="ca"
+                data-text="custom share text" data-dnt="true">
                 Tweet
             </a>
         </section>
     </resultats>
     <footer>
-        <p>Fet amb ❤️ per <a target="_blank" href="http://cataluna.cat">Luna</a> | <a href="http://twitter.com/girocletaBOT" target="_blank">@girocletaBOT</a></p> 
+        <p>Fet amb ❤️ per <a target="_blank" href="http://cataluna.cat">Luna</a> | <a
+                href="http://twitter.com/girocletaBOT" target="_blank">@girocletaBOT</a></p>
     </footer>
     <script>
-        
+
 
     </script>
     <script>
-        document.getElementById('0').scrollIntoView()
+        //document.getElementById('0').scrollIntoView()
     </script>
-    <script>window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      
-        t._e = [];
-        t.ready = function(f) {
-          t._e.push(f);
-        };
-      
-        return t;
-      }(document, "script", "twitter-wjs"));</script>
+    <script>window.twttr = (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
 </body>
 
 </html>
