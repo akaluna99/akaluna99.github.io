@@ -49,10 +49,22 @@
     <img id="girocleta-dibuix" src="girocleta-icona.png">
 </div>
 <script>
+    function loadImage(src, callback) {
+        var img = new Image();
+
+        img.onload = callback;
+        img.setAttribute('crossorigin', 'anonymous'); // works for me
+
+        img.src = src;
+
+        return img;
+    }
     function drawCanvas(pId = 'myCanvasV', pNom = 'Luna', pHores = 0, pKm = 0, pKms = 0, pViatges = 0) {
         const canvas = document.getElementById(pId);
         const ctx = canvas.getContext('2d');
         const image = document.getElementById("girocleta-dibuix");
+
+        //image.setAttribute('crossorigin', 'anonymous'); // works for me
 
         // Establecer el fondo
         ctx.fillStyle = '#4da558'; // Color de fondo
@@ -106,7 +118,9 @@
         ctx.textAlign = 'right';
         ctx.fillText('#girocletaWrapped2024', canvas.width - hMargin + 50, canvas.height - 100); // Posición en la parte inferior izquierda
 
-
+        var imgSrc = canvas.toDataURL();
+        console.log(imgSrc)
+        document.getElementById(pId + 'Img').src = imgSrc
     }
 </script>
 
@@ -487,9 +501,10 @@
             }
         </script>
         <section id="7" style="overflow-x: scroll; width: 100%;flex-direction: column;">
-            <canvas id="myCanvasV" width="1080px" height="1920px"
+            <canvas hidden id="myCanvasV" width="1080px" height="1920px"
                 style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
             </canvas>
+            <img id="myCanvasVImg" src="" style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;"/>
             <div style="display: flex;flex-direction: row;
             flex-wrap: nowrap;
             justify-content: space-around;
@@ -499,9 +514,10 @@
             width: auto;">
                 <button type="button" style="width: 100%;" onclick="downloadImage('myCanvasH')">Descarrega</button>
             </div>
-            <canvas id="myCanvasH" width="1800px" height="1080px"
+            <canvas hidden id="myCanvasH" width="1800px" height="1080px"
                 style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;">
             </canvas>
+            <img id="myCanvasHImg" src="" style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;"/>
             <div style="display: flex;flex-direction: row;
             flex-wrap: nowrap;
             justify-content: space-around;
