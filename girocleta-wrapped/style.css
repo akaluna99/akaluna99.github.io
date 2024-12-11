@@ -52,7 +52,7 @@ body {
     background: linear-gradient(to bottom, #4da558, #295a30);
     scroll-snap-type: y mandatory !important;
     background: rgb(3,2,1);
-    background: linear-gradient(142deg, rgb(46, 46, 46) 0%, rgba(77,165,88,1) 60%, rgba(241,214,0,1) 100%);
+background: linear-gradient(236deg, rgba(3,2,1,1) 0%, rgba(77,165,88,1) 60%, rgba(241,214,0,1) 100%);
 }
 
 header {
