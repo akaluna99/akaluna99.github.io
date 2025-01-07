@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificador d'hora</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Notificador d'hora</h1>
+  <label for="hora">Introdueix l'hora:</label>
+  <input type="time" id="hora" name="hora">
+  <br>
+  <label for="missatge">Introdueix el missatge:</label>
+  <input type="text" id="missatge" name="missatge" placeholder="Escriu el missatge">
+  <br>
+  <button onclick="programarNotificacio()">Programar notificació</button>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function() {
+          console.log('Service worker registrat correctament');
+        })
+        .catch(function(error) {
+          console.log('Error en registrar el service worker:', error);
+        });
+    }
+
+    function programarNotificacio() {
+      var hora = document.getElementById('hora').value;
+      var missatge = document.getElementById('missatge').value;
+
+      var parts = hora.split(':');
+      var horaNotificacio = new Date();
+      horaNotificacio.setHours(parts[0]);
+      horaNotificacio.setMinutes(parts[1]);
+      horaNotificacio.setSeconds(0);
+
+      if (horaNotificacio > new Date()) {
+        var diferencia = horaNotificacio.getTime() - new Date().getTime();
+        setTimeout(function() {
+          mostrarNotificacio(missatge);
+        }, diferencia);
+        alert('Notificació programada per a les ' + hora + '!');
+      } else {
+        alert('L\'hora introduïda ja ha passat. Introdueix una hora futura.');
+      }
+    }
+
+    function mostrarNotificacio(missatge) {
+      if (Notification.permission === 'granted') {
+        new Notification('Notificació', {
+          body: missatge
+        });
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(function(permission) {
+          if (permission === 'granted') {
+            new Notification('Notificació', {
+              body: missatge
+            });
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
