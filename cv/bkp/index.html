@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <link rel="icon" type="image/x-icon" href="scroll.svg">
+    <meta name="author" content="Luna Moreno">
+    <title>Luna Moreno Romero</title>
+
+    <style>
+        :root {
+            --main-bg-color: rgba(255, 255, 241, 0.9);
+            --main-fg-color: #14304f;
+        }
+
+        body {
+            background-color: var(--main-bg-color);
+            color: var(--main-fg-color);
+            margin: 0;
+            padding: 0;
+            font-family: "Lucida Sans", 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 12px;
+        }
+
+        contact>span:after {
+            content: ' | ';
+            margin: 0px 5px;
+        }
+
+        contact>span:last-child::after {
+            content: '';
+        }
+
+        a {
+            color: var(--main-fg-color);
+            text-decoration: none;
+            margin: 0px 0px;
+            border-bottom: 1px dotted gray;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 50px 10px 50px;
+        }
+
+        cv-section {
+            display: block;
+            padding: 5px 50px 5px 50px;
+        }
+
+        cv-section>h2 {
+            font-size: large;
+            margin: 2px 0px 0px;
+            border-bottom: 1.5px solid black;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            display: table;
+            width: 75%;
+            white-space: nowrap;
+            margin: 10px auto;
+            text-align: center;
+            color: #14304f
+        }
+
+        h1:before,
+        h1:after {
+            content: '';
+            width: 40%;
+            background: url("https://dummyimage.com/10x1/000/000.png") repeat-x center center;
+            display: table-cell;
+            -moz-background-clip: padding-box;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+        }
+
+        h1:before {
+            border-right: 10px solid transparent;
+        }
+
+        h1:after {
+            border-left: 10px solid transparent;
+        }
+
+        h1 span {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: brown;
+        }
+
+        cv-section>h2::first-letter {
+            font-size: xx-large;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: brown;
+        }
+
+        section-item {
+            display: block;
+            padding: 0.2% 3%;
+        }
+
+        section-row {
+            display: flex;
+            flex-flow: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        section-row>* {
+            width: 50%;
+        }
+
+        section-row>*:nth-child(1) {
+            font-weight: bold;
+        }
+
+        section-row>*:nth-child(even) {
+            text-align: right;
+        }
+
+        section-row>*:nth-child(odd) {
+            text-align: left;
+        }
+
+        section-row>*:nth-child(n+3) {
+            font-style: italic;
+        }
+
+        section-list {
+            display: block;
+            padding: 5px 0px;
+        }
+
+        list-title {
+            display: inline;
+            font-weight: bold;
+        }
+
+        list-title::after {
+            content: ': ';
+        }
+    </style>
+</head>
+
+<body>
+    <cv-body> <!-- CV Body Begin-->
+
+        <header> <!-- CV Header Begin -->
+            <h1><span class="name">L</span>una Moreno Romero</h1>
+            <contact>
+                <span>05/11/1999</span>
+                <span>17003, Girona</span>
+                <span><a href="tel:+34637077148">(+34) 637 07 71 48</a></span>
+                <span><a href="mailto:akaluna99@gmail.com">akaluna99@gmail.com</a></span>
+                <span><a href="https://www.linkedin.com/in/lunamore/">linkedin.com/in/lunamore</a></span>
+                <span hidden><a href="https://cataluna.cat/index.html">cataluna.cat</a></span>
+            </contact>
+        </header> <!-- CV Header End-->
+
+        <cv-section> <!-- CV Section Education Begin -->
+            <h2>Education</h2>
+
+            <section-item> <!-- Section item UDG Begin-->
+
+                <section-row>
+                    <div>Universitat de Girona</div>
+                    <div>Girona, Girona</div>
+                    <div>Degree in Video Game Design and Development</div>
+                    <div>Sep 2017 - Jun 2022</div>
+                </section-row>
+
+                <ul>
+                    <li>Computer science degree with mention in video game design and development</li>
+                </ul>
+            </section-item> <!-- Section item UDG End-->
+
+            <section-item hidden> <!-- Section item El Sui Begin-->
+
+                <section-row>
+                    <div>IES El Sui</div>
+                    <div>Cardedeu</div>
+                    <div>Baccalaureate, Technological branch</div>
+                    <div>Sep 2015 - Jun 2017</div>
+                </section-row>
+            </section-item> <!-- Section item El Sui End-->
+
+        </cv-section> <!-- CV Section Education End -->
+
+        <cv-section>
+            <h2>Work experience</h2>
+
+            <section-item>
+                <section-row>
+                    <div><a href="https://www.deister.net/" target="_blank">Deister Software</a></div>
+                    <div>Girona, Girona</div>
+                    <div>IT consultant</div>
+                    <div>Jun 2022 - Present</div>
+                </section-row>
+
+                <ul>
+                    <li>IT Consultant</li>
+                    <li>Development of custom ERP tools</li>
+                    <li>Database design and maintenance</li>
+                    <li>JavaScript, SQL</li>
+                    <li>API</li>
+                    <li>Project manager</li>
+                </ul>
+            </section-item>
+
+            <section-item>
+                <section-row>
+                    <div><a href="https://c4dudg.wordpress.com/" target="_blank">Càtedra de Cultura Científica i
+                            Comunicació Digital</a></div>
+                    <div>UdG, Girona</div>
+                    <div>Video editor</div>
+                    <div>Mar 2022 - Jun 2022</div>
+                </section-row>
+
+                <ul>
+                    <li>Editing of Covid-19 videos</li>
+                    <li>Team work</li>
+                </ul>
+            </section-item>
+
+            <section-item>
+                <section-row>
+                    <div><a href="https://www.metalmoreno.es/" target="_blank">Metalmoreno S.L.</a></div>
+                    <div>L'Ametlla del Vallés</div>
+                    <div>Metal workshop operator</div>
+                    <div>Jun 2018 - Sep 2021</div>
+                </section-row>
+            </section-item>
+
+        </cv-section>
+
+        <cv-section>
+            <h2>Personal projects</h2>
+
+            <section-item>
+                <section-row>
+                    <div><a href="https://www.cataglogger.duckdns.org/" target="_blank">CaTAGlogger</a></div>
+                    <div>Website</div>
+                    <div>HTML, CSS, JS, PHP, MySQL</div>
+                    <div>2023-Actual</div>
+                </section-row>
+                <p>Open log website where users can explore and catalog location and characteristics of street art.</p>
+                <ul>
+                    <li>Website design and maintenance</li>
+                    <li>Database creation and maintenance</li>
+                </ul>
+            </section-item>
+
+            <section-item>
+                <section-row>
+                    <div><a href="https://tanoka.studio/" target="_blank">Tanoka Studio</a></div>
+                    <div>Video game Studio</div>
+                    <div>Godot, Game Design, Game Programming, PR</div>
+                    <div>2021-Actual</div>
+                </section-row>
+                <p>Indie game studio maintained by me and 4 friends making games as a side-project</p>
+                <ul>
+                    <li><a href="http://samorai.tanoka.studio/" target="_blank"> samOrai </a> (Android, 2024) - Arcade game</li>
+                    <li>Sails of Stillwater (WIP) - RPG, Adventure game</li>
+                    <li>Departure Delights (WIP) - 2D, Pixel Art</li>
+                </ul>
+            </section-item>
+            
+            <section-item>
+                <section-row>
+                    <div><a href="https://cataluna.cat/portfolio" target="_blank">Portfolio</a></div>
+                    <div>Other projects</div>
+                    <div></div>
+                    <div></div>
+                </section-row>
+                <p>Other little side projects including games, 3d models and web programming</p>
+            </section-item>
+
+        </cv-section>
+
+        <cv-section>
+            <h2>Skills</h2>
+            <section-item>
+
+                <section-list>
+                    <list-title>Language</list-title>
+                    <list-items>English, Spanish, Catalan</list-items>
+                </section-list>
+
+                <section-list>
+                    <list-title>Programming</list-title>
+                    <list-items>C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin,
+                        Apache, Bash</list-items>
+                </section-list>
+
+                <section-list>
+                    <list-title>Software</list-title>
+                    <list-items>Microsoft Office, Adobe Premiere, Photoshop, DaVinci Resolve, Visual Studio, Blender, 3D
+                        Max, Inkscape, Unity 3D, Godot</list-items>
+                </section-list>
+
+            </section-item>
+        </cv-section>
+    </cv-body> <!-- CV Body End-->
+
+</body>
+
+</html>

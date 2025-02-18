@@ -6,3 +6,4 @@ vendor
 /girocleta/test/Girocleta _ CLIENTS_files
 .DS_Store
 .DS_Store
+*.DS_Store
