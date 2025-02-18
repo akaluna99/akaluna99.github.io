@@ -34,7 +34,7 @@
             "sections" : [
                 {
                     "title" : "Universitat de Girona",
-                    "title-link" : null,
+                    "title-link" : "https://www.udg.edu/ca/estudia/Oferta-formativa/Graus/Fitxes?IDE=1436&ID=3105G1315",
                     "location" : "Girona, Girona",
                     "description" : "Grau en disseny i desenvolupament de videojocs",
                     "date" : "Set 2017 - Jun 2022",
@@ -64,7 +64,7 @@
                     "date" : "Jun 2022 - Actual",
                     "details" : [
                         "Consultoria IT",
-                        "Desenvolumpament de personalització ERP",
+                        "Desenvolupament de personalització ERP",
                         "Disseny i manteniment de BBDD",
                         "JavaScript, SQL",
                         "API",
@@ -75,19 +75,19 @@
                     "title" : "Càtedra de Cultura Científica i Comunicació Digital",
                     "title-link" : "https://c4dudg.wordpress.com/",
                     "location" : "UdG, Girona",
-                    "description" : "Editora de video",
+                    "description" : "Editora de vídeos",
                     "date" : "Mar 2022 - Jun 2022",
                     "details" : [
-                        "Edicio de videos de Covid-19",
-                        "Produccio i post-produccio de videos",
+                        "Edició de vídeos de Covid-19",
+                        "Producció i post-producció de vídeos",
                         "Treball en equip"
                     ]
                 },
                 {
                     "title" : "Metalmoreno S.L.",
                     "title-link" : "https://www.metalmoreno.es/",
-                    "location" : "L'Ametlla del Vallés",
-                    "description" : "Operaria taller metalic",
+                    "location" : "L'Ametlla del Vallès",
+                    "description" : "Operaria taller metàl·lic",
                     "date" : "Jun 2018 - Set 2021",
                     "details" : [
                     ]
@@ -132,7 +132,7 @@
             "sections" : [
                 {
                     "title" : "Idiomes",
-                    "list-items": "English, Spanish, Catalan"
+                    "list-items": "Anglès, Espanyol, Català"
                 },
                 {
                     "title" : "Programació",
