@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #f5f5fa;
+}
+.header {
+    background-color: #ffffff;
+    padding: 0px 24px;
+    font-size: 12px;
+    height: 60px;
+    box-shadow: rgba(50, 50, 50, 0.3) 0px 3px 6px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.main {
+    color: #47474f;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.main>h1 {
+    font-size: 42px;
+    margin-bottom: 4px;
+    font-weight: bolder;
+}
+
+
+.main>h2 {
+    font-size: 22px;
+    font-weight: lighter;
+}
+
+.downloader__btn,.uploader__btn {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-height: 80px;
+    min-width: 330px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 24px 48px;
+    font-weight: 500;
+    font-size: 24px;
+    background: #e5322d;
+    line-height: 28px;
+    vertical-align: middle;
+    color: #fff!important;
+    text-decoration: none;
+    margin-bottom: 12px;
+    -webkit-transition: background-color .1s linear;
+    -o-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+    border: 0;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,.14);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,.14);
+    -ms-flex-order: 1;
+    order: 1;
+    max-width: 60vw
+}
+
+.header nav .brand img {
+    height: 30px;
+    width: auto;
+    margin: 0;
+}
+
+.brand img {
+    width: 147px;
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.footer{
+    background-color: #ffffff;
+    padding: 0px 24px;
+    font-size: 12px;
+    height: 60px;
+    box-shadow: rgba(50, 50, 50, 0.3) 0px -3px 6px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
