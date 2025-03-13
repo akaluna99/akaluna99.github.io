@@ -60,6 +60,7 @@ Per poder-ho executar, ho vaig posar com una de les meves funcions preferides de
 
 Per afegir-ho al Chrome simplement selecciona el codi de dalt i arrossega-ho a la barra d'adreces.
 
+![Exemple assignació bookmark](/imgs/posts/texturehaven-bookmark.gif)
 
 
 ## Funcionament
@@ -68,3 +69,5 @@ El funcionament és molt senzill. Si s'executa en una pàgina que no és la d'un
 Un cop la pestanya actual sigui d'una textura, al prémer el botó demanarà la mida de textura desitjada (més de 1080 no tindrà efecte).
 
 Al prémer acceptar, obrirà en una nova finestra les textures PBR corresponents. L'única feina manual que s'ha de fer és 1 per 1 descarregar les textures de les pestanyes.
+
+![Exemple us extensió](/imgs/posts/texturehaven-tutorial.gif)

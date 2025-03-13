@@ -423,3 +423,12 @@ entrada>h2>* {
   }
 
 }
+
+.highlight {
+  overflow: scroll;
+  background-color: steelblue;
+  color: aliceblue;
+  padding: 10px;
+  text-shadow: 2px 2px 4px black;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+}
