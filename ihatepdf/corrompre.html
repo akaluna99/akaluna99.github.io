@@ -16,14 +16,83 @@
         <h1>Corrompre arxius PDF</h1>     
         <h2>Corromp els teus PDFs. Ràpid i fàcil!</h2>
         <div id="uploader" class="uploader">
+            <input type="file" id="fileInput" accept="application/pdf">
             <a class="uploader__btn tooltip--left active" id="pickfiles" href="javascript:;" title="Afegir més fitxers" style="position: relative; z-index: 1;" data-title="Afegir més fitxers">
-                
                 <span>Seleccionar arxius PDF</span>
             </a>
+            <p>O arrossega i deixa anar els teus arxius aquí</p>
         </div>
     </div>
     <div class="footer">
         <div class="footer__copy">© iHatePDF 2025 ® - El teu odiador de PDF</div>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploader = document.getElementById('uploader');
+        const fileInput = document.getElementById('fileInput');
+        const pickfiles = document.getElementById('pickfiles');
+
+        pickfiles.addEventListener('click', () => fileInput.click());
+
+        uploader.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploader.classList.add('dragover');
+        });
+
+        uploader.addEventListener('dragleave', () => {
+            uploader.classList.remove('dragover');
+        });
+
+        uploader.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploader.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', () => {
+            handleFiles(fileInput.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length === 0) return;
+            const file = files[0];
+            if (file.type !== 'application/pdf') {
+                alert('Només es permeten arxius PDF.');
+                return;
+            }
+            corruptAndDownloadPDF(file);
+        }
+
+        function corruptAndDownloadPDF(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const arrayBuffer = e.target.result;
+                const uint8Array = new Uint8Array(arrayBuffer);
+                const textDecoder = new TextDecoder();
+                const textEncoder = new TextEncoder();
+                let text = textDecoder.decode(uint8Array);
+                console.log(text)
+                // Replace letters with random letters
+                text = text.replace(/[a-zA-Z]/g, function(c) {
+                    const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + (c < 'a' ? 65 : 97));
+                    return randomChar;
+                });
+
+                const corruptedArrayBuffer = textEncoder.encode(text);
+                const blob = new Blob([corruptedArrayBuffer], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const originalName = file.name.replace('.pdf', '_bad.pdf');
+                a.download = originalName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    });
+    </script>
 </body>
 </html>

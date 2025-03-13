@@ -93,3 +93,20 @@ body {
     width: 100%;
     bottom: 0px;
 }
+
+.uploader {
+    border: 2px dashed #e5322d;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.uploader.dragover {
+    background-color: #f5f5fa;
+}
+
+.uploader input[type="file"] {
+    display: none;
+}
