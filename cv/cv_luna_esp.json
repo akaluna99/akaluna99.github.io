@@ -1,0 +1,157 @@
+{
+    "header" : {
+        "name" : "Luna Moreno Romero",
+        "contact-info" : [
+            {
+                "type" : "text",
+                "content" : "05/11/1999"
+            },
+            {
+                "type" : "text",
+                "content" : "17003, Girona"
+            },
+            {
+                "type" : "link",
+                "content" : "(+34) 637 07 71 48",
+                "meta" : "tel:+34637077148"
+            },
+            {
+                "type" : "link",
+                "content" : "akaluna99@gmail.com",
+                "meta" : "mailto:akaluna99@gmail.com"
+            },
+            {
+                "type" : "link",
+                "content" : "linkedin.com/in/lunamore",
+                "meta" : "https://www.linkedin.com/in/lunamore/"
+            }
+        ]
+    },
+    "sections" : [
+        {
+            "title" : "Educación",
+            "type" : "item",
+            "sections" : [
+                {
+                    "title" : "Universitat de Girona",
+                    "title-link" : null,
+                    "location" : "Girona, Girona",
+                    "description" : "Grado en Diseño y Desarrollo de Videojuegos",
+                    "date" : "Sep 2017 - Jun 2022",
+                    "details" : [
+                        "Grado en informática con mención en diseño y desarrollo de videojuegos"
+                    ]
+                },
+                {
+                    "title" : "IES El Sui",
+                    "title-link" : null,
+                    "location" : "Cardedeu",
+                    "description" : "Bachillerato, Rama tecnológica",
+                    "date" : "Sep 2015 - Jun 2017"
+                }
+            ]
+        },
+
+        {
+            "title" : "Experiencia laboral",
+            "type" : "item",
+            "sections" : [
+                {
+                    "title" : "Deister Software",
+                    "title-link" : "https://www.deister.net/",
+                    "location" : "Girona, Girona",
+                    "description" : "Consultora IT",
+                    "date" : "Jun 2022 - Presente",
+                    "details" : [
+                        "Consultora IT",
+                        "Desarrollo de herramientas ERP personalizadas",
+                        "Diseño y mantenimiento de bases de datos",
+                        "JavaScript, SQL",
+                        "API",
+                        "Gestora de proyectos"
+                    ]
+                },
+                {
+                    "title" : "Càtedra de Cultura Científica i Comunicació Digital",
+                    "title-link" : "https://c4dudg.wordpress.com/",
+                    "location" : "UdG, Girona",
+                    "description" : "Editor de video",
+                    "date" : "Mar 2022 - Jun 2022",
+                    "details" : [
+                        "Edición de videos sobre Covid-19",
+                        "Producción y postproducción de videos",
+                        "Trabajo en equipo"
+                    ]
+                },
+                {
+                    "title" : "Metalmoreno S.L.",
+                    "title-link" : "https://www.metalmoreno.es/",
+                    "location" : "L'Ametlla del Vallés",
+                    "description" : "Operadora de taller de metal",
+                    "date" : "Jun 2022 - Presente",
+                    "details" : [
+                    ]
+                }
+            ]
+        },
+
+        {
+            "title" : "Proyectos personales",
+            "sections" : [
+                {
+                    "title" : "CaTAGlogger",
+                    "title-link" : "https://www.cataglogger.org/",
+                    "location" : "Sitio web",
+                    "description" : "HTML, CSS, NodeJS, Bootstrap, Express, SQLite",
+                    "date" : "2023-Actual",
+                    "detailed-description" : "Sitio web abierto donde los usuarios pueden explorar y catalogar la ubicación y características del arte callejero.",
+                    "details" : [
+                        "Diseño y mantenimiento del sitio web",
+                        "Creación y mantenimiento de bases de datos"
+                    ]
+                },
+                {
+                    "title" : "Tanoka Studio",
+                    "title-link" : "https://tanoka.studio/",
+                    "location" : "Estudio de videojuegos",
+                    "description" : "Godot, Diseño de juegos, Programación de juegos, PR",
+                    "date" : "2021-Actual",
+                    "detailed-description" : "Estudio de juegos indie mantenido por mí y 4 amigos haciendo juegos como un proyecto paralelo.",
+                    "details" : [
+                        "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Juego arcade",
+                        "Sails of Stillwater (WIP) - RPG, Juego de aventuras",
+                        "Departure Delights (WIP) - 2D, Pixel Art"
+                    ]
+                },
+                {
+                    "title" : "Itch.Io",
+                    "title-link" : "https://lunamoreno.itch.io/",
+                    "location" : "Videojuegos",
+                    "description" : "",
+                    "date" : "",
+                    "detailed-description" : "Proyectos de videojuegos cortos, juegos en solitario, game jams en equipo."
+                }
+            ]
+        },
+
+        {
+            "title" : "Habilidades",
+            "type" : "list",
+            "sections" : [
+                {
+                    "title" : "Idiomas",
+                    "list-items": "Inglés, Español, Catalán"
+                },
+                {
+                    "title" : "Programación",
+                    "list-items": "NodeJS, C++, C, JavaScript, Python, HTML, C#, PHP, SQL (Informix, Oracle), UNIX, PhpMyAdmin, Apache, Bash"
+                },
+                {
+                    "title" : "Software",
+                    "list-items": "Microsoft Office, Adobe Premiere, Photoshop, DaVinci Resolve, Visual Studio, Blender, 3D Max, Inkscape, Unity 3D, Godot"
+                }
+            ]
+        }
+
+    ]
+}

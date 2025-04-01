@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar PDF</title>
+    <!-- Referencia al archivo local -->
+    <script src="./pdf-lib.min.js"></script>
+</head>
+<body>
+    <h1>Subir y editar PDF</h1>
+    <input type="file" id="pdfInput" accept=".pdf" />
+    <button onclick="editPDF()">Editar PDF</button>
+    <br><br>
+    <a id="downloadLink" style="display: none;">Descargar PDF editado</a>
+
+    <script>
+        // Verificar si pdf-lib está cargado antes de usarlo
+        window.onload = function() {
+            if (typeof PDFDocument === 'undefined') {
+                alert('Error: pdf-lib no se ha cargado correctamente. Verifica que el archivo pdf-lib.min.js esté en el mismo directorio.');
+            }
+        };
+
+        async function editPDF() {
+            const fileInput = document.getElementById('pdfInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Por favor, sube un archivo PDF primero.');
+                return;
+            }
+
+            try {
+                // Leer el archivo como ArrayBuffer
+                const arrayBuffer = await file.arrayBuffer();
+
+                // Cargar el PDF con pdf-lib
+                const pdfDoc = await PDFDocument.load(arrayBuffer);
+
+                // Obtener la primera página
+                const page = pdfDoc.getPage(0);
+
+                // Añadir "Hola Mundo" al principio (coordenadas x: 50, y: alto de página - 50)
+                const pageHeight = page.getHeight();
+                page.drawText('Hola Mundo', {
+                    x: 50,
+                    y: pageHeight - 50,
+                    size: 20,
+                    color: rgb(0, 0, 0) // Negro
+                });
+
+                // Guardar el PDF editado
+                const pdfBytes = await pdfDoc.save();
+
+                // Crear un enlace de descarga
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = url;
+                downloadLink.download = 'pdf_editado.pdf';
+                downloadLink.style.display = 'block';
+                downloadLink.textContent = 'Descargar PDF editado';
+            } catch (error) {
+                console.error('Error al editar el PDF:', error);
+                alert('Ocurrió un error al procesar el PDF. Revisa la consola para más detalles.');
+            }
+        }
+
+        // Helper para definir colores RGB
+        function rgb(r, g, b) {
+            return { red: r / 255, green: g / 255, blue: b / 255 };
+        }
+    </script>
+</body>
+</html>
