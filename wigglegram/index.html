@@ -4,10 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Luna's wigglegram - Upload photo taken by a stereographic camera, and create GIF's">
+    <meta name="keywords" content="wigglegram, stereographic camera, image processing, GIF creation">
+    <meta name="author" content="Luna Moreno">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="manifest" href="./manifest.json" />
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
     <meta name="theme-color" content="#db4938" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    
+    <!-- UMAMI -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="d98e84d1-2764-48aa-838a-faff60764f6b"></script>
 
     <title>Luna's wigglegram</title>
     <style>
@@ -18,7 +30,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0 10px;
+            margin: 0 10px 0 10px;
 background: #f7f7f7;
 background: linear-gradient(180deg, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 209, 1) 90%);
         }
@@ -35,6 +47,7 @@ background: linear-gradient(180deg, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 20
             min-width: 25%;
             min-height: 25%;
             flex-wrap: wrap;
+            max-height: 60%;
         }
 
         #image_base {
@@ -133,11 +146,36 @@ background: linear-gradient(180deg, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 20
             text-align: center;
             padding: 10px;
         }
+
+        .footer-bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            background: #222;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 0;
+            font-size: 1.1em;
+            z-index: 100;
+        }
+        .footer-bar a {
+            color: #fff;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .footer-bar a:hover {
+            color: #db4938;
+        }
     </style>
 </head>
 
 <body onload="checkImage()">
-    <h1><a href="index.html">Luna's Wigglegram</a></h1>
+    <h1><a href="/">Luna's</a> <a href="index.html">Wigglegram</a></h1>
     <em>Upload photo taken by a stereographic camera, then click 'Load' button</em>
     <br>
     <div class="loader" id="loaderIcon" hidden></div>
@@ -180,6 +218,16 @@ background: linear-gradient(180deg, rgba(247, 247, 247, 1) 0%, rgba(209, 209, 20
         <a id="downloadButton" type="button" href="" download="wigglegram.gif" disabled hidden>
             Download
         </a>
+    </div>
+
+    <!-- Footer bar -->
+    <div class="footer-bar">
+        <span>
+            <a href="https://twitter.com/chica_botella" target="_blank" rel="noopener">Twitter</a> |
+            <a href="https://www.tiktok.com/@chicabotella" target="_blank" rel="noopener">TikTok</a> |
+            <a href="https://cataluna.cat" target="_blank" rel="noopener">Website</a>
+        </span>
+        <span style="margin-left:20px;">Made with &lt;3 by Luna Moreno</span>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gifshot/dist/gifshot.min.js"></script>
