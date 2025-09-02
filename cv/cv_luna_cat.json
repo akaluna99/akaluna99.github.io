@@ -39,36 +39,36 @@
                     "description" : "Grau en disseny i desenvolupament de videojocs",
                     "date" : "Set 2017 - Jun 2022",
                     "details" : [
-                        "Grau en ingenieria informatica amb especialització en videojocs"
+                        "Grau en enginyeria informàtica amb especialització en videojocs"
                     ]
                 },
                 {
                     "title" : "IES El Sui",
                     "title-link" : null,
                     "location" : "Cardedeu",
-                    "description" : "Bachillerat tecnologic",
+                    "description" : "Batxillerat tecnològic",
                     "date" : "Set 2015 - Jun 2017"
                 }
             ]
         },
 
         {
-            "title" : "Experiencia laboral",
+            "title" : "Experiència laboral",
             "type" : "item",
             "sections" : [
                 {
                     "title" : "Deister Software",
                     "title-link" : "https://www.deister.net/",
                     "location" : "Girona, Girona",
-                    "description" : "Desenvolupament de software i consultoria IT",
-                    "date" : "Jun 2022 - Actual",
+                    "description" : "Consultoria IT",
+                    "date" : "Jun 2022 - Jun 2025",
                     "details" : [
                         "Consultoria IT",
                         "Desenvolupament de personalització ERP",
-                        "Disseny i manteniment de BBDD",
+                        "Disseny i manteniment de bases de dades",
                         "JavaScript, SQL",
                         "API",
-                        "Project manager"
+                        "Gestió de projectes"
                     ]
                 },
                 {
@@ -79,7 +79,7 @@
                     "date" : "Mar 2022 - Jun 2022",
                     "details" : [
                         "Edició de vídeos de Covid-19",
-                        "Producció i post-producció de vídeos",
+                        "Producció i postproducció de vídeos",
                         "Treball en equip"
                     ]
                 },
@@ -87,7 +87,7 @@
                     "title" : "Metalmoreno S.L.",
                     "title-link" : "https://www.metalmoreno.es/",
                     "location" : "L'Ametlla del Vallès",
-                    "description" : "Operaria taller metàl·lic",
+                    "description" : "Operària taller metàl·lic",
                     "date" : "Jun 2018 - Set 2021",
                     "details" : [
                     ]
@@ -101,7 +101,7 @@
                 {
                     "title" : "CaTAGlogger",
                     "title-link" : "https://www.cataglogger.org/",
-                    "location" : "Pagina Web",
+                    "location" : "Pàgina web",
                     "description" : "HTML, CSS, NodeJS, Bootstrap, Express, SQLite",
                     "date" : "2023 - Actual",
                     "detailed-description" : "Lloc web de registre obert on els usuaris poden explorar i catalogar la ubicació i les característiques de l'art urbà.",
@@ -115,13 +115,21 @@
                     "title-link" : "https://tanoka.studio/",
                     "location" : "Estudi de videojocs",
                     "description" : "Godot, Game Design, Game Programming, PR",
-                    "date" : "2021-Actual",
-                    "detailed-description" : "Un estudi de jocs independent mantingut per mi i 4 amics fent jocs com a projecte secundari.",
+                    "date" : "2021 - Actual",
+                    "detailed-description" : "Estudi de jocs indie mantingut per mi i 4 amics fent jocs com a projecte paral·lel.",
                     "details" : [
-                        "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Joc Arcade",
-                        "Sails of Stillwater (WIP) - RPG",
+                        "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Joc arcade",
+                        "Sails of Stillwater (WIP) - RPG, Joc d'aventures",
                         "Departure Delights (WIP) - 2D, Pixel Art"
                     ]
+                },
+                {
+                    "title" : "Itch.Io",
+                    "title-link" : "https://lunamoreno.itch.io/",
+                    "location" : "Videojocs",
+                    "description" : "",
+                    "date" : "",
+                    "detailed-description" : "Projectes de videojocs curts, jocs en solitari, game jams en equip."
                 }
             ]
         },

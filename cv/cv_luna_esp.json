@@ -61,14 +61,14 @@
                     "title-link" : "https://www.deister.net/",
                     "location" : "Girona, Girona",
                     "description" : "Consultora IT",
-                    "date" : "Jun 2022 - Presente",
+                    "date" : "Jun 2022 - Jun 2025",
                     "details" : [
                         "Consultora IT",
                         "Desarrollo de herramientas ERP personalizadas",
                         "Diseño y mantenimiento de bases de datos",
                         "JavaScript, SQL",
                         "API",
-                        "Gestora de proyectos"
+                        "Gestión de proyectos"
                     ]
                 },
                 {
@@ -88,7 +88,7 @@
                     "title-link" : "https://www.metalmoreno.es/",
                     "location" : "L'Ametlla del Vallés",
                     "description" : "Operadora de taller de metal",
-                    "date" : "Jun 2022 - Presente",
+                    "date" : "Jun 2018 - Sep 2021",
                     "details" : [
                     ]
                 }
@@ -103,7 +103,7 @@
                     "title-link" : "https://www.cataglogger.org/",
                     "location" : "Sitio web",
                     "description" : "HTML, CSS, NodeJS, Bootstrap, Express, SQLite",
-                    "date" : "2023-Actual",
+                    "date" : "2023 - Actual",
                     "detailed-description" : "Sitio web abierto donde los usuarios pueden explorar y catalogar la ubicación y características del arte callejero.",
                     "details" : [
                         "Diseño y mantenimiento del sitio web",
@@ -115,8 +115,8 @@
                     "title-link" : "https://tanoka.studio/",
                     "location" : "Estudio de videojuegos",
                     "description" : "Godot, Diseño de juegos, Programación de juegos, PR",
-                    "date" : "2021-Actual",
-                    "detailed-description" : "Estudio de juegos indie mantenido por mí y 4 amigos haciendo juegos como un proyecto paralelo.",
+                    "date" : "2021 - Actual",
+                    "detailed-description" : "Estudio de juegos indie mantenido por mí y 4 amigos haciendo juegos como proyecto paralelo.",
                     "details" : [
                         "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Juego arcade",
                         "Sails of Stillwater (WIP) - RPG, Juego de aventuras",

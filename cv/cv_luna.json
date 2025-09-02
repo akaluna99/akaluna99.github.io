@@ -61,14 +61,14 @@
                     "title-link" : "https://www.deister.net/",
                     "location" : "Girona, Girona",
                     "description" : "IT consultant",
-                    "date" : "Jun 2022 - Present",
+                    "date" : "Jun 2022 - Jun 2025",
                     "details" : [
                         "IT Consultant",
                         "Development of custom ERP tools",
                         "Database design and maintenance",
                         "JavaScript, SQL",
                         "API",
-                        "Project manager"
+                        "Project management"
                     ]
                 },
                 {
@@ -88,7 +88,7 @@
                     "title-link" : "https://www.metalmoreno.es/",
                     "location" : "L'Ametlla del Vallés",
                     "description" : "Metal workshop operator",
-                    "date" : "Jun 2022 - Present",
+                    "date" : "Jun 2018 - Sep 2021",
                     "details" : [
                     ]
                 }
@@ -103,7 +103,7 @@
                     "title-link" : "https://www.cataglogger.org/",
                     "location" : "Website",
                     "description" : "HTML, CSS, NodeJS, Bootstrap, Express, SQLite",
-                    "date" : "2023-Actual",
+                    "date" : "2023 - Present",
                     "detailed-description" : "Open log website where users can explore and catalog location and characteristics of street art.",
                     "details" : [
                         "Website design and maintenance",
@@ -115,7 +115,7 @@
                     "title-link" : "https://tanoka.studio/",
                     "location" : "Video game Studio",
                     "description" : "Godot, Game Design, Game Programming, PR",
-                    "date" : "2021-Actual",
+                    "date" : "2021 - Present",
                     "detailed-description" : "Indie game studio maintained by me and 4 friends making games as a side-project.",
                     "details" : [
                         "<a href='http://samorai.tanoka.studio/' target='_blank'> samOrai </a> (Android, 2024) - Arcade game",
