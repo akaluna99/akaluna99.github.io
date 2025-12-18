@@ -99,11 +99,11 @@
         ctx.fillText(pNom, canvas.width / 2, 160 * 2);
         ctx.font = 'bold 100px Rubik';
         //ctx.font = 'bold 300px Rubik';
-        ctx.fillText('2024', canvas.width / 2, 160);
+        ctx.fillText('2025', canvas.width / 2, 160);
         //ctx.fillText('2024', canvas.width/2, 300);
         ctx.font = 'bold 80px Rubik';
         //ctx.font = 'bold 150px Rubik';
-        ctx.fillText('Girocleta Wrapped 2025', canvas.width / 2, 160 + 80);
+        ctx.fillText('Girocleta Wrapped', canvas.width / 2, 160 + 80);
         //ctx.fillText('Girocleta Wrapped', canvas.width/2, canvas.height/2);
 
         var hGrid = canvas.height / 10;
@@ -127,7 +127,7 @@
         ctx.fillText('cataluna.cat/girocleta', hMargin - 50, canvas.height - 100); // Posición en la parte inferior derecha
         // Dibujar el @
         ctx.textAlign = 'right';
-        ctx.fillText('#girocletaWrapped2024', canvas.width - hMargin + 50, canvas.height - 100); // Posición en la parte inferior izquierda
+        ctx.fillText('#girocletaWrapped2025', canvas.width - hMargin + 50, canvas.height - 100); // Posición en la parte inferior izquierda
 
         var imgSrc = canvas.toDataURL();
         document.getElementById(pId + 'Img').src = imgSrc
@@ -259,7 +259,7 @@
                             'estacions': [],
                             'estacionsOrigen': [],
                             'estacionsDesti': [],
-                            'mesos': []
+                            'mesos': [0,0,0,0,0,0,0,0,0,0,0,0]
                         }
                         var viatgeMesLlarg = {
                             'duracio': 0,
@@ -379,10 +379,20 @@
                             }
                             ultimViatge = jsonData
                             //return;
+                            //Calendari Mesos
+                            histogrames.mesos[dataDesti.getMonth()] += 1
                         }
                         nom_usuari.innerHTML = username.value
                         nom_usuari_2.innerHTML = username.value
                         viatges_totals.innerHTML = fullDictionary.length
+
+                        // Grafic
+                        var grafic_format_month = ''
+                        for (var month of histogrames.mesos) {
+                            grafic_format_month += `${month}%2C%20`
+                            // 1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%2C%2011%2C%2012
+                        }
+                        grafic_girocleta.src = `https://quickchart.io/chart?v=4&c=%7B%0A%20%20type%3A%20%27bar%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B%27gener%27%2C%20%0A%27febrer%27%2C%0A%27mar%C3%A7%27%2C%0A%27abril%27%2C%0A%27maig%27%2C%0A%27juny%27%2C%0A%27juliol%27%2C%20%0A%27agost%27%2C%0A%27setembre%27%2C%20%0A%27octubre%27%2C%0A%27novembre%27%2C%0A%27desembre%27%5D%2C%0A%20%20%20%20datasets%3A%20%5B%7B%0A%20%20%20%20%20%20label%3A%20%27%C3%9As%20per%20mes%27%2C%0A%20%20%20%20%20%20data%3A%20%5B${grafic_format_month}%5D%2C%0A%20%20%20%20%20%20backgroundColor%3A%20getGradientFillHelper(%27vertical%27%2C%20%5B%27%23030201%27%2C%20%27%234da558%27%2C%20%27%23f1d600%27%5D)%2C%0A%20%20%20%20%7D%5D%0A%20%20%7D%0A%7D`
 
                         // Hores totals
                         var hrs = parseInt(Number(totalHores / 60 / 60));
@@ -435,7 +445,7 @@
                         ScrollReveal().reveal('span', { duration: 1000, delay: 500, interval: 500, scale: 0.85, reset: true });
                         
                         document.getElementById("twitter-button").setAttribute("data-text", 
-                        `El meu resum del 2024 amb Girocleta:\n\n- He fet ${fullDictionary.length} viatges\n- He recorregut ${(distanciaTotal / 1000).toFixed(2)} km\n- He pedalat ${(totalHores / 60 / 60).toFixed(0)} hores\n\nSi vols conèixer el teu resum, visita `)
+                        `El meu resum del 2025 amb Girocleta:\n\n- He fet ${fullDictionary.length} viatges\n- He recorregut ${(distanciaTotal / 1000).toFixed(2)} km\n- He pedalat ${(totalHores / 60 / 60).toFixed(0)} hores\n\nSi vols conèixer el teu resum, visita `)
                         generateTwitterButton()
                         umami.track('Resum generat', { 'name': username.value, 'hores' :  totalHores / 60 / 60, 'distancia' : distanciaTotal / 1000, 'viatges' : fullDictionary.length});
 
@@ -456,7 +466,7 @@
     <resultats>
         <section id="1">
             <h2>Comencem amb els números grans</h2>
-            <h2><span id='nom_usuari'></span>, has fet un total de <span id="viatges_totals"></span> viatges aquest 2024
+            <h2><span id='nom_usuari'></span>, has fet un total de <span id="viatges_totals"></span> viatges aquest 2025
             </h2>
             <h3>Això són un total de <span id="hores_totals"></span> hores i <span id="minuts_totals"></span> minuts
                 pedalats, o <span id="distancia_total"></span> km. Enhorabona!</h3>
@@ -490,8 +500,12 @@
         <section id="6">
             <h2>Per últim, deixem endevinar una cosa, crec que sé on vius, <span id='nom_usuari_2'></span>.</h2>
             <h2>No t'espantis, és broma, però segur que vius a prop de <span id="parada_max"></span> perquè has fet
-                servir aquesta estació <span id='parada_max_num'></span> vegades el 2024</h2>
+                servir aquesta estació <span id='parada_max_num'></span> vegades el 2025</h2>
             <h3>He encertat?</h3>
+        </section>
+        <section id="6">
+            <h2>Aqui tens, resumit per <span>mes</span> els teus usos de la girocleta</h2>
+            <img id='grafic_girocleta' src="https://quickchart.io/chart?v=4&c=%7B%0A%20%20type%3A%20%27bar%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B%27gener%27%2C%20%0A%27febrer%27%2C%0A%27mar%C3%A7%27%2C%0A%27abril%27%2C%0A%27maig%27%2C%0A%27juny%27%2C%0A%27juliol%27%2C%20%0A%27agost%27%2C%0A%27setembre%27%2C%20%0A%27octubre%27%2C%0A%27novembre%27%2C%0A%27desembre%27%5D%2C%0A%20%20%20%20datasets%3A%20%5B%7B%0A%20%20%20%20%20%20label%3A%20%27%C3%9As%20per%20mes%27%2C%0A%20%20%20%20%20%20data%3A%20%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%2C%2011%2C%2012%5D%2C%0A%20%20%20%20%20%20backgroundColor%3A%20getGradientFillHelper(%27vertical%27%2C%20%5B%27%23030201%27%2C%20%27%234da558%27%2C%20%27%23f1d600%27%5D)%2C%0A%20%20%20%20%7D%5D%0A%20%20%7D%0A%7D">
         </section>
         <script>
             function downloadImage(mId) {
@@ -508,7 +522,7 @@
                 // Set the link to the image so that when clicked, the image begins downloading
                 a.href = dataURL
                 // Specify the image filename
-                a.download = 'girocleta-wrapped-2024.jpeg';
+                a.download = 'girocleta-wrapped-2025.jpeg';
                 // Click on the link to set off download
                 a.click();
             }
@@ -541,7 +555,7 @@
                 <button data-umami-event="Descarrega Horizontal" type="button" style="width: 100%;" onclick="downloadImage('myCanvasH')">Descarrega ↓</button>
             </div>
             <a data-umami-event="Compartit a twitter" id="twitter-button" class="twitter-share-button" href="https://twitter.com/intent/tweet" target="_blank" data-size="large"
-                data-via="girocletaBOT" data-hashtags="girocletaWrapped2024" data-lang="en"
+                data-via="girocletaBOT" data-hashtags="girocletaWrapped2025" data-lang="en"
                 data-text="custom share text" data-dnt="true">
                 Tweet
             </a>
