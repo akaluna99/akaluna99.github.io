@@ -388,9 +388,14 @@
 
                         // Grafic
                         var grafic_format_month = ''
-                        for (var month of histogrames.mesos) {
-                            grafic_format_month += `${month}%2C%20`
-                            // 1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%2C%2011%2C%2012
+                        for (var month in histogrames.mesos) {
+                            if (grafic_format_month != ''){
+                                grafic_format_month += `${month}%2C`
+                            }
+                            else {
+                                grafic_format_month += `${month}`
+                            }
+                            // 666%2C666%2C666%2C666%2C666%2C666%2C666%2C666%2C666%2C666%2C666%2C666
                         }
                         grafic_girocleta.src = `https://quickchart.io/chart?v=4&c=%7B%0A%20%20type%3A%20%27bar%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B%27gener%27%2C%20%0A%27febrer%27%2C%0A%27mar%C3%A7%27%2C%0A%27abril%27%2C%0A%27maig%27%2C%0A%27juny%27%2C%0A%27juliol%27%2C%20%0A%27agost%27%2C%0A%27setembre%27%2C%20%0A%27octubre%27%2C%0A%27novembre%27%2C%0A%27desembre%27%5D%2C%0A%20%20%20%20datasets%3A%20%5B%7B%0A%20%20%20%20%20%20label%3A%20%27%C3%9As%20per%20mes%27%2C%0A%20%20%20%20%20%20data%3A%20%5B${grafic_format_month}%5D%2C%0A%20%20%20%20%20%20backgroundColor%3A%20getGradientFillHelper(%27vertical%27%2C%20%5B%27%23030201%27%2C%20%27%234da558%27%2C%20%27%23f1d600%27%5D)%2C%0A%20%20%20%20%7D%5D%0A%20%20%7D%0A%7D`
 
@@ -505,7 +510,7 @@
         </section>
         <section id="6">
             <h2>Aqui tens, resumit per <span>mes</span> els teus usos de la girocleta</h2>
-            <img id='grafic_girocleta' src="https://quickchart.io/chart?v=4&c=%7B%0A%20%20type%3A%20%27bar%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B%27gener%27%2C%20%0A%27febrer%27%2C%0A%27mar%C3%A7%27%2C%0A%27abril%27%2C%0A%27maig%27%2C%0A%27juny%27%2C%0A%27juliol%27%2C%20%0A%27agost%27%2C%0A%27setembre%27%2C%20%0A%27octubre%27%2C%0A%27novembre%27%2C%0A%27desembre%27%5D%2C%0A%20%20%20%20datasets%3A%20%5B%7B%0A%20%20%20%20%20%20label%3A%20%27%C3%9As%20per%20mes%27%2C%0A%20%20%20%20%20%20data%3A%20%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%2C%2011%2C%2012%5D%2C%0A%20%20%20%20%20%20backgroundColor%3A%20getGradientFillHelper(%27vertical%27%2C%20%5B%27%23030201%27%2C%20%27%234da558%27%2C%20%27%23f1d600%27%5D)%2C%0A%20%20%20%20%7D%5D%0A%20%20%7D%0A%7D">
+            <img id='grafic_girocleta' style="border:2px solid #ebebeb; border-radius: 10px; width: 100%;" src="https://quickchart.io/chart?v=4&c=%7B%0A%20%20type%3A%20%27bar%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B%27gener%27%2C%20%0A%27febrer%27%2C%0A%27mar%C3%A7%27%2C%0A%27abril%27%2C%0A%27maig%27%2C%0A%27juny%27%2C%0A%27juliol%27%2C%20%0A%27agost%27%2C%0A%27setembre%27%2C%20%0A%27octubre%27%2C%0A%27novembre%27%2C%0A%27desembre%27%5D%2C%0A%20%20%20%20datasets%3A%20%5B%7B%0A%20%20%20%20%20%20label%3A%20%27%C3%9As%20per%20mes%27%2C%0A%20%20%20%20%20%20data%3A%20%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%2C%2011%2C%2012%5D%2C%0A%20%20%20%20%20%20backgroundColor%3A%20getGradientFillHelper(%27vertical%27%2C%20%5B%27%23030201%27%2C%20%27%234da558%27%2C%20%27%23f1d600%27%5D)%2C%0A%20%20%20%20%7D%5D%0A%20%20%7D%0A%7D">
         </section>
         <script>
             function downloadImage(mId) {
