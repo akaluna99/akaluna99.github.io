@@ -38,6 +38,7 @@ button {
     font-family: "Rubik", serif;
     font-weight: lighter;
     font-size: larger;
+    cursor: pointer;
 }
 
 button {
