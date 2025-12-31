@@ -1,5 +1,5 @@
 #drop-area {
-    width: 75vw;
+    //width: 75vw;
     height: 250px;
     border: 2px dashed #ebebeb;
     border-radius: 10px;
@@ -8,11 +8,12 @@
     justify-content: center;
     cursor: pointer;
     margin: auto;
-    padding: auto;
+    padding: 20px;
 }
+
 a {
     color: hotpink;
-  }
+}
 
 #drop-area.hover {
     border-color: #0056b3;
@@ -24,7 +25,8 @@ a {
     border: 5px solid #ffffff;
 }
 
-input, button {
+input,
+button {
     border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
@@ -37,6 +39,7 @@ input, button {
     font-weight: lighter;
     font-size: larger;
 }
+
 button {
     cursor: pointer;
 }
@@ -51,21 +54,23 @@ body {
     margin: 0;
     background: linear-gradient(to bottom, #4da558, #295a30);
     scroll-snap-type: y mandatory !important;
-    background: rgb(3,2,1);
-background: linear-gradient(236deg, rgba(3,2,1,1) 0%, rgba(77,165,88,1) 60%, rgba(241,214,0,1) 100%);
+    background: rgb(3, 2, 1);
+    background: linear-gradient(236deg, rgba(3, 2, 1, 1) 0%, rgba(77, 165, 88, 1) 60%, rgba(241, 214, 0, 1) 100%);
 }
 
 header {
     color: #ebebeb;
     height: 90vh;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
-    align-content: center;
-    justify-content: space-evenly;
-    align-items: stretch;
     font-family: "Inria Sans", serif;
-    padding: 50px;
+    padding: 10px 10%;
+    max-width: 800px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
 }
 
 resultats {
@@ -81,8 +86,7 @@ section {
     border-radius: 10px;
     padding: 1vh 5vw;
     margin: 10vh 0vw;
-    
-    //min-height: 75vh;
+
     min-height: 200px;
     max-width: 750px;
 
@@ -127,35 +131,44 @@ span {
     body {
         font-size: small;
     }
+
     section {
         max-width: 75vw;
         min-height: 50vh;
         align-content: center;
         padding: 10% 5%;
     }
+
     span {
         font-size: xx-large;
     }
+
     #drop-area {
         height: 20%;
     }
+
     .headline {
         align-items: center;
     }
+
     .headline>h1 {
         font-size: xx-large;
     }
 }
+
 @media only screen and (max-height: 900px) {
     .headline {
-        font-size: small;
-        padding: 0;
+        font-size: 15px;
+        padding: 5px;
     }
-    input, button {
-        min-height: 10px;
+
+    input,
+    button {
+        min-height: 50px;
     }
-    #drop-area{
-        height: 50px;
+
+    #drop-area {
+        height: 100px;
     }
 }
 
