@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>El Foraster Tracker</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Foraster">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#e65100">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/512/map-marker.png">
+    <script src="./pobles-v1.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        orange: { 600: '#e65100', 700: '#bf4500' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --sat: env(safe-area-inset-top); --sab: env(safe-area-inset-bottom); }
+        #map { height: 100%; width: 100%; z-index: 1; outline: none; }
+        .safe-top { padding-top: calc(1rem + var(--sat)); }
+        .sidebar-scroll { height: calc(100vh - 14rem - var(--sat)); overflow-y: auto; }
+        .dark-map { filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e65100; border-radius: 10px; }
+        
+        #sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        @media (max-width: 768px) {
+            #sidebar.closed { transform: translateX(-100%); }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Estils per a l'acordió */
+        .season-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .season-section.open .season-content {
+            max-height: 1000px; /* Suficient per als capítols */
+        }
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+        .season-section.open .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300 overflow-hidden select-none">
+
+    <div class="flex h-screen flex-col md:flex-row relative overflow-hidden">
+        
+        <!-- BOTÓ MÒBIL -->
+        <button id="mobile-toggle" class="md:hidden fixed bottom-8 left-6 z-[2000] bg-orange-600 text-white p-5 rounded-full shadow-2xl active:scale-90 transition-all border-4 border-white dark:border-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="fixed md:relative inset-y-0 left-0 w-80 bg-white dark:bg-gray-800 shadow-2xl z-[3000] flex flex-col border-r border-gray-200 dark:border-gray-700">
+            <div class="p-4 bg-orange-600 text-white flex justify-between items-center safe-top">
+                <h1 class="font-bold text-xl flex items-center gap-2">📍 El Foraster</h1>
+                <div class="flex items-center gap-1">
+                    <button id="dark-mode-toggle" class="p-2 hover:bg-orange-700 rounded-full transition-all">🌙</button>
+                    <button id="close-sidebar-mobile" class="md:hidden p-2 hover:bg-orange-700 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="p-2 bg-gray-50 dark:bg-gray-900/50 border-b dark:border-gray-700 grid grid-cols-2 gap-1">
+                <button onclick="setFilter('tots')" id="btn-tots" class="filter-btn text-[10px] font-bold uppercase py-2 rounded-lg bg-orange-600 text-white shadow-md">Tots</button>
+                <button onclick="setFilter('pendents')" id="btn-pendents" class="filter-btn text-[10px] font-bold uppercase py-2 rounded-lg bg-white dark:bg-gray-700 dark:text-gray-300 border dark:border-gray-600">Per Veure</button>
+                <button onclick="setFilter('vistos')" id="btn-vistos" class="filter-btn text-[10px] font-bold uppercase py-2 rounded-lg bg-white dark:bg-gray-700 dark:text-gray-300 border dark:border-gray-600">Vistos</button>
+                <button onclick="setFilter('visitats')" id="btn-visitats" class="filter-btn text-[10px] font-bold uppercase py-2 rounded-lg bg-white dark:bg-gray-700 dark:text-gray-300 border dark:border-gray-600">Visitats</button>
+            </nav>
+
+            <div id="sidebar-content" class="sidebar-scroll p-2 custom-scrollbar space-y-2"></div>
+        </aside>
+
+        <!-- MAPA -->
+        <main class="flex-1 relative overflow-hidden">
+            <div id="map"></div>
+
+            <button onclick="locateUser()" class="absolute bottom-24 right-6 z-[1500] bg-white dark:bg-gray-800 p-4 rounded-full shadow-lg border-2 border-orange-600 text-orange-600 active:scale-90 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </button>
+
+            <div id="map-legend" class="absolute top-6 right-6 z-[1500] bg-white/90 dark:bg-gray-800/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 hidden md:block">
+                <p class="text-[10px] font-black uppercase text-gray-400 mb-2 px-1">Temporades</p>
+                <div id="legend-list" class="space-y-1"></div>
+            </div>
+
+            <!-- DETALLS -->
+            <section id="details-panel" class="absolute inset-y-0 right-0 w-full md:w-[420px] bg-white dark:bg-gray-800 shadow-2xl z-[4000] transform translate-x-full transition-transform duration-500 border-l border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden">
+                <div class="relative w-full">
+                    <div id="video-wrapper" class="video-container"></div>
+                    <button onclick="closeDetails()" class="absolute top-4 right-4 p-2 bg-black/40 backdrop-blur-md text-white rounded-full hover:bg-orange-600 transition-colors z-[4001]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="p-6 md:p-8 overflow-y-auto custom-scrollbar flex-1 -mt-6 relative z-10 bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span id="poble-temp" class="text-orange-600 font-black text-xs uppercase tracking-widest"></span>
+                            <h2 id="poble-titol" class="text-3xl font-black dark:text-white mt-1 leading-tight"></h2>
+                        </div>
+                        <div id="poble-bandera-container" class="w-16 h-10 bg-gray-100 dark:bg-gray-700 rounded-md border border-gray-200 dark:border-gray-600 flex items-center justify-center overflow-hidden shadow-sm">
+                            <img id="poble-bandera" src="" class="w-full h-full object-cover hidden" alt="Bandera">
+                            <span id="bandera-icon" class="text-xl">🏴</span>
+                        </div>
+                    </div>
+
+                    <p id="poble-resum" class="text-gray-500 dark:text-gray-400 italic mb-6 border-l-4 border-orange-600 pl-4"></p>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                        <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border dark:border-gray-600">
+                            <p class="text-[9px] text-gray-400 font-bold uppercase mb-0.5">Alcalde/essa</p>
+                            <p id="info-alcalde" class="font-bold text-xs truncate"></p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border dark:border-gray-600">
+                            <p class="text-[9px] text-gray-400 font-bold uppercase mb-0.5">Data Emissió</p>
+                            <p id="info-emissio" class="font-bold text-xs"></p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border dark:border-gray-600">
+                            <p class="text-[9px] text-gray-400 font-bold uppercase mb-0.5">Habitants</p>
+                            <p id="info-habitants" class="font-mono font-bold text-xs"></p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border dark:border-gray-600">
+                            <p class="text-[9px] text-gray-400 font-bold uppercase mb-0.5">Comarca</p>
+                            <p id="info-comarca" class="font-bold text-xs"></p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mb-8 text-sm">
+                        <div class="flex justify-between py-2 border-b dark:border-gray-700">
+                            <span class="text-gray-400">Gentilic:</span>
+                            <span id="info-gentilic" class="font-medium"></span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b dark:border-gray-700">
+                            <span class="text-gray-400">Altitud / Extensió:</span>
+                            <span id="info-geografia" class="font-medium"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 mb-8" id="detail-actions"></div>
+
+                    <a id="poble-link" href="#" target="_blank" class="block w-full bg-orange-600 text-white text-center py-5 rounded-2xl font-black shadow-lg uppercase tracking-wide transition-transform hover:scale-[1.02] active:scale-95">
+                        Veure a 3Cat
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let map, markersLayer, userMarker;
+        let userData = JSON.parse(localStorage.getItem('foraster_app_data')) || {}; 
+        let currentFilter = 'tots';
+        let activeCapId = null;
+        let openSeasons = new Set(); // Per recordar quines temporades estan obertes
+
+        function init() {
+            initMap();
+            initDarkMode();
+            initResponsive();
+            refreshUI();
+        }
+
+        function initMap() {
+            map = L.map('map', { zoomControl: false }).setView([41.59, 1.52], 8);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+            markersLayer = L.layerGroup().addTo(map);
+            updateMapTheme();
+        }
+
+        function refreshUI() {
+            renderSidebar();
+            renderMarkers();
+            updateLegend();
+        }
+
+        function renderMarkers() {
+            markersLayer.clearLayers();
+            dadesForaster.forEach(temp => {
+                temp.Capitols.forEach(cap => {
+                    if (!isVisible(cap)) return;
+                    const isActive = activeCapId === cap.id;
+                    const marker = L.circleMarker(cap.Coords, {
+                        radius: isActive ? 14 : 9,
+                        fillColor: temp.Color,
+                        color: isActive ? '#fff' : '#000',
+                        weight: isActive ? 4 : 0.5,
+                        fillOpacity: 0.9
+                    }).addTo(markersLayer);
+                    marker.on('click', () => selectPoble(cap.id));
+                });
+            });
+        }
+
+        function locateUser() {
+            if (!navigator.geolocation) return;
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                if (userMarker) map.removeLayer(userMarker);
+                userMarker = L.marker([lat, lng], {
+                    icon: L.divIcon({
+                        className: 'custom-div-icon',
+                        html: `<div class='w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow-lg animate-pulse'></div>`,
+                        iconSize: [16, 16],
+                        iconAnchor: [8, 8]
+                    })
+                }).addTo(map);
+                map.flyTo([lat, lng], 13);
+            });
+        }
+
+        function updateLegend() {
+            const list = document.getElementById('legend-list');
+            list.innerHTML = '';
+            dadesForaster.forEach(temp => {
+                if (temp.Capitols.some(c => isVisible(c))) {
+                    const item = document.createElement('div');
+                    item.className = 'flex items-center gap-2 px-1 py-1 text-[11px] font-medium';
+                    item.innerHTML = `<span class="w-3 h-3 rounded-full" style="background-color: ${temp.Color}"></span><span>Temp. ${temp.Temporada}</span>`;
+                    list.appendChild(item);
+                }
+            });
+        }
+
+        function isVisible(cap) {
+            const s = userData[cap.id] || { vist: false, visitat: false };
+            if (currentFilter === 'vistos' && !s.vist) return false;
+            if (currentFilter === 'visitats' && !s.visitat) return false;
+            if (currentFilter === 'pendents' && s.vist) return false;
+            return true;
+        }
+
+        window.toggleSeason = (tNum) => {
+            if (openSeasons.has(tNum)) {
+                openSeasons.delete(tNum);
+            } else {
+                openSeasons.add(tNum);
+            }
+            renderSidebar();
+        };
+
+        window.selectPoble = (id) => {
+            let sel = null; let tNum = 0;
+            dadesForaster.forEach(t => { 
+                const c = t.Capitols.find(x => x.id === id); 
+                if(c) { sel = c; tNum = t.Temporada; }
+            });
+            if (!sel) return;
+            activeCapId = id;
+            
+            // Si el poble seleccionat pertany a una temporada tancada, l'obrim
+            openSeasons.add(tNum);
+
+            map.flyTo(sel.Coords, 14);
+            
+            const videoWrapper = document.getElementById('video-wrapper');
+            videoWrapper.innerHTML = sel.VideoId ? `<iframe src="https://www.ccma.cat/video/embed/${sel.VideoId}/" allowfullscreen></iframe>` : '';
+
+            document.getElementById('poble-temp').innerText = `Temporada ${tNum}`;
+            document.getElementById('poble-titol').innerText = sel.Municipi;
+            document.getElementById('poble-resum').innerText = sel.Resum;
+            
+            const bImg = document.getElementById('poble-bandera');
+            const bIcon = document.getElementById('bandera-icon');
+            if (sel.Bandera) {
+                bImg.src = sel.Bandera;
+                bImg.classList.remove('hidden');
+                bIcon.classList.add('hidden');
+            } else {
+                bImg.classList.add('hidden');
+                bIcon.classList.remove('hidden');
+            }
+
+            document.getElementById('info-alcalde').innerText = sel.Alcalde || 'n/a';
+            document.getElementById('info-emissio').innerText = sel.Emissio || 'n/a';
+            document.getElementById('info-habitants').innerText = sel.Habitants;
+            document.getElementById('info-comarca').innerText = sel.Comarca || 'n/a';
+            document.getElementById('info-gentilic').innerText = sel.Gentilic || 'n/a';
+            document.getElementById('info-geografia').innerText = `${sel.Altitud} / ${sel.Extensio}`;
+            
+            document.getElementById('poble-link').href = sel.Link;
+
+            updateDetailActions();
+            document.getElementById('details-panel').classList.remove('translate-x-full');
+            if (window.innerWidth < 768) document.getElementById('sidebar').classList.add('closed');
+            refreshUI();
+        };
+
+        function toggleStatus(id, field) {
+            if (!userData[id]) userData[id] = { vist: false, visitat: false };
+            userData[id][field] = !userData[id][field];
+            localStorage.setItem('foraster_app_data', JSON.stringify(userData));
+            refreshUI();
+            if (activeCapId === id) updateDetailActions();
+        }
+
+        function updateDetailActions() {
+            const s = userData[activeCapId] || { vist: false, visitat: false };
+            document.getElementById('detail-actions').innerHTML = `
+                <button onclick="toggleStatus('${activeCapId}', 'vist')" class="flex-1 p-4 rounded-2xl border-2 transition-all flex flex-col items-center ${s.vist ? 'border-orange-600 bg-orange-50 dark:bg-orange-900/20' : 'border-gray-100 dark:border-gray-700 opacity-50'}">
+                    <span class="text-3xl mb-1">📺</span><span class="text-[10px] font-bold uppercase">Vist</span>
+                </button>
+                <button onclick="toggleStatus('${activeCapId}', 'visitat')" class="flex-1 p-4 rounded-2xl border-2 transition-all flex flex-col items-center ${s.visitat ? 'border-orange-600 bg-orange-50 dark:bg-orange-900/20' : 'border-gray-100 dark:border-gray-700 opacity-50'}">
+                    <span class="text-3xl mb-1">🏠</span><span class="text-[10px] font-bold uppercase">Visitat</span>
+                </button>`;
+        }
+
+        window.setFilter = (f) => {
+            currentFilter = f;
+            document.querySelectorAll('.filter-btn').forEach(b => b.className = "filter-btn text-[10px] font-bold uppercase py-2 rounded-lg bg-white dark:bg-gray-700 dark:text-gray-300 border dark:border-gray-600");
+            const active = document.getElementById(`btn-${f}`);
+            active.className = "filter-btn text-[10px] font-bold uppercase py-2 rounded-lg bg-orange-600 text-white shadow-md";
+            refreshUI();
+        };
+
+        function renderSidebar() {
+            const container = document.getElementById('sidebar-content');
+            container.innerHTML = '';
+            dadesForaster.forEach(temp => {
+                const caps = temp.Capitols.filter(c => isVisible(c));
+                if (caps.length === 0) return;
+                
+                const isOpen = openSeasons.has(temp.Temporada);
+                
+                const div = document.createElement('div');
+                div.className = `season-section mb-2 border dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 ${isOpen ? 'open' : ''}`;
+                
+                div.innerHTML = `
+                    <button onclick="toggleSeason(${temp.Temporada})" class="w-full flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900/50 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
+                        <div class="text-[10px] font-black uppercase" style="color: ${temp.Color}">Temporada ${temp.Temporada}</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-gray-400 bg-gray-200 dark:bg-gray-700 px-1.5 py-0.5 rounded-full">${caps.length}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="season-content divide-y dark:divide-gray-700">
+                        ${caps.map(c => {
+                            const s = userData[c.id] || { vist: false, visitat: false };
+                            const flagHTML = c.Bandera 
+                                ? `<img src="${c.Bandera}" class="w-5 h-3.5 object-cover rounded-[2px] shadow-sm border border-gray-100 dark:border-gray-600" />`
+                                : `<span class="text-xs">🏴</span>`;
+                            
+                            return `<button onclick="selectPoble('${c.id}')" class="w-full text-left p-3 hover:bg-orange-50 dark:hover:bg-orange-900/10 ${activeCapId === c.id ? 'bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-600' : ''}">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        ${flagHTML}
+                                        <span class="font-bold text-sm">${c.Municipi}</span>
+                                    </div>
+                                    <div class="flex gap-1 items-center">
+                                        <span class="${s.vist ? '' : 'grayscale opacity-20'} text-xs">📺</span>
+                                        <span class="${s.visitat ? '' : 'grayscale opacity-20'} text-xs">🏠</span>
+                                    </div>
+                                </div>
+                            </button>`;
+                        }).join('')}
+                    </div>`;
+                container.appendChild(div);
+            });
+        }
+
+        function initDarkMode() {
+            if (localStorage.getItem('dark_f') === 'true') document.documentElement.classList.add('dark');
+            document.getElementById('dark-mode-toggle').onclick = () => {
+                const d = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('dark_f', d);
+                updateMapTheme();
+            };
+        }
+
+        function updateMapTheme() {
+            const mapEl = document.getElementById('map');
+            document.documentElement.classList.contains('dark') ? mapEl.classList.add('dark-map') : mapEl.classList.remove('dark-map');
+        }
+
+        function initResponsive() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth < 768) sidebar.classList.add('closed');
+            document.getElementById('mobile-toggle').onclick = () => sidebar.classList.remove('closed');
+            document.getElementById('close-sidebar-mobile').onclick = () => sidebar.classList.add('closed');
+        }
+
+        window.closeDetails = () => { 
+            document.getElementById('details-panel').classList.add('translate-x-full'); 
+            document.getElementById('video-wrapper').innerHTML = ''; 
+            activeCapId = null; 
+            refreshUI(); 
+        };
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
